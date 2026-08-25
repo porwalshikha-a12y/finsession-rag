@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FinSession-RAG</title>
+<style>
+  :root { --accent:#4269D0; --ink:#1a1d23; --muted:#6b7280; --bg:#f6f7f9;
+          --card:#ffffff; --border:#e5e7eb; }
+  * { box-sizing:border-box; }
+  body { margin:0; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+         color:var(--ink); background:var(--bg); }
+  header { padding:16px 24px; background:var(--card); border-bottom:1px solid var(--border);
+           display:flex; gap:16px; align-items:center; flex-wrap:wrap; }
+  header h1 { font-size:18px; margin:0 16px 0 0; }
+  header label { font-size:13px; color:var(--muted); }
+  select,input[type=number] { padding:6px 8px; border:1px solid var(--border);
+           border-radius:6px; font-size:14px; }
+  button { padding:8px 14px; border:0; border-radius:6px; background:var(--accent);
+           color:#fff; font-size:14px; cursor:pointer; }
+  button:disabled { opacity:.5; cursor:default; }
+  main { display:grid; grid-template-columns:3fr 2fr; gap:16px; padding:16px 24px;
+         max-width:1200px; margin:0 auto; }
+  .card { background:var(--card); border:1px solid var(--border); border-radius:10px;
+          padding:16px; }
+  #chat { min-height:320px; max-height:55vh; overflow-y:auto; display:flex;
+          flex-direction:column; gap:10px; margin-bottom:12px; }
+  .msg { padding:10px 12px; border-radius:10px; max-width:85%; font-size:14px;
+         white-space:pre-wrap; }
+  .user { align-self:flex-end; background:var(--accent); color:#fff; }
+  .bot  { align-self:flex-start; background:var(--bg); border:1px solid var(--border); }
+  .meta { font-size:12px; color:var(--muted); margin-top:6px; }
+  form#askForm { display:flex; gap:8px; }
+  #question { flex:1; padding:10px; border:1px solid var(--border); border-radius:8px;
+              font-size:14px; }
+  h2 { font-size:14px; margin:0 0 10px; }
+  .stats { display:flex; gap:16px; margin-bottom:12px; }
+  .stat  { flex:1; }
+  .stat .num { font-size:20px; font-weight:600; }
+  .stat .lbl { font-size:12px; color:var(--muted); }
+  table { width:100%; border-collapse:collapse; font-size:12.5px; }
+  th,td { text-align:left; padding:6px 8px; border-bottom:1px solid var(--border); }
+  th { color:var(--muted); font-weight:500; }
+  td.num { text-align:right; font-variant-numeric:tabular-nums; }
+  #status { font-size:13px; color:var(--muted); }
+</style>
+</head>
+<body>
+<header>
+  <h1>FinSession-RAG</h1>
+  <label>Arm
+    <select id="mode">
+      <option value="A0">A0 — no memory</option>
+      <option value="A1">A1 — unbounded</option>
+      <option value="A2">A2 — LRU</option>
+      <option value="A3">A3 — LFU</option>
+      <option value="A4">A4 — redundancy</option>
+      <option value="A5" selected>A5 — cost-aware</option>
+    </select>
+  </label>
+  <label>Budget <input id="budget" type="number" value="20" min="5" max="100" style="width:70px"></label>
+  <label>τ <input id="tau" type="number" value="0.80" min="0.5" max="0.95" step="0.01" style="width:80px"></label>
+  <button id="newSession">Start new session</button>
+  <span id="status">no session yet</span>
+</header>
+
+<main>
+  <section class="card">
+    <div id="chat"></div>
+    <form id="askForm">
+      <input id="question" placeholder="Ask about the filings… e.g. What was Apple's total net sales in FY2022?" autocomplete="off">
+      <button id="askBtn" type="submit">Ask</button>
+    </form>
+  </section>
+
+  <section class="card">
+    <h2>Session cost</h2>
+    <div class="stats">
+      <div class="stat"><div class="num" id="tokens">0</div><div class="lbl">total tokens</div></div>
+      <div class="stat"><div class="num" id="calls">0</div><div class="lbl">LLM calls</div></div>
+      <div class="stat"><div class="num" id="hits">0</div><div class="lbl">memory hits</div></div>
+      <div class="stat"><div class="num" id="evictions">0</div><div class="lbl">evictions</div></div>
+    </div>
+    <h2>Memory <span id="memsize" style="color:var(--muted);font-weight:400"></span></h2>
+    <table id="memTable">
+      <thead><tr><th>sub-question</th><th>answer</th><th class="num">cost</th><th class="num">hits</th></tr></thead>
+      <tbody><tr><td colspan="4" style="color:var(--muted)">memory empty</td></tr></tbody>
+    </table>
+  </section>
+</main>
+
+<script>
+const $ = id => document.getElementById(id);
+let busy = false;
+
+async function api(path, body) {
+  const res = await fetch(path, {method:"POST",
+    headers:{"Content-Type":"application/json"}, body:JSON.stringify(body)});
+  if (!res.ok) throw new Error((await res.json()).detail || res.statusText);
+  return res.json();
+}
+
+function addMsg(text, cls, meta) {
+  const div = document.createElement("div");
+  div.className = "msg " + cls;
+  div.textContent = text;
+  if (meta) {
+    const m = document.createElement("div");
+    m.className = "meta"; m.textContent = meta; div.appendChild(m);
+  }
+  $("chat").appendChild(div);
+  $("chat").scrollTop = $("chat").scrollHeight;
+}
+
+function renderSide(d) {
+  $("tokens").textContent = d.ledger.total_tokens.toLocaleString();
+  $("calls").textContent = d.ledger.calls;
+  if (d.memory) {
+    $("hits").textContent = d.memory.stats.hits;
+    $("evictions").textContent = d.memory.stats.evictions;
+    $("memsize").textContent = `(${d.memory.size}${d.memory.budget ? " / " + d.memory.budget : ""} entries)`;
+    const tb = $("memTable").querySelector("tbody");
+    tb.innerHTML = d.memory.entries.length ? "" :
+      '<tr><td colspan="4" style="color:var(--muted)">memory empty</td></tr>';
+    for (const e of d.memory.entries) {
+      const tr = document.createElement("tr");
+      tr.innerHTML = `<td>${e.sub_question}</td><td>${e.sub_answer}</td>
+        <td class="num">${e.cost_tokens}</td><td class="num">${e.hits}</td>`;
+      tb.appendChild(tr);
+    }
+  } else {
+    $("memsize").textContent = "(disabled in this arm)";
+  }
+}
+
+$("newSession").onclick = async () => {
+  try {
+    await api("/session", {mode:$("mode").value, budget:+$("budget").value,
+                           tau:+$("tau").value, reuse_check:true});
+    $("chat").innerHTML = "";
+    ["tokens","calls","hits","evictions"].forEach(id => $(id).textContent = "0");
+    $("memTable").querySelector("tbody").innerHTML =
+      '<tr><td colspan="4" style="color:var(--muted)">memory empty</td></tr>';
+    $("status").textContent = `session: ${$("mode").value}`;
+  } catch (e) { $("status").textContent = "error: " + e.message; }
+};
+
+$("askForm").onsubmit = async (ev) => {
+  ev.preventDefault();
+  if (busy) return;
+  const q = $("question").value.trim();
+  if (!q) return;
+  addMsg(q, "user");
+  $("question").value = "";
+  busy = true; $("askBtn").disabled = true;
+  $("status").textContent = "planning → retrieving → verifying…";
+  try {
+    const d = await api("/ask", {question: q});
+    addMsg(d.answer, "bot",
+      `${d.trace.tokens} tokens · ${d.trace.retrievals} retrievals · ${d.trace.memory_hits} memory hits`);
+    renderSide(d);
+    $("status").textContent = `session: ${$("mode").value}`;
+  } catch (e) {
+    addMsg("Error: " + e.message, "bot");
+    $("status").textContent = "error";
+  } finally { busy = false; $("askBtn").disabled = false; }
+};
+</script>
+</body>
+</html>

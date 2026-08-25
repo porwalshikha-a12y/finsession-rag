@@ -1,0 +1,34 @@
+{
+  "session_id": "EXAMPLE_AAPL_1",
+  "company": "AAPL",
+  "queries": [
+    {
+      "qid": "q1",
+      "question": "What was Apple's total net sales in fiscal 2023?",
+      "gold_answer": "$383.3 billion",
+      "type": "factoid",
+      "paraphrase_of": null
+    },
+    {
+      "qid": "q2",
+      "question": "Which of Apple's product segments had the highest net sales in fiscal 2023?",
+      "gold_answer": "iPhone",
+      "type": "factoid",
+      "paraphrase_of": null
+    },
+    {
+      "qid": "q3",
+      "question": "How did Services net sales change from fiscal 2022 to fiscal 2023?",
+      "gold_answer": "Increased from $78.1B to $85.2B (about +9%)",
+      "type": "multi_hop",
+      "paraphrase_of": null
+    },
+    {
+      "qid": "q4",
+      "question": "What were Apple's overall net sales for FY2023?",
+      "gold_answer": "$383.3 billion",
+      "type": "factoid",
+      "paraphrase_of": "q1"
+    }
+  ]
+}

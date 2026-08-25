@@ -1,0 +1,22 @@
+openai>=1.40
+python-dotenv>=1.0
+pdfplumber>=0.11
+sentence-transformers>=3.0
+tiktoken>=0.7
+numpy>=1.26
+pyyaml>=6.0
+tqdm>=4.66
+pandas>=2.2
+pytest>=8.0
+
+# vector store: PostgreSQL + pgvector
+psycopg[binary]>=3.1
+pgvector>=0.3
+
+# optional fallback store (config: vector_store.backend = faiss)
+faiss-cpu>=1.8
+
+# front ends (optional)
+streamlit>=1.37
+fastapi>=0.111
+uvicorn>=0.30

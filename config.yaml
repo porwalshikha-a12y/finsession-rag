@@ -1,0 +1,57 @@
+# ---- LLM (the only paid component) ----
+llm:
+  model: gpt-4o-mini
+  temperature: 0.0
+  max_output_tokens: 600
+
+# ---- Embeddings (free, local) ----
+embeddings:
+  model: BAAI/bge-small-en-v1.5   # 384-dim, fast on CPU; upgrade to bge-large if you have GPU
+  batch_size: 32
+
+# ---- Ingestion / chunking (choices justified by arXiv:2604.12047) ----
+chunking:
+  max_tokens: 512
+  overlap_tokens: 128            # 25% overlap
+  tokenizer: cl100k_base #OpenAI's tokenizer (the one behind GPT-4-era models, provided by the tiktoken library)
+
+# ---- Vector store ----
+vector_store:
+  backend: pgvector            # "pgvector" (Postgres) or "faiss" (in-process fallback)
+  dsn: postgresql:///finsession   # or set env PGVECTOR_DSN; e.g. postgresql://user:pw@localhost:5432/finsession
+  table: chunks
+
+# ---- Retrieval ----
+retrieval:
+  top_k: 4
+
+# ---- Agent ----
+agent:
+  max_steps: 6                   # max plan->retrieve->verify iterations per query
+
+# ---- Memory ----
+memory:
+  similarity_threshold: 0.80     # cosine sim for a memory hit (tune on dev sessions)
+  budgets:
+    tight: 20                    # max entries
+    moderate: 60
+  reuse_verification: true       # cheap re-check before trusting a memory hit (H4)
+
+# ---- Security (prompt-injection defenses) ----
+security:
+  enabled: true        # chunk scanning + spotlighting + hardened verifier + grounding gate on memory writes
+
+# ---- Experiment arms ----
+arms:
+  - {name: A0_no_memory,   memory: false}
+  - {name: A1_unbounded,   memory: true,  eviction: none}
+  - {name: A2_lru,         memory: true,  eviction: lru,        budget: tight}
+  - {name: A3_lfu,         memory: true,  eviction: lfu,        budget: tight}
+  - {name: A4_redundancy,  memory: true,  eviction: redundancy, budget: tight}
+  - {name: A5_cost_aware,  memory: true,  eviction: cost_aware, budget: tight}
+
+paths:
+  filings_dir: data/filings
+  index_dir: data/index
+  sessions_dir: data/sessions
+  results_dir: results

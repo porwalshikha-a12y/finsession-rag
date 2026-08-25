@@ -1,0 +1,26 @@
+# secrets — never commit
+.env
+*.key
+
+# python
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# editors / tooling
+.idea/
+.vscode/
+.agents/
+.claude/
+
+# corpus PDFs (large, and publicly downloadable from FinanceBench)
+data/**/*.pdf
+data/**/*.jsonl
+data/index/
+
+# experiment outputs (regenerable; commit specific result CSVs by hand if needed)
+results/
+
+# macOS
+.DS_Store
