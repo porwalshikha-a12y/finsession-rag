@@ -1,0 +1,31 @@
+{
+  "session_id": "apple_products_2020_2022",
+  "company": "Apple",
+  "period": "FY2020-2022",
+  "queries": [
+    {
+      "query_id": "q_009",
+      "question": "What were Apple's main product categories by revenue in 2022?",
+      "query_type": "tier_a_factoid",
+      "expected_answer_marker": "iPhone, Mac, iPad, Wearables, Services"
+    },
+    {
+      "query_id": "q_010",
+      "question": "Which product line had the highest revenue for Apple in 2022?",
+      "query_type": "tier_a_factoid",
+      "expected_answer_marker": "iPhone"
+    },
+    {
+      "query_id": "q_011",
+      "question": "Compare Services revenue between 2020 and 2022.",
+      "query_type": "multi_hop",
+      "expected_answer_marker": "services growth"
+    },
+    {
+      "query_id": "q_012",
+      "question": "What was the growth rate for Apple's Wearables category from 2021 to 2022?",
+      "query_type": "arithmetic_probe",
+      "expected_answer_marker": "wearables growth"
+    }
+  ]
+}

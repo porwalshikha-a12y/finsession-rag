@@ -1,0 +1,31 @@
+{
+  "session_id": "pepsico_fy2022_financials",
+  "company": "PepsiCo",
+  "period": "FY2022",
+  "queries": [
+    {
+      "query_id": "q_045",
+      "question": "What was PepsiCo's total net revenue in 2022?",
+      "query_type": "tier_a_factoid",
+      "expected_answer_marker": "revenue"
+    },
+    {
+      "query_id": "q_046",
+      "question": "How many business segments does PepsiCo operate?",
+      "query_type": "tier_a_factoid",
+      "expected_answer_marker": "segments"
+    },
+    {
+      "query_id": "q_047",
+      "question": "What was PepsiCo's net income in 2022?",
+      "query_type": "terminology_mismatch_probe",
+      "expected_answer_marker": "net income"
+    },
+    {
+      "query_id": "q_048",
+      "question": "Compare PepsiCo's revenue in 2022 vs 2021.",
+      "query_type": "multi_hop",
+      "expected_answer_marker": "comparison"
+    }
+  ]
+}

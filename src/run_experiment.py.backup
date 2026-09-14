@@ -1,29 +1,36 @@
 #!/usr/bin/env python3
 """
-Run FinSession-RAG experiments — DB version with better error handling.
+Run FinSession-RAG experiments across arms and sessions.
+
+Evaluates each arm on each session, collecting token usage, memory hits,
+retrievals, and verdicts for downstream failure analysis.
+
+Usage:
+    python -m src.run_experiment                    # Run all arms, all sessions
+    python -m src.run_experiment --arm A0_no_memory # Single arm smoke test
+    python -m src.run_experiment --session apple_fy2022_basics  # Single session
 """
 
+from src.eviction import make_eviction_policy
+from src.memory import SemanticMemory
+from src.agent import RAGAgent
+from src.llm import LLM, TokenLedger
+from src.index import Embedder, FaissIndex
 import json
 import sys
 import argparse
 import os
 from pathlib import Path
-from typing import Dict, List, Any, Optional, Union
-import traceback
+from datetime import datetime
+from typing import Dict, List, Any, Optional
 
 import yaml
 from tqdm import tqdm
-from dotenv import load_dotenv
 
 # Add project root to path
 PROJECT_ROOT = Path(__file__).parent.parent
 sys.path.insert(0, str(PROJECT_ROOT))
 
-from src.index import Embedder, FaissIndex
-from src.llm import LLM, TokenLedger
-from src.agent import RAGAgent
-from src.memory import SemanticMemory
-from src.eviction import make_eviction_policy
 
 # For pgvector support
 try:
@@ -39,35 +46,19 @@ def load_config(config_path: Path) -> Dict[str, Any]:
         return yaml.safe_load(f)
 
 
-def load_sessions_from_db(conn) -> Dict[str, Dict[str, Any]]:
-    """Load sessions and queries from PostgreSQL."""
+def load_sessions(sessions_dir: Path) -> Dict[str, Dict[str, Any]]:
+    """Load all session JSON files."""
     sessions = {}
-    with conn.cursor() as cur:
-        cur.execute("SELECT session_id, company FROM sessions ORDER BY session_id")
-        for session_id, company in cur.fetchall():
-            cur.execute(
-                "SELECT query_id, question, query_type, expected_answer FROM queries WHERE session_id = %s",
-                (session_id,)
-            )
-            queries = [
-                {
-                    "query_id": qid,
-                    "question": q,
-                    "type": qtype,
-                    "expected_answer": ans
-                }
-                for qid, q, qtype, ans in cur.fetchall()
-            ]
-            sessions[session_id] = {
-                "session_id": session_id,
-                "company": company,
-                "queries": queries
-            }
+    for session_file in sorted(sessions_dir.glob("*.json")):
+        with open(session_file) as f:
+            session = json.load(f)
+            session_id = session.get("session_id", session_file.stem)
+            sessions[session_id] = session
     return sessions
 
 
 class PgvectorIndex:
-    """Pgvector index wrapper for RAGAgent."""
+    """Simple pgvector index wrapper (minimal interface for RAGAgent)."""
 
     def __init__(self, embedder: Embedder, dsn: str, table: str):
         self.embedder = embedder
@@ -79,14 +70,17 @@ class PgvectorIndex:
     def connect(self):
         """Connect to PostgreSQL."""
         if not HAS_PSYCOPG:
-            raise ImportError("psycopg is required for pgvector backend. Install: pip install psycopg[binary]")
+            raise ImportError(
+                "psycopg is required for pgvector backend. Install: pip install psycopg[binary]")
         try:
             self._conn = psycopg.connect(self.dsn)
+            # Count chunks
             with self._conn.cursor() as cur:
                 cur.execute(f"SELECT COUNT(*) FROM {self.table}")
                 self._chunk_count = cur.fetchone()[0]
         except Exception as e:
-            raise RuntimeError(f"Failed to connect to pgvector at {self.dsn}: {e}")
+            raise RuntimeError(
+                f"Failed to connect to pgvector at {self.dsn}: {e}")
 
     def count(self) -> int:
         """Return number of chunks in index."""
@@ -99,11 +93,11 @@ class PgvectorIndex:
         if not self._conn:
             self.connect()
 
-        try:
-            # Embed query
-            query_vec = self.embedder.encode([query])[0]
+        # Embed query
+        query_vec = self.embedder.encode([query])[0]
 
-            # Search in pgvector
+        # Search in pgvector
+        try:
             with self._conn.cursor() as cur:
                 cur.execute(
                     f"""
@@ -118,29 +112,20 @@ class PgvectorIndex:
 
             results = []
             for row in rows:
-                try:
-                    result = {
-                        "id": row[0],
-                        "text": row[1],
-                        "metadata": {
-                            "doc_id": row[2],
-                            "page": row[3],
-                            "company": row[4],
-                            "year": row[5]
-                        },
-                        "score": float(row[6])
-                    }
-                    results.append(result)
-                except (IndexError, TypeError) as e:
-                    print(f"ERROR parsing row: {row}")
-                    print(f"Error: {e}")
-                    traceback.print_exc()
-                    continue
-
+                results.append({
+                    "id": row[0],
+                    "text": row[1],
+                    "metadata": {
+                        "doc_id": row[2],
+                        "page": row[3],
+                        "company": row[4],
+                        "year": row[5]
+                    },
+                    "score": float(row[6])
+                })
             return results
         except Exception as e:
-            print(f"ERROR in pgvector search: {e}")
-            traceback.print_exc()
+            print(f"WARNING: pgvector search failed: {e}")
             return []
 
     def close(self):
@@ -149,8 +134,9 @@ class PgvectorIndex:
             self._conn.close()
 
 
-def make_agent(config: Dict, arm_config: Dict, embedder: Embedder, index: Union[FaissIndex, PgvectorIndex]) -> RAGAgent:
+def make_agent(config: Dict, arm_config: Dict, embedder: Embedder, index: FaissIndex) -> RAGAgent:
     """Create RAGAgent for an arm."""
+    # LLM setup
     llm = LLM(
         model=config["llm"]["model"],
         api_key=os.environ.get("OPENAI_API_KEY"),
@@ -158,6 +144,7 @@ def make_agent(config: Dict, arm_config: Dict, embedder: Embedder, index: Union[
         max_output_tokens=config["llm"].get("max_output_tokens", 600),
     )
 
+    # Memory setup
     memory = None
     if arm_config.get("memory", False):
         budget = config["memory"]["budgets"][arm_config.get("budget", "tight")]
@@ -171,6 +158,7 @@ def make_agent(config: Dict, arm_config: Dict, embedder: Embedder, index: Union[
             eviction_policy=eviction_policy,
         )
 
+    # Agent
     agent = RAGAgent(
         llm=llm,
         index=index,
@@ -200,8 +188,10 @@ def evaluate_query(agent: RAGAgent, query: Dict[str, str]) -> Dict[str, Any]:
         }
 
     try:
+        # Run agent
         trace = agent.answer(question)
 
+        # Extract evidence from sub-steps
         evidence_parts = []
         for step in trace.sub_steps:
             if step.get("verified"):
@@ -209,6 +199,7 @@ def evaluate_query(agent: RAGAgent, query: Dict[str, str]) -> Dict[str, Any]:
 
         evidence = " ".join(evidence_parts) if evidence_parts else ""
 
+        # Determine verdict based on answer quality
         if not trace.answer or len(trace.answer) < 10:
             verdict = "NOT_SUPPORTED"
         elif "could not" in trace.answer.lower() or "missing" in trace.answer.lower():
@@ -229,8 +220,6 @@ def evaluate_query(agent: RAGAgent, query: Dict[str, str]) -> Dict[str, Any]:
         }
 
     except Exception as e:
-        print(f"ERROR in evaluate_query for {query_id}: {e}")
-        traceback.print_exc()
         return {
             "query_id": query_id,
             "question": question,
@@ -241,36 +230,10 @@ def evaluate_query(agent: RAGAgent, query: Dict[str, str]) -> Dict[str, Any]:
         }
 
 
-def save_result_to_db(conn, arm_name: str, session_id: str, result: Dict[str, Any]) -> None:
-    """Save one query result to results table."""
-    with conn.cursor() as cur:
-        cur.execute(
-            """INSERT INTO results
-               (arm, session_id, query_id, question, answer, evidence, verdict,
-                tokens_spent, memory_hits, retrievals, memory_stats, error)
-               VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)""",
-            (
-                arm_name,
-                session_id,
-                result.get("query_id"),
-                result.get("question"),
-                result.get("answer"),
-                result.get("evidence"),
-                result.get("verdict"),
-                result.get("tokens_spent", 0),
-                result.get("memory_hits", 0),
-                result.get("retrievals", 0),
-                json.dumps(result.get("memory_stats", {})),
-                result.get("error", "")
-            )
-        )
-
-
 def run_arm_on_session(
     agent: RAGAgent,
     arm_name: str,
     session: Dict[str, Any],
-    db_conn,
     disable_pbar: bool = False,
 ) -> Dict[str, Any]:
     """Run an arm on a single session."""
@@ -288,15 +251,12 @@ def run_arm_on_session(
         result = evaluate_query(agent, query)
         results["queries"].append(result)
 
-        save_result_to_db(db_conn, arm_name, session_id, result)
-        db_conn.commit()
-
     return results
 
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Run FinSession-RAG experiments (DB version)"
+        description="Run FinSession-RAG experiments"
     )
     parser.add_argument(
         "--arm",
@@ -319,33 +279,35 @@ def main():
 
     args = parser.parse_args()
 
-    load_dotenv(PROJECT_ROOT / ".env")
-    print(f"  Loading .env from: {PROJECT_ROOT / '.env'}")
-
+    # Setup
     config_path = PROJECT_ROOT / "config.yaml"
+    sessions_dir = PROJECT_ROOT / "data" / "sessions"
+    index_dir = PROJECT_ROOT / "data" / "index"
     output_dir = args.output or (PROJECT_ROOT / "results")
 
     if not config_path.exists():
         print(f"ERROR: {config_path} not found")
         sys.exit(1)
 
+    if not sessions_dir.exists():
+        print(f"ERROR: {sessions_dir} not found. Run session generator first.")
+        sys.exit(1)
+
     print("=" * 80)
-    print("FINSESSION-RAG: Run Experiments (DB Version)")
+    print("FINSESSION-RAG: Run Experiments")
     print("=" * 80)
     print(f"Config: {config_path}")
+    print(f"Sessions: {sessions_dir}")
+    print(f"Index: {index_dir}")
     print(f"Output: {output_dir}")
     print()
 
-    try:
-        db_conn = psycopg.connect("postgresql:///finsession")
-    except Exception as e:
-        print(f"ERROR: Failed to connect to PostgreSQL: {e}")
-        sys.exit(1)
-
+    # Load config and sessions
     config = load_config(config_path)
-    sessions = load_sessions_from_db(db_conn)
+    sessions = load_sessions(sessions_dir)
     all_arms = config.get("arms", [])
 
+    # Filter by args
     if args.arm:
         all_arms = [a for a in all_arms if a["name"] == args.arm]
         if not all_arms:
@@ -363,36 +325,42 @@ def main():
     for arm in all_arms:
         print(f"  - {arm['name']}")
     print(f"Sessions to run: {len(sessions_to_run)}")
+    print(f"Total evaluations: {len(all_arms) * len(sessions_to_run) * 4}")
     print()
 
+    # Load index once
     print("Loading embeddings and index...")
     embedder = Embedder(model=config["embeddings"]["model"])
 
+    # Determine backend
     vector_store_config = config.get("vector_store", {})
     backend = vector_store_config.get("backend", "faiss").lower()
 
     if backend == "pgvector":
-        dsn = vector_store_config.get("dsn") or os.environ.get("PGVECTOR_DSN", "postgresql:///finsession")
+        dsn = vector_store_config.get("dsn") or os.environ.get(
+            "PGVECTOR_DSN", "postgresql:///finsession")
         table = vector_store_config.get("table", "chunks")
         print(f"  Using pgvector backend: {dsn}")
         index = PgvectorIndex(embedder, dsn, table)
         index.connect()
     else:
         print(f"  Using FAISS backend")
-        index_dir = PROJECT_ROOT / "data" / "index"
         if not index_dir.exists():
-            print(f"ERROR: {index_dir} not found. Run: python -m scripts.build_index")
+            print(
+                f"ERROR: {index_dir} not found. Run: python -m scripts.build_index")
             sys.exit(1)
         index = FaissIndex.load(index_dir, embedder)
 
     print(f"  ✓ Index loaded: {index.count()} chunks\n")
 
+    # Run experiments
     output_dir.mkdir(parents=True, exist_ok=True)
     all_results = []
     api_key = os.environ.get("OPENAI_API_KEY")
 
     if not api_key:
         print("WARNING: OPENAI_API_KEY not set. Queries will fail.")
+        print("Set it with: export OPENAI_API_KEY=sk-...")
         print()
 
     for arm_config in all_arms:
@@ -405,14 +373,18 @@ def main():
             print(f"  Budget: {arm_config.get('budget', 'tight')}")
             print(f"  Eviction: {arm_config.get('eviction', 'none')}")
 
+        # Create agent for this arm
         agent = make_agent(config, arm_config, embedder, index)
 
+        # Run on each session
         arm_results = []
         for session_id, session in sessions_to_run.items():
-            result = run_arm_on_session(agent, arm_name, session, db_conn, disable_pbar=False)
+            result = run_arm_on_session(
+                agent, arm_name, session, disable_pbar=False)
             arm_results.append(result)
             all_results.append(result)
 
+        # Aggregate stats for arm
         total_queries = sum(len(r["queries"]) for r in arm_results)
         total_supported = sum(
             1 for r in arm_results for q in r["queries"]
@@ -427,19 +399,23 @@ def main():
 
         print(f"\n  Summary:")
         print(f"    Queries: {total_queries}")
-        print(f"    Supported: {total_supported}/{total_queries} ({100*total_supported/total_queries:.1f}%)")
+        print(
+            f"    Supported: {total_supported}/{total_queries} ({100*total_supported/total_queries:.1f}%)")
         print(f"    Tokens: {total_tokens:,}")
         print(f"    Memory hits: {total_hits}")
 
+    # Save results
     results_file = output_dir / "results_all.json"
     with open(results_file, "w") as f:
         json.dump(all_results, f, indent=2)
 
+    # Clean up pgvector connection
     if isinstance(index, PgvectorIndex):
         index.close()
-    db_conn.close()
 
-    print(f"\n✅ Results saved to PostgreSQL and {results_file}")
+    print(f"\n✅ Results saved to {results_file}")
+    print(
+        f"\nNext: python evaluate_experiments.py --results {results_file} --output {output_dir / 'failure_breakdown.json'} --pretty")
 
 
 if __name__ == "__main__":

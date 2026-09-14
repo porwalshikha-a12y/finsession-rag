@@ -1,0 +1,31 @@
+{
+  "session_id": "jnj_segments_2020_2022",
+  "company": "Johnson & Johnson",
+  "period": "FY2020-2022",
+  "queries": [
+    {
+      "query_id": "q_037",
+      "question": "What are Johnson & Johnson's three main business segments?",
+      "query_type": "tier_a_factoid",
+      "expected_answer_marker": "Innovative Medicine, MedTech, Consumer Health"
+    },
+    {
+      "query_id": "q_038",
+      "question": "Which segment had the highest revenue for Johnson & Johnson in 2022?",
+      "query_type": "tier_a_factoid",
+      "expected_answer_marker": "Innovative Medicine"
+    },
+    {
+      "query_id": "q_039",
+      "question": "What percentage of J&J's revenue came from Innovative Medicine in 2022?",
+      "query_type": "arithmetic_probe",
+      "expected_answer_marker": "percentage"
+    },
+    {
+      "query_id": "q_040",
+      "question": "How did the MedTech segment revenue change from 2021 to 2022?",
+      "query_type": "multi_hop",
+      "expected_answer_marker": "medtech growth"
+    }
+  ]
+}

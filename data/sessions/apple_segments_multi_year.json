@@ -1,0 +1,31 @@
+{
+  "session_id": "apple_segments_multi_year",
+  "company": "Apple",
+  "period": "FY2020-2022",
+  "queries": [
+    {
+      "query_id": "q_005",
+      "question": "List Apple's operating segments as reported in 2022.",
+      "query_type": "tier_a_factoid",
+      "expected_answer_marker": "Americas, Europe, Greater China, Japan, Rest of Asia"
+    },
+    {
+      "query_id": "q_006",
+      "question": "Which segment generated the most revenue for Apple in 2022?",
+      "query_type": "tier_a_factoid",
+      "expected_answer_marker": "Americas"
+    },
+    {
+      "query_id": "q_007",
+      "question": "What percentage of Apple's revenue came from Americas in 2022?",
+      "query_type": "arithmetic_probe",
+      "expected_answer_marker": "percentage"
+    },
+    {
+      "query_id": "q_008",
+      "question": "How did Apple's China segment revenue change from 2021 to 2022?",
+      "query_type": "multi_hop",
+      "expected_answer_marker": "china growth"
+    }
+  ]
+}

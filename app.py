@@ -8,18 +8,18 @@ Run from the project root (venv active, index built):
     streamlit run app.py
 """
 from __future__ import annotations
-
-import os
-
-import pandas as pd
-import streamlit as st
-import yaml
-
-from src.agent import RAGAgent
-from src.eviction import make_policy
-from src.index import Embedder, make_store
-from src.llm import LLM
+import warnings
 from src.memory import SemanticMemory
+from src.llm import LLM
+from src.index import Embedder, make_store
+from src.eviction import make_policy
+from src.agent import RAGAgent
+import yaml
+import streamlit as st
+import pandas as pd
+import os
+warnings.filterwarnings("ignore", message="No module named 'torchvision'")
+
 
 st.set_page_config(page_title="FinSession-RAG", page_icon="📄", layout="wide")
 
@@ -62,6 +62,7 @@ def build_agent(cfg, embedder, index, mode: dict, budget: int, tau: float,
         top_k=cfg["retrieval"]["top_k"],
         max_steps=cfg["agent"]["max_steps"],
         reuse_verification=reuse_check,
+        security=cfg.get("security", {}).get("enabled", True),
     )
 
 
@@ -75,7 +76,8 @@ if not os.environ.get("OPENAI_API_KEY"):
     if key:
         os.environ["OPENAI_API_KEY"] = key
 
-mode_name = st.sidebar.selectbox("Memory configuration (arm)", list(MODES.keys()), index=5)
+mode_name = st.sidebar.selectbox(
+    "Memory configuration (arm)", list(MODES.keys()), index=5)
 mode = MODES[mode_name]
 
 budget = 20
@@ -108,7 +110,8 @@ except Exception as e:  # noqa: BLE001
     st.stop()
 
 if "agent" not in st.session_state:
-    st.session_state.agent = build_agent(cfg, embedder, index, mode, budget, tau, reuse_check)
+    st.session_state.agent = build_agent(
+        cfg, embedder, index, mode, budget, tau, reuse_check)
     st.session_state.messages = []
 agent: RAGAgent = st.session_state.agent
 
@@ -135,14 +138,17 @@ with tab_chat:
                             st.dataframe(pd.DataFrame(trace["sub_steps"]),
                                          use_container_width=True, hide_index=True)
                         else:
-                            st.caption("Planner answered without sub-questions.")
+                            st.caption(
+                                "Planner answered without sub-questions.")
 
-        question = st.chat_input("Ask about the filings, e.g. “What was Apple's total net sales in FY2022?”")
+        question = st.chat_input(
+            "Ask about the filings, e.g. “What was Apple's total net sales in FY2022?”")
         if question:
             if not os.environ.get("OPENAI_API_KEY"):
                 st.warning("Enter your OpenAI API key in the sidebar first.")
                 st.stop()
-            st.session_state.messages.append({"role": "user", "content": question})
+            st.session_state.messages.append(
+                {"role": "user", "content": question})
             with st.spinner("Planning → retrieving → verifying…"):
                 trace = agent.answer(question)
             st.session_state.messages.append({
@@ -175,7 +181,8 @@ with tab_chat:
 
         st.subheader("Memory")
         if agent.memory is None:
-            st.caption("This arm runs without memory — every sub-question retrieves fresh.")
+            st.caption(
+                "This arm runs without memory — every sub-question retrieves fresh.")
         else:
             stats = agent.memory.stats
             m1, m2, m3 = st.columns(3)
@@ -191,7 +198,8 @@ with tab_chat:
                     "cost (tok)": e.cost_tokens,
                     "hits": e.hits,
                 } for e in agent.memory.entries])
-                st.dataframe(mem_df, use_container_width=True, hide_index=True, height=280)
+                st.dataframe(mem_df, use_container_width=True,
+                             hide_index=True, height=280)
             else:
                 st.caption("Memory is empty — ask something.")
 
@@ -204,7 +212,8 @@ with tab_results:
                 "this tab then compares the arms from `results/results_all.csv`.")
     else:
         df = pd.read_csv(results_path)
-        df["correct"] = df["correct"].map({True: 1, False: 0, "True": 1, "False": 0})
+        df["correct"] = df["correct"].map(
+            {True: 1, False: 0, "True": 1, "False": 0})
         summary = (df.groupby("arm")
                      .agg(questions=("qid", "count"),
                           accuracy=("correct", "mean"),
@@ -218,7 +227,8 @@ with tab_results:
         c1, c2 = st.columns(2)
         with c1:
             st.caption("Mean tokens per question (lower is better)")
-            st.bar_chart(summary[["mean_tokens_per_q"]], color=ACCENT, horizontal=True)
+            st.bar_chart(summary[["mean_tokens_per_q"]],
+                         color=ACCENT, horizontal=True)
         with c2:
             st.caption("Accuracy (higher is better)")
             st.bar_chart(summary[["accuracy"]], color=ACCENT, horizontal=True)

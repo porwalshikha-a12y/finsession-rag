@@ -7,6 +7,7 @@ numpy>=1.26
 pyyaml>=6.0
 tqdm>=4.66
 pandas>=2.2
+matplotlib>=3.8
 pytest>=8.0
 
 # vector store: PostgreSQL + pgvector
@@ -15,6 +16,9 @@ pgvector>=0.3
 
 # optional fallback store (config: vector_store.backend = faiss)
 faiss-cpu>=1.8
+
+# hybrid retrieval: BM25 + dense via Reciprocal Rank Fusion
+rank-bm25>=0.2.2
 
 # front ends (optional)
 streamlit>=1.37

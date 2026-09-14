@@ -1,68 +1,91 @@
-"""Thin OpenAI-compatible LLM client with token accounting.
+"""OpenAI-compatible LLM client with per-role token accounting."""
 
-Every call's token usage is accumulated in a CostLedger so each experiment
-arm can report exactly what it spent (the headline metric of the project).
-Works with OpenAI, Groq, Ollama, or any OpenAI-compatible endpoint via
-OPENAI_BASE_URL.
-"""
 from __future__ import annotations
 
-import os
 from dataclasses import dataclass, field
+from typing import Optional
+import os
 
 from openai import OpenAI
 
 
 @dataclass
-class CostLedger:
-    prompt_tokens: int = 0
-    completion_tokens: int = 0
-    calls: int = 0
-    by_role: dict = field(default_factory=dict)  # e.g. {"planner": {...}, "verifier": {...}}
+class TokenLedger:
+    """Track tokens per role."""
+    per_role: dict = field(default_factory=dict)
+    total_tokens: int = 0
 
-    @property
-    def total_tokens(self) -> int:
-        return self.prompt_tokens + self.completion_tokens
+    def add(self, role: str, tokens: int):
+        """Record tokens for a role."""
+        self.per_role[role] = self.per_role.get(role, 0) + tokens
+        self.total_tokens += tokens
 
-    def add(self, role: str, prompt: int, completion: int) -> None:
-        self.prompt_tokens += prompt
-        self.completion_tokens += completion
-        self.calls += 1
-        slot = self.by_role.setdefault(role, {"prompt": 0, "completion": 0, "calls": 0})
-        slot["prompt"] += prompt
-        slot["completion"] += completion
-        slot["calls"] += 1
-
-    def snapshot(self) -> dict:
-        return {
-            "prompt_tokens": self.prompt_tokens,
-            "completion_tokens": self.completion_tokens,
-            "total_tokens": self.total_tokens,
-            "calls": self.calls,
-            "by_role": {k: dict(v) for k, v in self.by_role.items()},
-        }
+    def __str__(self) -> str:
+        parts = [f"total={self.total_tokens}"]
+        for role in sorted(self.per_role.keys()):
+            parts.append(f"{role}={self.per_role[role]}")
+        return ", ".join(parts)
 
 
 class LLM:
-    def __init__(self, model: str, temperature: float = 0.0, max_output_tokens: int = 600):
-        base_url = os.environ.get("OPENAI_BASE_URL") or None
-        self.client = OpenAI(base_url=base_url)  # reads OPENAI_API_KEY from env
+    """OpenAI-compatible client with token accounting."""
+
+    def __init__(
+        self,
+        model: str = "gpt-4o-mini",
+        api_key: Optional[str] = None,
+        temperature: float = 0.0,
+        max_output_tokens: int = 600,
+    ):
         self.model = model
         self.temperature = temperature
         self.max_output_tokens = max_output_tokens
-        self.ledger = CostLedger()
+        self.ledger = TokenLedger()
 
-    def chat(self, system: str, user: str, role: str = "generic") -> str:
-        """One chat completion. `role` labels the call for cost breakdowns."""
-        resp = self.client.chat.completions.create(
-            model=self.model,
-            temperature=self.temperature,
-            max_tokens=self.max_output_tokens,
-            messages=[
-                {"role": "system", "content": system},
-                {"role": "user", "content": user},
-            ],
-        )
-        usage = resp.usage
-        self.ledger.add(role, usage.prompt_tokens, usage.completion_tokens)
-        return resp.choices[0].message.content.strip()
+        # Initialize OpenAI client
+        api_key = api_key or os.environ.get("OPENAI_API_KEY")
+        if not api_key:
+            raise ValueError("OPENAI_API_KEY not set")
+        self.client = OpenAI(api_key=api_key)
+
+    def chat(
+        self,
+        system: str,
+        user_message: str,
+        role: str = "default",
+        temperature: Optional[float] = None,
+    ) -> str:
+        """Send message to LLM and return response.
+
+        Args:
+            system: System prompt
+            user_message: User message
+            role: Role name for token accounting (e.g., "planner", "verifier")
+            temperature: Override default temperature
+
+        Returns:
+            LLM response text
+        """
+        temperature = temperature if temperature is not None else self.temperature
+
+        try:
+            response = self.client.chat.completions.create(
+                model=self.model,
+                temperature=temperature,
+                max_tokens=self.max_output_tokens,
+                messages=[
+                    {"role": "system", "content": system},
+                    {"role": "user", "content": user_message},
+                ],
+            )
+
+            # Extract response and token count
+            answer = response.choices[0].message.content.strip()
+            tokens_used = response.usage.completion_tokens + response.usage.prompt_tokens
+            self.ledger.add(role, tokens_used)
+
+            return answer
+
+        except Exception as e:
+            print(f"ERROR in LLM.chat (role={role}): {e}")
+            raise

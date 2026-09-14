@@ -1,0 +1,31 @@
+{
+  "session_id": "jnj_fy2022_overview",
+  "company": "Johnson & Johnson",
+  "period": "FY2022",
+  "queries": [
+    {
+      "query_id": "q_033",
+      "question": "What was Johnson & Johnson's total revenue in 2022?",
+      "query_type": "tier_a_factoid",
+      "expected_answer_marker": "revenue"
+    },
+    {
+      "query_id": "q_034",
+      "question": "How many business segments does Johnson & Johnson operate?",
+      "query_type": "tier_a_factoid",
+      "expected_answer_marker": "segments"
+    },
+    {
+      "query_id": "q_035",
+      "question": "What was Johnson & Johnson's net earnings in 2022?",
+      "query_type": "terminology_mismatch_probe",
+      "expected_answer_marker": "net earnings"
+    },
+    {
+      "query_id": "q_036",
+      "question": "Compare Johnson & Johnson's revenue in 2022 vs 2021.",
+      "query_type": "multi_hop",
+      "expected_answer_marker": "comparison"
+    }
+  ]
+}

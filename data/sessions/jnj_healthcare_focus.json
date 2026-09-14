@@ -1,0 +1,31 @@
+{
+  "session_id": "jnj_healthcare_focus",
+  "company": "Johnson & Johnson",
+  "period": "FY2020-2022",
+  "queries": [
+    {
+      "query_id": "q_041",
+      "question": "What were the main product categories within Johnson & Johnson's Innovative Medicine segment?",
+      "query_type": "tier_a_factoid",
+      "expected_answer_marker": "pharmaceuticals, diagnostics"
+    },
+    {
+      "query_id": "q_042",
+      "question": "Compare Johnson & Johnson's Consumer Health revenue between 2020 and 2022.",
+      "query_type": "multi_hop",
+      "expected_answer_marker": "consumer health trend"
+    },
+    {
+      "query_id": "q_043",
+      "question": "Calculate the combined revenue from Innovative Medicine and MedTech for 2022.",
+      "query_type": "arithmetic_probe",
+      "expected_answer_marker": "segment sum"
+    },
+    {
+      "query_id": "q_044",
+      "question": "What was Johnson & Johnson's operating profit in 2022?",
+      "query_type": "tier_a_factoid",
+      "expected_answer_marker": "operating profit"
+    }
+  ]
+}

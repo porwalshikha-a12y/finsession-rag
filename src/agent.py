@@ -68,8 +68,10 @@ class RAGAgent:
         self.security = security
 
     def answer(self, question: str) -> QueryTrace:
-        trace = QueryTrace(question=question, tokens_before=self.llm.ledger.total_tokens)
-        facts: list[str] = []  # "Q: ... A: ..." strings for planner + synthesizer
+        trace = QueryTrace(question=question,
+                           tokens_before=self.llm.ledger.total_tokens)
+        # "Q: ... A: ..." strings for planner + synthesizer
+        facts: list[str] = []
 
         for _ in range(self.max_steps):
             plan = self.llm.chat(
@@ -80,13 +82,15 @@ class RAGAgent:
             )
             if plan.upper().startswith("DONE"):
                 break
-            sub_q = plan.split(":", 1)[-1].strip() if ":" in plan else plan.strip()
+            sub_q = plan.split(
+                ":", 1)[-1].strip() if ":" in plan else plan.strip()
 
             fact = self._resolve_subquestion(sub_q, trace)
             if fact:
                 facts.append(fact)
             else:
-                facts.append(f"Q: {sub_q} A: (could not be verified from the corpus)")
+                facts.append(
+                    f"Q: {sub_q} A: (could not be verified from the corpus)")
 
         trace.answer = self.llm.chat(
             SYNTH_SYS,
@@ -137,7 +141,8 @@ class RAGAgent:
             verifier_sys, f"Sub-question: {sub_q}\n\nPassages:\n{passages}", role="verifier"
         )
         lines = verdict.splitlines()
-        supported = bool(lines) and lines[0].strip().upper().startswith("SUPPORTED")
+        supported = bool(lines) and lines[0].strip(
+        ).upper().startswith("SUPPORTED")
         cost = self.llm.ledger.total_tokens - tokens_before
 
         if not supported:
@@ -158,7 +163,9 @@ class RAGAgent:
                 evidence=passages[:2000],
                 sub_answer=sub_answer,
                 cost_tokens=cost,
-                provenance=[(h["doc_id"], h["page"]) for h in hits],
+                # provenance=[(h["doc_id"], h["page"]) for h in hits],
+                provenance=[(h["metadata"]["doc_id"], h["metadata"]["page"])
+                            for h in hits],
             )
         trace.sub_steps.append({"sub_q": sub_q, "source": "retrieval",
                                 "verified": True, "cost_tokens": cost,

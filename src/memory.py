@@ -117,10 +117,11 @@ class SemanticMemory:
 
     def _evict(self) -> None:
         assert self.policy is not None, "bounded memory needs an eviction policy"
-        victim_idx = self.policy.select_victim(self.entries, clock=self.clock)
-        victim = self.entries.pop(victim_idx)
-        self.stats.evictions += 1
-        self.stats.evicted_ids.append(victim.entry_id)
+        victim_idx = self.policy.select_victim(self.entries)
+        if victim_idx is not None:
+            victim = self.entries.pop(victim_idx)
+            self.stats.evictions += 1
+            self.stats.evicted_ids.append(victim.entry_id)
 
     def reset(self) -> None:
         """Clear between sessions (memory is session-scoped in this study)."""

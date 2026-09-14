@@ -1,0 +1,31 @@
+{
+  "session_id": "pepsico_segments_2020_2022",
+  "company": "PepsiCo",
+  "period": "FY2020-2022",
+  "queries": [
+    {
+      "query_id": "q_049",
+      "question": "What are PepsiCo's main business segments as of 2022?",
+      "query_type": "tier_a_factoid",
+      "expected_answer_marker": "FLNA, QFNA, PBNA, Europe, AMESA, APAC"
+    },
+    {
+      "query_id": "q_050",
+      "question": "Which segment generated the most revenue for PepsiCo in 2022?",
+      "query_type": "tier_a_factoid",
+      "expected_answer_marker": "segment revenue"
+    },
+    {
+      "query_id": "q_051",
+      "question": "Calculate the revenue contribution percentage from Frito-Lay (FLNA) in 2022.",
+      "query_type": "arithmetic_probe",
+      "expected_answer_marker": "percentage"
+    },
+    {
+      "query_id": "q_052",
+      "question": "How did PepsiCo's geographic segment revenues change from 2021 to 2022?",
+      "query_type": "multi_hop",
+      "expected_answer_marker": "geographic trend"
+    }
+  ]
+}

@@ -1,0 +1,73 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+  Loading .env from: /Users/shikhaporwal/PycharmProjects/finsession-rag/.env
+================================================================================
+FINSESSION-RAG: Run Experiments (DB Version)
+================================================================================
+Config: /Users/shikhaporwal/PycharmProjects/finsession-rag/config.yaml
+Output: /Users/shikhaporwal/PycharmProjects/finsession-rag/results
+
+Arms to run: 1
+  - A1_unbounded
+Sessions to run: 1
+
+Loading embeddings and index...
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 8179.24it/s]
+  Using pgvector backend: postgresql:///finsession
+  ✓ Index loaded: 4822 chunks
+
+
+================================================================================
+ARM: A1_unbounded
+================================================================================
+  Memory: True
+  Budget: tight
+  Eviction: none
+A1_unbounded         | apple_fy2022_basics           :   0%|          | 0/4 [00:00<?, ?it/s]Traceback (most recent call last):
+  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/run_experiment.py", line 203, in evaluate_query
+    trace = agent.answer(question)
+  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 85, in answer
+    fact = self._resolve_subquestion(sub_q, trace)
+  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 161, in _resolve_subquestion
+    provenance=[(h["doc_id"], h["page"]) for h in hits],
+                 ~^^^^^^^^^^
+KeyError: 'doc_id'
+A1_unbounded         | apple_fy2022_basics           :  25%|██▌       | 1/4 [00:03<00:10,  3.46s/it]Traceback (most recent call last):
+  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/run_experiment.py", line 203, in evaluate_query
+    trace = agent.answer(question)
+  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 85, in answer
+    fact = self._resolve_subquestion(sub_q, trace)
+  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 161, in _resolve_subquestion
+    provenance=[(h["doc_id"], h["page"]) for h in hits],
+                 ~^^^^^^^^^^
+KeyError: 'doc_id'
+A1_unbounded         | apple_fy2022_basics           :  50%|█████     | 2/4 [00:07<00:07,  3.93s/it]Traceback (most recent call last):
+  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/run_experiment.py", line 203, in evaluate_query
+    trace = agent.answer(question)
+  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 85, in answer
+    fact = self._resolve_subquestion(sub_q, trace)
+  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 161, in _resolve_subquestion
+    provenance=[(h["doc_id"], h["page"]) for h in hits],
+                 ~^^^^^^^^^^
+KeyError: 'doc_id'
+A1_unbounded         | apple_fy2022_basics           :  75%|███████▌  | 3/4 [00:09<00:02,  2.90s/it]Traceback (most recent call last):
+  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/run_experiment.py", line 203, in evaluate_query
+    trace = agent.answer(question)
+  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 85, in answer
+    fact = self._resolve_subquestion(sub_q, trace)
+  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 161, in _resolve_subquestion
+    provenance=[(h["doc_id"], h["page"]) for h in hits],
+                 ~^^^^^^^^^^
+KeyError: 'doc_id'
+A1_unbounded         | apple_fy2022_basics           : 100%|██████████| 4/4 [00:11<00:00,  2.53s/it]A1_unbounded         | apple_fy2022_basics           : 100%|██████████| 4/4 [00:11<00:00,  2.84s/it]
+ERROR in evaluate_query for q_001: 'doc_id'
+ERROR in evaluate_query for q_002: 'doc_id'
+ERROR in evaluate_query for q_003: 'doc_id'
+ERROR in evaluate_query for q_004: 'doc_id'
+
+  Summary:
+    Queries: 4
+    Supported: 0/4 (0.0%)
+    Tokens: 0
+    Memory hits: 0
+
+✅ Results saved to PostgreSQL and /Users/shikhaporwal/PycharmProjects/finsession-rag/results/results_all.json

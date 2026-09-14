@@ -1,0 +1,31 @@
+{
+  "session_id": "microsoft_profitability",
+  "company": "Microsoft",
+  "period": "FY2020-2022",
+  "queries": [
+    {
+      "query_id": "q_029",
+      "question": "What was Microsoft's operating income in 2022?",
+      "query_type": "tier_a_factoid",
+      "expected_answer_marker": "operating income"
+    },
+    {
+      "query_id": "q_030",
+      "question": "Did Microsoft's gross margin improve from 2021 to 2022?",
+      "query_type": "arithmetic_probe",
+      "expected_answer_marker": "margin change"
+    },
+    {
+      "query_id": "q_031",
+      "question": "What percentage growth occurred in Microsoft's revenue from 2020 to 2022?",
+      "query_type": "arithmetic_probe",
+      "expected_answer_marker": "growth rate"
+    },
+    {
+      "query_id": "q_032",
+      "question": "How did Microsoft's capital expenditures change from 2021 to 2022?",
+      "query_type": "multi_hop",
+      "expected_answer_marker": "capex trend"
+    }
+  ]
+}

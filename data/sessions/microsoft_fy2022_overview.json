@@ -1,0 +1,31 @@
+{
+  "session_id": "microsoft_fy2022_overview",
+  "company": "Microsoft",
+  "period": "FY2022",
+  "queries": [
+    {
+      "query_id": "q_017",
+      "question": "What was Microsoft's total revenue in fiscal year 2022?",
+      "query_type": "tier_a_factoid",
+      "expected_answer_marker": "revenue"
+    },
+    {
+      "query_id": "q_018",
+      "question": "How many business segments does Microsoft operate?",
+      "query_type": "tier_a_factoid",
+      "expected_answer_marker": "segments"
+    },
+    {
+      "query_id": "q_019",
+      "question": "What was Microsoft's net income in FY2022?",
+      "query_type": "terminology_mismatch_probe",
+      "expected_answer_marker": "net income"
+    },
+    {
+      "query_id": "q_020",
+      "question": "Compare Microsoft's FY2022 revenue to FY2021.",
+      "query_type": "multi_hop",
+      "expected_answer_marker": "comparison"
+    }
+  ]
+}

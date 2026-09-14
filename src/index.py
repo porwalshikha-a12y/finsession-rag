@@ -1,15 +1,17 @@
 """Embeddings + vector store.
 
 Embeddings are computed locally with sentence-transformers (free, offline).
-Two interchangeable stores are provided:
+Three interchangeable stores are provided:
 
-* PgVectorIndex - PostgreSQL + pgvector (default). A real database: the
+* PgVectorIndex  - PostgreSQL + pgvector (default). A real database: the
   corpus persists in Postgres, supports metadata filtering (company/year)
   and incremental inserts.
+* HybridPgVectorIndex - pgvector + BM25 via Reciprocal Rank Fusion. Combines
+  dense semantic retrieval with sparse keyword matching for financial text.
 * FaissIndex    - the original in-process FAISS index, kept as a fallback
   and for offline runs where no database is available.
 
-Both expose the same tiny interface used by the agent:
+All expose the same interface used by the agent:
     build(chunks)                       -> index a corpus
     search(query, top_k, where=None)    -> [{doc_id, page, text, score}]
 so nothing else in the project changes when you swap stores.
@@ -171,6 +173,93 @@ class PgVectorIndex:
         return idx
 
 
+# -------------------------------------------------------- hybrid store (NEW)
+class HybridPgVectorIndex:
+    """Hybrid retrieval: pgvector (dense) + BM25 (sparse) via Reciprocal Rank Fusion.
+
+    This wrapper combines both retrieval signals:
+    - Dense: semantic understanding via pgvector embeddings
+    - Sparse (BM25): exact matching on company names, ticker symbols, fiscal years
+
+    RRF (Reciprocal Rank Fusion) merges rankings without parameter tuning.
+    """
+
+    def __init__(
+        self,
+        embedder: Embedder,
+        dsn: str | None = None,
+        table: str = "chunks",
+        rrf_k: int = 60,
+    ):
+        self.embedder = embedder
+        self.table = table
+        self.dsn = dsn or os.environ.get(
+            "PGVECTOR_DSN", "postgresql:///finsession"
+        )
+        self.rrf_k = rrf_k
+
+        # Initialize both retrievers
+        self.dense_index = PgVectorIndex(embedder, dsn=dsn, table=table)
+        from .hybrid import BM25Store, HybridRetriever
+        self.bm25_store = BM25Store()
+        self.hybrid = HybridRetriever(self.dense_index, self.bm25_store, rrf_k=rrf_k)
+
+    def build(self, chunks: list[dict], recreate: bool = True) -> None:
+        """Build both dense index (pgvector) and sparse index (BM25)."""
+        self.dense_index.build(chunks, recreate=recreate)
+        self.bm25_store.build(chunks)
+
+    def search(
+        self,
+        query: str,
+        top_k: int = 4,
+        company: str | None = None,
+        year: int | None = None,
+    ) -> list[dict]:
+        """Hybrid search via RRF.
+
+        Returns top-k results merged from dense and BM25 retrievals.
+        Each result includes:
+        - doc_id, page, text, combined_score (RRF)
+        - dense_rank, bm25_rank, merged_rank (for analysis)
+        """
+        return self.hybrid.search(query, top_k=top_k, company=company, year=year)
+
+    def count(self) -> int:
+        """Count indexed chunks."""
+        return self.dense_index.count()
+
+    def close(self) -> None:
+        """Close database connection."""
+        self.dense_index.close()
+
+    def save(self, *_args, **_kwargs) -> None:
+        """No-op: state persisted in Postgres and memory."""
+
+    @classmethod
+    def load(
+        cls,
+        embedder: Embedder,
+        dsn: str | None = None,
+        table: str = "chunks",
+        rrf_k: int = 60,
+    ) -> "HybridPgVectorIndex":
+        """Load both dense and sparse indices."""
+        idx = cls(embedder, dsn=dsn, table=table, rrf_k=rrf_k)
+        idx.dense_index.count()  # Verify Postgres is accessible
+
+        # Load chunks from pgvector into BM25
+        with idx.dense_index.conn.cursor() as cur:
+            cur.execute(f"SELECT doc_id, page, text FROM {table}")
+            chunks = [
+                {"doc_id": r[0], "page": r[1], "text": r[2]}
+                for r in cur.fetchall()
+            ]
+        idx.bm25_store.build(chunks)
+
+        return idx
+
+
 def _parse_doc_id(doc_id: str) -> tuple[str | None, int | None]:
     """'AAPL_2022_10K' -> ('AAPL', 2022). Best-effort; None if unparseable."""
     parts = doc_id.replace("-", "_").split("_")
@@ -246,6 +335,12 @@ def make_store(cfg: dict, embedder: Embedder, load: bool = True):
         table = vs.get("table", "chunks")
         return (PgVectorIndex.load(embedder, dsn=dsn, table=table) if load
                 else PgVectorIndex(embedder, dsn=dsn, table=table))
+    if backend == "hybrid":
+        dsn = vs.get("dsn") or os.environ.get("PGVECTOR_DSN")
+        table = vs.get("table", "chunks")
+        rrf_k = vs.get("rrf_k", 60)
+        return (HybridPgVectorIndex.load(embedder, dsn=dsn, table=table, rrf_k=rrf_k) if load
+                else HybridPgVectorIndex(embedder, dsn=dsn, table=table, rrf_k=rrf_k))
     if backend == "faiss":
         d = cfg["paths"]["index_dir"]
         return FaissIndex.load(d, embedder) if load else FaissIndex(embedder)

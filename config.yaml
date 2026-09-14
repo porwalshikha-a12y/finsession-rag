@@ -17,9 +17,10 @@ chunking:
 
 # ---- Vector store ----
 vector_store:
-  backend: pgvector            # "pgvector" (Postgres) or "faiss" (in-process fallback)
+  backend: pgvector            # "pgvector" (Postgres), "faiss" (in-process fallback), or "hybrid" (pgvector + BM25 via RRF)
   dsn: postgresql:///finsession   # or set env PGVECTOR_DSN; e.g. postgresql://user:pw@localhost:5432/finsession
   table: chunks
+  rrf_k: 60                    # Reciprocal Rank Fusion constant (only used if backend=hybrid)
 
 # ---- Retrieval ----
 retrieval:
@@ -49,6 +50,7 @@ arms:
   - {name: A3_lfu,         memory: true,  eviction: lfu,        budget: tight}
   - {name: A4_redundancy,  memory: true,  eviction: redundancy, budget: tight}
   - {name: A5_cost_aware,  memory: true,  eviction: cost_aware, budget: tight}
+  - {name: A6_hybrid,      memory: true,  eviction: cost_aware, budget: tight, retrieval: hybrid}  # NEW: hybrid retrieval (pgvector + BM25 via RRF)
 
 paths:
   filings_dir: data/filings

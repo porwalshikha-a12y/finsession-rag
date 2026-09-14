@@ -1,6 +1,10 @@
 #!/usr/bin/env python3
 """
-Run FinSession-RAG experiments — DB version with better error handling.
+Run FinSession-RAG experiments — DB version (sessions and results in PostgreSQL).
+
+Usage:
+    python -m src.run_experiment                    # Run all arms, all sessions
+    python -m src.run_experiment --arm A0_no_memory # Single arm
 """
 
 import json
@@ -9,7 +13,6 @@ import argparse
 import os
 from pathlib import Path
 from typing import Dict, List, Any, Optional, Union
-import traceback
 
 import yaml
 from tqdm import tqdm
@@ -43,8 +46,10 @@ def load_sessions_from_db(conn) -> Dict[str, Dict[str, Any]]:
     """Load sessions and queries from PostgreSQL."""
     sessions = {}
     with conn.cursor() as cur:
+        # Get all sessions
         cur.execute("SELECT session_id, company FROM sessions ORDER BY session_id")
         for session_id, company in cur.fetchall():
+            # Get queries for this session
             cur.execute(
                 "SELECT query_id, question, query_type, expected_answer FROM queries WHERE session_id = %s",
                 (session_id,)
@@ -82,6 +87,7 @@ class PgvectorIndex:
             raise ImportError("psycopg is required for pgvector backend. Install: pip install psycopg[binary]")
         try:
             self._conn = psycopg.connect(self.dsn)
+            # Count chunks
             with self._conn.cursor() as cur:
                 cur.execute(f"SELECT COUNT(*) FROM {self.table}")
                 self._chunk_count = cur.fetchone()[0]
@@ -99,11 +105,11 @@ class PgvectorIndex:
         if not self._conn:
             self.connect()
 
-        try:
-            # Embed query
-            query_vec = self.embedder.encode([query])[0]
+        # Embed query
+        query_vec = self.embedder.encode([query])[0]
 
-            # Search in pgvector
+        # Search in pgvector
+        try:
             with self._conn.cursor() as cur:
                 cur.execute(
                     f"""
@@ -118,29 +124,20 @@ class PgvectorIndex:
 
             results = []
             for row in rows:
-                try:
-                    result = {
-                        "id": row[0],
-                        "text": row[1],
-                        "metadata": {
-                            "doc_id": row[2],
-                            "page": row[3],
-                            "company": row[4],
-                            "year": row[5]
-                        },
-                        "score": float(row[6])
-                    }
-                    results.append(result)
-                except (IndexError, TypeError) as e:
-                    print(f"ERROR parsing row: {row}")
-                    print(f"Error: {e}")
-                    traceback.print_exc()
-                    continue
-
+                results.append({
+                    "id": row[0],
+                    "text": row[1],
+                    "metadata": {
+                        "doc_id": row[2],
+                        "page": row[3],
+                        "company": row[4],
+                        "year": row[5]
+                    },
+                    "score": float(row[6])
+                })
             return results
         except Exception as e:
-            print(f"ERROR in pgvector search: {e}")
-            traceback.print_exc()
+            print(f"WARNING: pgvector search failed: {e}")
             return []
 
     def close(self):
@@ -151,6 +148,7 @@ class PgvectorIndex:
 
 def make_agent(config: Dict, arm_config: Dict, embedder: Embedder, index: Union[FaissIndex, PgvectorIndex]) -> RAGAgent:
     """Create RAGAgent for an arm."""
+    # LLM setup
     llm = LLM(
         model=config["llm"]["model"],
         api_key=os.environ.get("OPENAI_API_KEY"),
@@ -158,6 +156,7 @@ def make_agent(config: Dict, arm_config: Dict, embedder: Embedder, index: Union[
         max_output_tokens=config["llm"].get("max_output_tokens", 600),
     )
 
+    # Memory setup
     memory = None
     if arm_config.get("memory", False):
         budget = config["memory"]["budgets"][arm_config.get("budget", "tight")]
@@ -166,11 +165,12 @@ def make_agent(config: Dict, arm_config: Dict, embedder: Embedder, index: Union[
 
         memory = SemanticMemory(
             embedder=embedder,
-            budget=budget,
+            budget=budget,  # FIXED: was max_entries
             similarity_threshold=config["memory"]["similarity_threshold"],
             eviction_policy=eviction_policy,
         )
 
+    # Agent
     agent = RAGAgent(
         llm=llm,
         index=index,
@@ -200,8 +200,10 @@ def evaluate_query(agent: RAGAgent, query: Dict[str, str]) -> Dict[str, Any]:
         }
 
     try:
+        # Run agent
         trace = agent.answer(question)
 
+        # Extract evidence from sub-steps
         evidence_parts = []
         for step in trace.sub_steps:
             if step.get("verified"):
@@ -209,6 +211,7 @@ def evaluate_query(agent: RAGAgent, query: Dict[str, str]) -> Dict[str, Any]:
 
         evidence = " ".join(evidence_parts) if evidence_parts else ""
 
+        # Determine verdict based on answer quality
         if not trace.answer or len(trace.answer) < 10:
             verdict = "NOT_SUPPORTED"
         elif "could not" in trace.answer.lower() or "missing" in trace.answer.lower():
@@ -229,8 +232,6 @@ def evaluate_query(agent: RAGAgent, query: Dict[str, str]) -> Dict[str, Any]:
         }
 
     except Exception as e:
-        print(f"ERROR in evaluate_query for {query_id}: {e}")
-        traceback.print_exc()
         return {
             "query_id": query_id,
             "question": question,
@@ -288,6 +289,7 @@ def run_arm_on_session(
         result = evaluate_query(agent, query)
         results["queries"].append(result)
 
+        # Save to DB immediately
         save_result_to_db(db_conn, arm_name, session_id, result)
         db_conn.commit()
 
@@ -319,9 +321,11 @@ def main():
 
     args = parser.parse_args()
 
+    # Load .env
     load_dotenv(PROJECT_ROOT / ".env")
     print(f"  Loading .env from: {PROJECT_ROOT / '.env'}")
 
+    # Setup
     config_path = PROJECT_ROOT / "config.yaml"
     output_dir = args.output or (PROJECT_ROOT / "results")
 
@@ -336,16 +340,19 @@ def main():
     print(f"Output: {output_dir}")
     print()
 
+    # Connect to database
     try:
         db_conn = psycopg.connect("postgresql:///finsession")
     except Exception as e:
         print(f"ERROR: Failed to connect to PostgreSQL: {e}")
         sys.exit(1)
 
+    # Load config and sessions from DB
     config = load_config(config_path)
     sessions = load_sessions_from_db(db_conn)
     all_arms = config.get("arms", [])
 
+    # Filter by args
     if args.arm:
         all_arms = [a for a in all_arms if a["name"] == args.arm]
         if not all_arms:
@@ -363,11 +370,14 @@ def main():
     for arm in all_arms:
         print(f"  - {arm['name']}")
     print(f"Sessions to run: {len(sessions_to_run)}")
+    print(f"Total evaluations: {len(all_arms) * len(sessions_to_run) * 4}")
     print()
 
+    # Load embeddings and pgvector index
     print("Loading embeddings and index...")
     embedder = Embedder(model=config["embeddings"]["model"])
 
+    # Determine backend
     vector_store_config = config.get("vector_store", {})
     backend = vector_store_config.get("backend", "faiss").lower()
 
@@ -387,12 +397,14 @@ def main():
 
     print(f"  ✓ Index loaded: {index.count()} chunks\n")
 
+    # Run experiments
     output_dir.mkdir(parents=True, exist_ok=True)
     all_results = []
     api_key = os.environ.get("OPENAI_API_KEY")
 
     if not api_key:
         print("WARNING: OPENAI_API_KEY not set. Queries will fail.")
+        print("Set it with: export OPENAI_API_KEY=sk-...")
         print()
 
     for arm_config in all_arms:
@@ -405,14 +417,17 @@ def main():
             print(f"  Budget: {arm_config.get('budget', 'tight')}")
             print(f"  Eviction: {arm_config.get('eviction', 'none')}")
 
+        # Create agent for this arm
         agent = make_agent(config, arm_config, embedder, index)
 
+        # Run on each session
         arm_results = []
         for session_id, session in sessions_to_run.items():
             result = run_arm_on_session(agent, arm_name, session, db_conn, disable_pbar=False)
             arm_results.append(result)
             all_results.append(result)
 
+        # Aggregate stats for arm
         total_queries = sum(len(r["queries"]) for r in arm_results)
         total_supported = sum(
             1 for r in arm_results for q in r["queries"]
@@ -431,15 +446,18 @@ def main():
         print(f"    Tokens: {total_tokens:,}")
         print(f"    Memory hits: {total_hits}")
 
+    # Save results to JSON as well (for compatibility)
     results_file = output_dir / "results_all.json"
     with open(results_file, "w") as f:
         json.dump(all_results, f, indent=2)
 
+    # Clean up
     if isinstance(index, PgvectorIndex):
         index.close()
     db_conn.close()
 
     print(f"\n✅ Results saved to PostgreSQL and {results_file}")
+    print(f"\nQuery results: SELECT * FROM results WHERE arm = 'A0_no_memory' LIMIT 10;")
 
 
 if __name__ == "__main__":

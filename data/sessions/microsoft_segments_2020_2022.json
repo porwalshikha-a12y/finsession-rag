@@ -1,0 +1,31 @@
+{
+  "session_id": "microsoft_segments_2020_2022",
+  "company": "Microsoft",
+  "period": "FY2020-2022",
+  "queries": [
+    {
+      "query_id": "q_021",
+      "question": "What are Microsoft's three main business segments as of 2022?",
+      "query_type": "tier_a_factoid",
+      "expected_answer_marker": "Productivity and Business Processes, Intelligent Cloud, More Personal Computing"
+    },
+    {
+      "query_id": "q_022",
+      "question": "Which segment generated the most revenue for Microsoft in 2022?",
+      "query_type": "tier_a_factoid",
+      "expected_answer_marker": "Intelligent Cloud"
+    },
+    {
+      "query_id": "q_023",
+      "question": "What percentage of Microsoft's revenue came from Intelligent Cloud in 2022?",
+      "query_type": "arithmetic_probe",
+      "expected_answer_marker": "cloud percentage"
+    },
+    {
+      "query_id": "q_024",
+      "question": "How did the Intelligent Cloud segment revenue grow from 2021 to 2022?",
+      "query_type": "multi_hop",
+      "expected_answer_marker": "cloud growth"
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "session_id": "apple_fy2022_basics",
+  "company": "Apple",
+  "period": "FY2022",
+  "queries": [
+    {
+      "query_id": "q_001",
+      "question": "What was Apple's total net sales revenue in FY2022?",
+      "query_type": "tier_a_factoid",
+      "expected_answer_marker": "revenue"
+    },
+    {
+      "query_id": "q_002",
+      "question": "How many operating segments did Apple report in FY2022?",
+      "query_type": "tier_a_factoid",
+      "expected_answer_marker": "segments"
+    },
+    {
+      "query_id": "q_003",
+      "question": "What was Apple's gross profit in fiscal year 2022?",
+      "query_type": "terminology_mismatch_probe",
+      "expected_answer_marker": "gross profit"
+    },
+    {
+      "query_id": "q_004",
+      "question": "Compare Apple's revenue in 2022 vs 2021.",
+      "query_type": "multi_hop",
+      "expected_answer_marker": "comparison"
+    }
+  ]
+}

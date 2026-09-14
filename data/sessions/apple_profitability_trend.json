@@ -1,0 +1,31 @@
+{
+  "session_id": "apple_profitability_trend",
+  "company": "Apple",
+  "period": "FY2020-2022",
+  "queries": [
+    {
+      "query_id": "q_013",
+      "question": "What was Apple's operating income in 2022?",
+      "query_type": "tier_a_factoid",
+      "expected_answer_marker": "operating income"
+    },
+    {
+      "query_id": "q_014",
+      "question": "Did Apple's net income increase from 2021 to 2022?",
+      "query_type": "multi_hop",
+      "expected_answer_marker": "income trend"
+    },
+    {
+      "query_id": "q_015",
+      "question": "Calculate Apple's gross profit margin for 2022.",
+      "query_type": "arithmetic_probe",
+      "expected_answer_marker": "margin calculation"
+    },
+    {
+      "query_id": "q_016",
+      "question": "How did Apple's operating expenses trend from 2020 to 2022?",
+      "query_type": "multi_hop",
+      "expected_answer_marker": "expense trend"
+    }
+  ]
+}

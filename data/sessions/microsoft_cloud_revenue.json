@@ -1,0 +1,31 @@
+{
+  "session_id": "microsoft_cloud_revenue",
+  "company": "Microsoft",
+  "period": "FY2020-2022",
+  "queries": [
+    {
+      "query_id": "q_025",
+      "question": "What were the main revenue sources within Microsoft's Intelligent Cloud segment in 2022?",
+      "query_type": "tier_a_factoid",
+      "expected_answer_marker": "Azure, Server products, Enterprise Services"
+    },
+    {
+      "query_id": "q_026",
+      "question": "Compare Azure revenue growth between 2021 and 2022.",
+      "query_type": "multi_hop",
+      "expected_answer_marker": "azure growth"
+    },
+    {
+      "query_id": "q_027",
+      "question": "Calculate the combined revenue from Productivity and Cloud segments for 2022.",
+      "query_type": "arithmetic_probe",
+      "expected_answer_marker": "segment sum"
+    },
+    {
+      "query_id": "q_028",
+      "question": "What was the trend in Microsoft's total employees from 2020 to 2022?",
+      "query_type": "multi_hop",
+      "expected_answer_marker": "headcount trend"
+    }
+  ]
+}
