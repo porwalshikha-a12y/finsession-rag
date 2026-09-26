@@ -1,0 +1,278 @@
+{
+  "q_001": {
+    "expected_answer": "$394,328 million (approximately $394.3 billion) in total net sales for fiscal 2022.",
+    "source": "APPLE_2022_10K p.29 (Consolidated Statements of Operations)"
+  },
+  "q_002": {
+    "expected_answer": "Five reportable segments: Americas, Europe, Greater China, Japan, and Rest of Asia Pacific.",
+    "source": "APPLE_2022_10K p.25 (Segment Operating Performance)",
+    "note": "Apple's reportable segments are geographic, not product lines."
+  },
+  "q_003": {
+    "expected_answer": "$170,782 million. Apple reports this line as \"gross margin\" rather than \"gross profit\" (total net sales $394,328M less total cost of sales $223,546M).",
+    "source": "APPLE_2022_10K p.29",
+    "note": "Terminology probe: the filing never uses the phrase 'gross profit'."
+  },
+  "q_004": {
+    "expected_answer": "Net sales rose from $365,817 million in 2021 to $394,328 million in 2022 \u2014 an increase of $28,511 million, or 7.8%.",
+    "source": "APPLE_2022_10K p.29"
+  },
+  "q_005": {
+    "expected_answer": "Americas, Europe, Greater China, Japan, and Rest of Asia Pacific.",
+    "source": "APPLE_2022_10K p.25"
+  },
+  "q_006": {
+    "expected_answer": "Americas, with net sales of $169,658 million in 2022.",
+    "source": "APPLE_2022_10K p.25"
+  },
+  "q_007": {
+    "expected_answer": "Approximately 43% ($169,658M of $394,328M total net sales).",
+    "source": "APPLE_2022_10K p.25"
+  },
+  "q_008": {
+    "expected_answer": "Greater China net sales rose from $68,366 million in 2021 to $74,200 million in 2022 \u2014 up $5,834 million, or 8.5% (the filing rounds this to 9%).",
+    "source": "APPLE_2022_10K p.25"
+  },
+  "q_009": {
+    "expected_answer": "By net sales in fiscal 2022: iPhone $205,489M; Services $78,129M; Wearables, Home and Accessories $41,241M; Mac $40,177M; iPad $29,292M.",
+    "source": "APPLE_2022_10K p.24 (Products and Services Performance)"
+  },
+  "q_010": {
+    "expected_answer": "iPhone, at $205,489 million in fiscal 2022.",
+    "source": "APPLE_2022_10K p.24"
+  },
+  "q_011": {
+    "expected_answer": "Services net sales grew from $53,768 million in 2020 to $78,129 million in 2022 \u2014 up $24,361 million, or 45.3%.",
+    "source": "APPLE_2022_10K p.24"
+  },
+  "q_012": {
+    "expected_answer": "Wearables, Home and Accessories grew from $38,367M in 2021 to $41,241M in 2022 \u2014 7.5% (the filing rounds to 7%).",
+    "source": "APPLE_2022_10K p.24"
+  },
+  "q_013": {
+    "expected_answer": "$119,437 million in fiscal 2022.",
+    "source": "APPLE_2022_10K p.29"
+  },
+  "q_014": {
+    "expected_answer": "Yes. Net income rose from $94,680 million in 2021 to $99,803 million in 2022 \u2014 up $5,123 million, or 5.4%.",
+    "source": "APPLE_2022_10K p.29"
+  },
+  "q_015": {
+    "expected_answer": "43.3% (gross margin $170,782M \u00f7 total net sales $394,328M).",
+    "source": "APPLE_2022_10K p.29"
+  },
+  "q_016": {
+    "expected_answer": "Total operating expenses rose each year: $38,668M (2020), $43,887M (2021, +13.5%), $51,345M (2022, +17.0%).",
+    "source": "APPLE_2022_10K p.29"
+  },
+  "q_017": {
+    "expected_answer": "$198,270 million in fiscal year 2022 (year ended 30 June 2022).",
+    "source": "MICROSOFT_2022_10K p.57 (Income Statements)"
+  },
+  "q_018": {
+    "expected_answer": "Three: Productivity and Business Processes, Intelligent Cloud, and More Personal Computing.",
+    "source": "MICROSOFT_2022_10K p.94 (Segment Information)"
+  },
+  "q_019": {
+    "expected_answer": "$72,738 million in fiscal 2022.",
+    "source": "MICROSOFT_2022_10K p.57"
+  },
+  "q_020": {
+    "expected_answer": "Revenue rose from $168,088 million in FY2021 to $198,270 million in FY2022 \u2014 up $30,182 million, or 18.0%.",
+    "source": "MICROSOFT_2022_10K p.57"
+  },
+  "q_021": {
+    "expected_answer": "Productivity and Business Processes; Intelligent Cloud; More Personal Computing.",
+    "source": "MICROSOFT_2022_10K p.94"
+  },
+  "q_022": {
+    "expected_answer": "Intelligent Cloud, at $75,251 million in FY2022.",
+    "source": "MICROSOFT_2022_10K p.94"
+  },
+  "q_023": {
+    "expected_answer": "Approximately 38% ($75,251M of $198,270M total revenue).",
+    "source": "MICROSOFT_2022_10K p.94"
+  },
+  "q_024": {
+    "expected_answer": "Intelligent Cloud revenue grew from $60,080 million in FY2021 to $75,251 million in FY2022 \u2014 up $15,171 million, or 25.3% (reported as 25%).",
+    "source": "MICROSOFT_2022_10K p.94"
+  },
+  "q_025": {
+    "expected_answer": "Two: server products and cloud services (Azure and other cloud services; SQL Server, Windows Server, Visual Studio, System Center and related CALs; Nuance and GitHub), and Enterprise Services (Enterprise Support Services, Microsoft Consulting Services, Nuance professional services).",
+    "source": "MICROSOFT_2022_10K (Intelligent Cloud segment description)"
+  },
+  "q_026": {
+    "expected_answer": "Azure and other cloud services revenue grew 50% in FY2021 and 45% in FY2022 \u2014 still rapid, but decelerating by about 5 percentage points.",
+    "source": "MICROSOFT_2022_10K p.40/45; MICROSOFT_2021_10K p.39"
+  },
+  "q_027": {
+    "expected_answer": "$138,615 million (Productivity and Business Processes $63,364M + Intelligent Cloud $75,251M).",
+    "source": "MICROSOFT_2022_10K p.94"
+  },
+  "q_028": {
+    "expected_answer": "Headcount rose from approximately 163,000 (June 2020) to 181,000 (June 2021) to 221,000 (June 2022) \u2014 an increase of about 36% over the two years.",
+    "source": "MICROSOFT 2020/2021/2022 10-K, Human Capital sections"
+  },
+  "q_029": {
+    "expected_answer": "$83,383 million in fiscal 2022.",
+    "source": "MICROSOFT_2022_10K p.57"
+  },
+  "q_030": {
+    "expected_answer": "No \u2014 gross margin percentage slipped from 68.9% in FY2021 (115,856/168,088) to 68.4% in FY2022 (135,620/198,270), even though gross margin in dollars rose from $115,856M to $135,620M.",
+    "source": "MICROSOFT_2022_10K p.57"
+  },
+  "q_031": {
+    "expected_answer": "38.6% (from $143,015 million in FY2020 to $198,270 million in FY2022).",
+    "source": "MICROSOFT_2022_10K p.57"
+  },
+  "q_032": {
+    "expected_answer": "Additions to property and equipment rose from $20,622 million in FY2021 to $23,886 million in FY2022 \u2014 up $3,264 million, or 15.8%.",
+    "source": "MICROSOFT_2022_10K p.60 (Cash Flows Statements)"
+  },
+  "q_033": {
+    "expected_answer": "$94,943 million in sales to customers for 2022.",
+    "source": "JOHNSON_JOHNSON_2022_10K p.47 (Consolidated Statements of Earnings)"
+  },
+  "q_034": {
+    "expected_answer": "Three: Consumer Health, Pharmaceutical, and MedTech.",
+    "source": "JOHNSON_JOHNSON_2022_10K p.7"
+  },
+  "q_035": {
+    "expected_answer": "$17,941 million in 2022 (down from $20,878 million in 2021).",
+    "source": "JOHNSON_JOHNSON_2022_10K p.47"
+  },
+  "q_036": {
+    "expected_answer": "Sales rose from $93,775 million in 2021 to $94,943 million in 2022 \u2014 up $1,168 million, or 1.2%.",
+    "source": "JOHNSON_JOHNSON_2022_10K p.47"
+  },
+  "q_037": {
+    "expected_answer": "Consumer Health, Pharmaceutical, and MedTech (MedTech was previously reported as Medical Devices).",
+    "source": "JOHNSON_JOHNSON_2022_10K p.7"
+  },
+  "q_038": {
+    "expected_answer": "Pharmaceutical, at $52,563 million in 2022.",
+    "source": "JOHNSON_JOHNSON_2022_10K p.30/36"
+  },
+  "q_039": {
+    "expected_answer": "Approximately 55.4% ($52,563M of $94,943M).",
+    "source": "JOHNSON_JOHNSON_2022_10K p.30/36"
+  },
+  "q_040": {
+    "expected_answer": "MedTech revenue rose from $27,060 million in 2021 to $27,427 million in 2022 \u2014 up $367 million, or 1.4%.",
+    "source": "JOHNSON_JOHNSON_2022_10K p.36"
+  },
+  "q_041": {
+    "expected_answer": "The Pharmaceutical segment's therapeutic areas in 2022 were Immunology $16,935M, Oncology $15,983M, Neuroscience $6,893M, Infectious Diseases $5,449M, Cardiovascular/Metabolism/Other $3,887M, and Pulmonary Hypertension $3,417M.",
+    "source": "JOHNSON_JOHNSON_2022_10K p.30"
+  },
+  "q_042": {
+    "expected_answer": "Consumer Health sales rose from $14,053 million in 2020 to $14,953 million in 2022 \u2014 up $900 million, or 6.4%.",
+    "source": "JOHNSON_JOHNSON_2020_10K p.34; JOHNSON_JOHNSON_2022_10K p.36"
+  },
+  "q_043": {
+    "expected_answer": "$79,990 million (Pharmaceutical $52,563M + MedTech $27,427M).",
+    "source": "JOHNSON_JOHNSON_2022_10K p.36"
+  },
+  "q_044": {
+    "expected_answer": "J&J does not report a line called \"operating profit\". Segment earnings before tax were $23,438 million in 2022; worldwide income before tax was $21,725 million after unallocated expenses and Consumer Health separation costs.",
+    "source": "JOHNSON_JOHNSON_2022_10K p.36/47",
+    "note": "Terminology probe: 'operating profit' is not a line J&J reports; it maps to segment income before tax."
+  },
+  "q_045": {
+    "expected_answer": "$86,392 million in net revenue for 2022.",
+    "source": "PEPSICO_2022_10K p.62 (Consolidated Statement of Income)"
+  },
+  "q_046": {
+    "expected_answer": "Seven reportable segments (divisions): FLNA, QFNA, PBNA, LatAm, Europe, AMESA and APAC.",
+    "source": "PEPSICO_2022_10K p.69"
+  },
+  "q_047": {
+    "expected_answer": "$8,910 million attributable to PepsiCo in 2022 (total net income including non-controlling interests was $8,978 million).",
+    "source": "PEPSICO_2022_10K p.62"
+  },
+  "q_048": {
+    "expected_answer": "Net revenue rose from $79,474 million in 2021 to $86,392 million in 2022 \u2014 up $6,918 million, or 8.7%.",
+    "source": "PEPSICO_2022_10K p.62"
+  },
+  "q_049": {
+    "expected_answer": "Frito-Lay North America (FLNA), Quaker Foods North America (QFNA), PepsiCo Beverages North America (PBNA), Latin America (LatAm), Europe, Africa/Middle East/South Asia (AMESA), and Asia Pacific/Australia-New Zealand/China (APAC).",
+    "source": "PEPSICO_2022_10K p.69"
+  },
+  "q_050": {
+    "expected_answer": "PBNA (PepsiCo Beverages North America), at $26,213 million in 2022.",
+    "source": "PEPSICO_2022_10K p.70"
+  },
+  "q_051": {
+    "expected_answer": "Approximately 27% ($23,291M of $86,392M net revenue).",
+    "source": "PEPSICO_2022_10K p.70"
+  },
+  "q_052": {
+    "expected_answer": "2021 to 2022: LatAm $8,108M to $9,779M (+20.6%); Europe $13,038M to $12,724M (-2.4%); AMESA $6,078M to $6,438M (+5.9%); APAC $4,615M to $4,787M (+3.7%).",
+    "source": "PEPSICO_2022_10K p.70"
+  },
+  "q_053": {
+    "expected_answer": "$394,328 million (approximately $394.3 billion) in total net sales for fiscal 2022.",
+    "source": "APPLE_2022_10K p.29 (Consolidated Statements of Operations)",
+    "note": "Paraphrase of q_001; same gold answer by construction."
+  },
+  "q_054": {
+    "expected_answer": "iPhone, at $205,489 million in fiscal 2022.",
+    "source": "APPLE_2022_10K p.24",
+    "note": "Paraphrase of q_010; same gold answer by construction."
+  },
+  "q_055": {
+    "expected_answer": "$119,437 million in fiscal 2022.",
+    "source": "APPLE_2022_10K p.29",
+    "note": "Paraphrase of q_013; same gold answer by construction."
+  },
+  "q_056": {
+    "expected_answer": "Americas, with net sales of $169,658 million in 2022.",
+    "source": "APPLE_2022_10K p.25",
+    "note": "Paraphrase of q_006; same gold answer by construction."
+  },
+  "q_057": {
+    "expected_answer": "$94,943 million in sales to customers for 2022.",
+    "source": "JOHNSON_JOHNSON_2022_10K p.47 (Consolidated Statements of Earnings)",
+    "note": "Paraphrase of q_033; same gold answer by construction."
+  },
+  "q_058": {
+    "expected_answer": "Consumer Health sales rose from $14,053 million in 2020 to $14,953 million in 2022 \u2014 up $900 million, or 6.4%.",
+    "source": "JOHNSON_JOHNSON_2020_10K p.34; JOHNSON_JOHNSON_2022_10K p.36",
+    "note": "Paraphrase of q_042; same gold answer by construction."
+  },
+  "q_059": {
+    "expected_answer": "Pharmaceutical, at $52,563 million in 2022.",
+    "source": "JOHNSON_JOHNSON_2022_10K p.30/36",
+    "note": "Paraphrase of q_038; same gold answer by construction."
+  },
+  "q_060": {
+    "expected_answer": "$138,615 million (Productivity and Business Processes $63,364M + Intelligent Cloud $75,251M).",
+    "source": "MICROSOFT_2022_10K p.94",
+    "note": "Paraphrase of q_027; same gold answer by construction."
+  },
+  "q_061": {
+    "expected_answer": "$198,270 million in fiscal year 2022 (year ended 30 June 2022).",
+    "source": "MICROSOFT_2022_10K p.57 (Income Statements)",
+    "note": "Paraphrase of q_017; same gold answer by construction."
+  },
+  "q_062": {
+    "expected_answer": "$83,383 million in fiscal 2022.",
+    "source": "MICROSOFT_2022_10K p.57",
+    "note": "Paraphrase of q_029; same gold answer by construction."
+  },
+  "q_063": {
+    "expected_answer": "Intelligent Cloud, at $75,251 million in FY2022.",
+    "source": "MICROSOFT_2022_10K p.94",
+    "note": "Paraphrase of q_022; same gold answer by construction."
+  },
+  "q_064": {
+    "expected_answer": "$86,392 million in net revenue for 2022.",
+    "source": "PEPSICO_2022_10K p.62 (Consolidated Statement of Income)",
+    "note": "Paraphrase of q_045; same gold answer by construction."
+  },
+  "q_065": {
+    "expected_answer": "PBNA (PepsiCo Beverages North America), at $26,213 million in 2022.",
+    "source": "PEPSICO_2022_10K p.70",
+    "note": "Paraphrase of q_050; same gold answer by construction."
+  }
+}

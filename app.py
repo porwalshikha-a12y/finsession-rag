@@ -66,6 +66,62 @@ def build_agent(cfg, embedder, index, mode: dict, budget: int, tau: float,
     )
 
 
+
+def _steps_frame(steps: list[dict]) -> "pd.DataFrame":
+    """Render the sub-step trace as a table Arrow can serialise.
+
+    Sub-steps carry nested values - provenance is a list of (doc_id, page)
+    pairs and dropped_chunks a list of dicts - which pyarrow cannot type.
+    Everything non-scalar is flattened to a readable string here.
+    """
+    COLUMNS = ["sub_q", "source", "verified", "provenance",
+               "stored_q", "entry_id", "dropped_chunks", "note"]
+    LABELS = {"sub_q": "sub-question", "source": "resolved by",
+              "verified": "verified", "provenance": "evidence",
+              "stored_q": "matched stored question", "entry_id": "entry",
+              "dropped_chunks": "chunks dropped", "note": "note"}
+
+    def prov(v):
+        if not v:
+            return ""
+        out = []
+        for item in v:
+            if isinstance(item, (list, tuple)) and len(item) >= 2:
+                out.append(f"{item[0]} p.{item[1]}")
+            elif isinstance(item, dict):
+                out.append(f"{item.get('doc_id', '?')} p.{item.get('page', '?')}")
+            else:
+                out.append(str(item))
+        return "; ".join(out)
+
+    rows = []
+    for st_ in steps:
+        row = {}
+        for k in COLUMNS:
+            if k not in st_:
+                continue
+            v = st_[k]
+            if k == "provenance":
+                row[LABELS[k]] = prov(v)
+            elif k == "dropped_chunks":
+                row[LABELS[k]] = len(v) if isinstance(v, (list, tuple)) else (v or "")
+            elif isinstance(v, (list, tuple, dict)):
+                row[LABELS[k]] = str(v)
+            elif v is None:
+                row[LABELS[k]] = ""
+            else:
+                row[LABELS[k]] = v
+        # anything unexpected still shows, as text
+        for k, v in st_.items():
+            if k not in COLUMNS:
+                row[k] = v if isinstance(v, (str, int, float, bool)) else str(v)
+        rows.append(row)
+
+    df = pd.DataFrame(rows)
+    return df.astype({c: "string" for c in df.columns
+                      if df[c].dtype == "object"}) if not df.empty else df
+
+
 # ---------------------------------------------------------------- sidebar
 st.sidebar.title("FinSession-RAG")
 st.sidebar.caption("Cost-aware semantic memory for agentic RAG")
@@ -135,7 +191,7 @@ with tab_chat:
                         f"{trace['memory_hits']} memory hits"
                     ):
                         if trace["sub_steps"]:
-                            st.dataframe(pd.DataFrame(trace["sub_steps"]),
+                            st.dataframe(_steps_frame(trace["sub_steps"]),
                                          use_container_width=True, hide_index=True)
                         else:
                             st.caption(

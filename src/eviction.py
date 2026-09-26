@@ -1,61 +1,50 @@
 """Memory eviction policies for bounded semantic memory.
 
-Policies:
-  - none: No eviction (unbounded)
-  - lru: Least Recently Used
-  - lfu: Least Frequently Used
-  - redundancy: Remove semantically redundant entries
-  - cost_aware: Remove entries with lowest cost-effectiveness (cost/reuse_probability)
-"""
+Every policy answers one question: when the store is over budget, which
+entry do we give up? They share one interface so an experiment arm differs
+ONLY in the policy object it is handed.
 
+  none        no eviction (unbounded; arm A1)
+  lru         least recently used
+  lfu         least frequently used
+  redundancy  the entry whose information is most nearly covered by another
+  cost_aware  the entry with the lowest retention value (the contribution)
+
+Entries are `src.memory.MemoryEntry`: they carry `cost_tokens`, `hits`,
+`created_step` and `last_used_step` on the memory's logical clock, plus the
+normalised embedding of the sub-question.
+"""
 from __future__ import annotations
 
 from abc import ABC, abstractmethod
-from dataclasses import dataclass, field
 from typing import Optional
-from datetime import datetime
-import heapq
 
+import numpy as np
 
-@dataclass
-class MemoryEntry:
-    """A single memory entry (verified fact)."""
-    entry_id: str
-    sub_question: str
-    sub_answer: str
-    evidence: str
-    cost_tokens: int = 0
-    provenance: list = field(default_factory=list)
-    timestamp: float = field(default_factory=lambda: datetime.now().timestamp())
-    access_count: int = 0
-    last_access: float = field(default_factory=lambda: datetime.now().timestamp())
+from .memory import MemoryEntry
 
 
 class EvictionPolicy(ABC):
-    """Base class for eviction policies."""
+    """Base class. `select_victim` returns an index into `entries`."""
 
     @abstractmethod
     def select_victim(self, entries: list[MemoryEntry]) -> Optional[int]:
-        """Select an entry to evict.
-
-        Args:
-            entries: List of MemoryEntry objects
-
-        Returns:
-            Index of the entry to evict (for use with list.pop), or None if no eviction needed
-        """
-        pass
+        """Index of the entry to evict (for list.pop), or None to evict nothing."""
 
 
 class NoEviction(EvictionPolicy):
-    """No eviction—memory is unbounded."""
+    """Never evict — unbounded memory (arm A1)."""
+
+    name = "none"
 
     def select_victim(self, entries: list[MemoryEntry]) -> Optional[int]:
         return None
 
 
 class LRUEviction(EvictionPolicy):
-    """Least Recently Used: evict the entry with the oldest last_used_step."""
+    """Evict the entry untouched for the longest."""
+
+    name = "lru"
 
     def select_victim(self, entries: list[MemoryEntry]) -> Optional[int]:
         if not entries:
@@ -64,100 +53,131 @@ class LRUEviction(EvictionPolicy):
 
 
 class LFUEviction(EvictionPolicy):
-    """Least Frequently Used: evict the entry with the lowest hit count."""
+    """Evict the least-reused entry; ties broken by least-recently-used.
+
+    The tie-break matters here: at realistic hit rates most entries sit at
+    hits == 0, so without it `min` just returns the first index and the
+    policy silently degenerates into FIFO.
+    """
+
+    name = "lfu"
 
     def select_victim(self, entries: list[MemoryEntry]) -> Optional[int]:
         if not entries:
             return None
-        return min(range(len(entries)), key=lambda i: entries[i].hits)
+        return min(
+            range(len(entries)),
+            key=lambda i: (entries[i].hits, entries[i].last_used_step),
+        )
 
 
 class RedundancyEviction(EvictionPolicy):
-    """Remove semantically redundant entries.
+    """Evict the entry most similar to some OTHER surviving entry.
 
-    Evict the entry most similar to others in the memory.
-    Requires embedder for similarity computation.
+    The intuition: if two entries say nearly the same thing, dropping one
+    loses least, because what remains still covers the ground.
+
+    Similarity is over the stored sub-question embeddings, which
+    `SemanticMemory` already computed and normalised — so this costs one
+    matrix multiply and no extra embedding calls. `embedder` is only a
+    fallback for entries that predate stored embeddings.
     """
 
-    def __init__(self, embedder=None, similarity_threshold: float = 0.95):
+    name = "redundancy"
+
+    def __init__(self, embedder=None):
         self.embedder = embedder
-        self.similarity_threshold = similarity_threshold
 
-    def select_victim(self, entries: list[MemoryEntry]) -> Optional[int]:
-        """Find and evict the most redundant entry."""
-        if not entries or len(entries) < 2 or not self.embedder:
-            # Fall back to LRU if not enough entries
-            return LRUEviction().select_victim(entries)
-
-        # Embed all answers
-        answers = [entry.sub_answer for entry in entries]
-
-        try:
-            embeddings = self.embedder.encode(answers)
-
-            # Find entry with highest average similarity to others
-            max_redundancy = -1
-            victim_idx = 0
-
-            for i in range(len(entries)):
-                similarities = []
-                for j in range(len(entries)):
-                    if i != j:
-                        sim = float(embeddings[i] @ embeddings[j])
-                        similarities.append(sim)
-
-                avg_sim = sum(similarities) / len(similarities) if similarities else 0
-                if avg_sim > max_redundancy:
-                    max_redundancy = avg_sim
-                    victim_idx = i
-
-            return victim_idx if max_redundancy > 0 else 0
-
-        except Exception:
-            # Fall back to LRU on error
-            return LRUEviction().select_victim(entries)
-
-
-class CostAwareEviction(EvictionPolicy):
-    """Cost-aware eviction: remove entries with lowest cost-effectiveness.
-
-    Cost-effectiveness = hits / cost_tokens
-    Prioritizes keeping cheap entries and frequently reused entries.
-    """
+    def _matrix(self, entries: list[MemoryEntry]) -> Optional[np.ndarray]:
+        embs = [getattr(e, "embedding", None) for e in entries]
+        if all(e is not None for e in embs):
+            return np.vstack(embs)
+        if self.embedder is not None:
+            return np.asarray(self.embedder.encode([e.sub_question for e in entries]))
+        return None
 
     def select_victim(self, entries: list[MemoryEntry]) -> Optional[int]:
         if not entries:
             return None
-
-        # Compute cost-effectiveness for each entry
-        candidates = []
-        for i, entry in enumerate(entries):
-            # Avoid division by zero
-            cost = max(entry.cost_tokens, 1)
-            # Reuse is a proxy: entries used once are "low value"
-            # entries used many times are "high value"
-            effectiveness = entry.hits / cost
-            candidates.append((effectiveness, i, entry.last_used_step))
-
-        # Evict the entry with lowest effectiveness
-        # If tied on effectiveness, break tie by LRU (oldest last_used_step)
-        victim = min(candidates, key=lambda x: (x[0], x[2]))
-        return victim[1]
+        if len(entries) < 2:
+            return 0
+        mat = self._matrix(entries)
+        if mat is None:                      # cannot measure similarity
+            return LRUEviction().select_victim(entries)
+        sims = mat @ mat.T
+        np.fill_diagonal(sims, -1.0)         # ignore self-similarity
+        # max (not mean) similarity to any other entry: redundancy is a
+        # property of the closest neighbour, not of the average neighbour.
+        return int(np.argmax(sims.max(axis=1)))
 
 
-def make_eviction_policy(name: str, embedder=None) -> EvictionPolicy:
-    """Factory function to create eviction policy by name."""
-    name = name.lower().strip()
+class CostAwareEviction(EvictionPolicy):
+    """Evict the entry with the lowest retention value:
 
-    if name in ["none", "unbounded"]:
-        return NoEviction()
-    elif name in ["lru", "least_recently_used"]:
-        return LRUEviction()
-    elif name in ["lfu", "least_frequently_used"]:
-        return LFUEviction()
-    elif name in ["redundancy", "semantic_redundancy"]:
-        return RedundancyEviction(embedder=embedder)
-    elif name in ["cost_aware", "cost-aware"]:
-        return CostAwareEviction()
-    else:
+        value = cost_tokens * (1 + hits) * 0.5 ** (age / half_life)
+
+    Keep what was expensive to produce AND shows reuse; let unused entries
+    decay so the store cannot ossify. `age` is measured on the memory's
+    logical clock, taken as the most recent `last_used_step` across the
+    store — the store's own notion of "now".
+
+    Note the direction: cost MULTIPLIES value, so an expensive entry is
+    retained longer. Dividing by cost would invert the whole thesis.
+    """
+
+    name = "cost_aware"
+
+    def __init__(self, half_life: float = 10.0):
+        self.half_life = float(half_life)
+
+    def select_victim(self, entries: list[MemoryEntry]) -> Optional[int]:
+        if not entries:
+            return None
+        now = max(e.last_used_step for e in entries)
+
+        def value(e: MemoryEntry) -> float:
+            age = max(0, now - e.last_used_step)
+            decay = 0.5 ** (age / self.half_life) if self.half_life > 0 else 1.0
+            return max(e.cost_tokens, 1) * (1.0 + e.hits) * decay
+
+        # tie-break by least-recently-used so the ordering is total
+        return min(range(len(entries)),
+                   key=lambda i: (value(entries[i]), entries[i].last_used_step))
+
+
+POLICIES = {
+    "none": NoEviction,
+    "unbounded": NoEviction,
+    "lru": LRUEviction,
+    "least_recently_used": LRUEviction,
+    "lfu": LFUEviction,
+    "least_frequently_used": LFUEviction,
+    "redundancy": RedundancyEviction,
+    "semantic_redundancy": RedundancyEviction,
+    "cost_aware": CostAwareEviction,
+    "cost-aware": CostAwareEviction,
+}
+
+
+def make_eviction_policy(name: str, embedder=None,
+                         half_life: float = 10.0) -> EvictionPolicy:
+    """Build a policy by config name."""
+    key = (name or "none").lower().strip()
+    if key not in POLICIES:
         raise ValueError(f"Unknown eviction policy: {name}")
+    cls = POLICIES[key]
+    if cls is RedundancyEviction:
+        return cls(embedder=embedder)
+    if cls is CostAwareEviction:
+        return cls(half_life=half_life)
+    return cls()
+
+
+# -- backwards-compatible aliases -------------------------------------------
+# app.py / api.py import `make_policy`; tests/test_offline.py imports the
+# short class names. Keeping both spellings avoids editing those call sites.
+make_policy = make_eviction_policy
+LRU = LRUEviction
+LFU = LFUEviction
+CostAware = CostAwareEviction
+SemanticRedundancy = RedundancyEviction

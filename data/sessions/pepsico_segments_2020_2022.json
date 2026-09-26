@@ -26,6 +26,13 @@
       "question": "How did PepsiCo's geographic segment revenues change from 2021 to 2022?",
       "query_type": "multi_hop",
       "expected_answer_marker": "geographic trend"
+    },
+    {
+      "query_id": "q_065",
+      "question": "Which PepsiCo division had the largest net revenue in 2022?",
+      "query_type": "paraphrase_probe",
+      "paraphrase_of": "q_050",
+      "expected_answer_marker": "paraphrase"
     }
   ]
 }

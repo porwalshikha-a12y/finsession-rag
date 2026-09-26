@@ -26,6 +26,13 @@
       "question": "Compare Microsoft's FY2022 revenue to FY2021.",
       "query_type": "multi_hop",
       "expected_answer_marker": "comparison"
+    },
+    {
+      "query_id": "q_061",
+      "question": "How much revenue in total did Microsoft report for FY2022?",
+      "query_type": "paraphrase_probe",
+      "paraphrase_of": "q_017",
+      "expected_answer_marker": "paraphrase"
     }
   ]
 }

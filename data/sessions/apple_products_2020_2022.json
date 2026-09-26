@@ -26,6 +26,13 @@
       "question": "What was the growth rate for Apple's Wearables category from 2021 to 2022?",
       "query_type": "arithmetic_probe",
       "expected_answer_marker": "wearables growth"
+    },
+    {
+      "query_id": "q_054",
+      "question": "In 2022, which of Apple's product lines brought in the most money?",
+      "query_type": "paraphrase_probe",
+      "paraphrase_of": "q_010",
+      "expected_answer_marker": "paraphrase"
     }
   ]
 }

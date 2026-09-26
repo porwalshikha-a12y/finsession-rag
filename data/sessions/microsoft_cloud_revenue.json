@@ -26,6 +26,13 @@
       "question": "What was the trend in Microsoft's total employees from 2020 to 2022?",
       "query_type": "multi_hop",
       "expected_answer_marker": "headcount trend"
+    },
+    {
+      "query_id": "q_060",
+      "question": "Added together, what did Microsoft's Productivity and Intelligent Cloud segments bring in for FY2022?",
+      "query_type": "paraphrase_probe",
+      "paraphrase_of": "q_027",
+      "expected_answer_marker": "paraphrase"
     }
   ]
 }

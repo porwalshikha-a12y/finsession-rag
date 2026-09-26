@@ -90,19 +90,19 @@ def entries_fixture(m):
 
 def test_lru_evicts_least_recent():
     m = entries_fixture(make_memory(tau=0.99))
-    idx = LRU().select_victim(m.entries, clock=m.clock)
+    idx = LRU().select_victim(m.entries)
     assert m.entries[idx].sub_question == "q_old_unused"
 
 
 def test_lfu_evicts_least_frequent():
     m = entries_fixture(make_memory(tau=0.99))
-    idx = LFU().select_victim(m.entries, clock=m.clock)
+    idx = LFU().select_victim(m.entries)
     assert m.entries[idx].hits == 0
 
 
 def test_cost_aware_keeps_expensive_and_popular():
     m = entries_fixture(make_memory(tau=0.99))
-    idx = CostAware(half_life=1000).select_victim(m.entries, clock=m.clock)
+    idx = CostAware(half_life=1000).select_victim(m.entries)
     victim = m.entries[idx]
     assert victim.sub_question == "q_old_unused"  # cheap + unused loses
 
@@ -112,7 +112,7 @@ def test_redundancy_evicts_duplicate():
     m.write("alpha beta gamma", "ev", "a", cost_tokens=10)
     m.write("alpha beta gamma", "ev", "a", cost_tokens=10)  # exact duplicate
     m.write("something totally different", "ev", "a", cost_tokens=10)
-    idx = SemanticRedundancy().select_victim(m.entries, clock=m.clock)
+    idx = SemanticRedundancy().select_victim(m.entries)
     assert m.entries[idx].sub_question == "alpha beta gamma"
 
 

@@ -38,7 +38,9 @@ class QueryTrace:
     question: str
     sub_steps: list = field(default_factory=list)
     answer: str = ""
-    memory_hits: int = 0
+    memory_hits: int = 0          # reuses ACCEPTED (similarity hit + gate passed)
+    reuse_rejected: int = 0       # similarity hit that the reuse gate refused
+    planner_loops: int = 0        # times the planner re-asked a sub-question
     retrievals: int = 0
     tokens_before: int = 0
     tokens_after: int = 0
@@ -46,6 +48,32 @@ class QueryTrace:
     @property
     def tokens_spent(self) -> int:
         return self.tokens_after - self.tokens_before
+
+
+def _norm_subq(q: str) -> str:
+    """Loose key for spotting a repeated sub-question."""
+    return " ".join(q.lower().strip().split())
+
+
+def _normalize_hits(hits: list[dict]) -> list[dict]:
+    """Flatten store-specific hit shapes into one contract.
+
+    The stores in `src/index.py` return flat dicts ({doc_id, page, text,
+    score}); the inline PgvectorIndex in run_experiment.py nests provenance
+    under "metadata". Normalising once, here, means spotlight(), the
+    grounding gate, the trace and provenance all read the same keys no
+    matter which store is wired in — and adding a new store only has to
+    satisfy one contract.
+    """
+    out = []
+    for h in hits:
+        meta = h.get("metadata") or {}
+        flat = {k: v for k, v in h.items() if k != "metadata"}
+        for key in ("doc_id", "page", "company", "year"):
+            if key not in flat and key in meta:
+                flat[key] = meta[key]
+        out.append(flat)
+    return out
 
 
 class RAGAgent:
@@ -73,6 +101,14 @@ class RAGAgent:
         # "Q: ... A: ..." strings for planner + synthesizer
         facts: list[str] = []
 
+        # Sub-questions already tried in THIS query. Retrieval and the verifier
+        # are deterministic at temperature 0, so re-asking one that already
+        # failed cannot succeed — it just re-pays for the same failure. Without
+        # this guard the planner cycles between two phrasings and burns its
+        # whole step budget; that wasted cost varies wildly per query and
+        # swamps the between-arm differences the experiment is trying to detect.
+        attempted: set[str] = set()
+
         for _ in range(self.max_steps):
             plan = self.llm.chat(
                 PLANNER_SYS,
@@ -84,6 +120,15 @@ class RAGAgent:
                 break
             sub_q = plan.split(
                 ":", 1)[-1].strip() if ":" in plan else plan.strip()
+
+            key = _norm_subq(sub_q)
+            if key in attempted:
+                trace.planner_loops += 1
+                trace.sub_steps.append({"sub_q": sub_q, "source": "planner_loop",
+                                        "note": "repeat of an earlier sub-question; "
+                                                "stopping and synthesising"})
+                break
+            attempted.add(key)
 
             fact = self._resolve_subquestion(sub_q, trace)
             if fact:
@@ -106,15 +151,31 @@ class RAGAgent:
         # 1) memory first
         if self.memory is not None:
             entry = self.memory.lookup(sub_q)
-            if entry is not None and self._reuse_ok(sub_q, entry):
-                trace.memory_hits += 1
-                trace.sub_steps.append({"sub_q": sub_q, "source": "memory",
-                                        "entry_id": entry.entry_id})
-                return f"Q: {sub_q} A: {entry.sub_answer}"
+            if entry is not None:
+                # A similarity match above tau is only a CANDIDATE. The gate
+                # decides whether the stored fact actually answers this
+                # sub-question; tau=0.80 happily matches the same metric for a
+                # different year or company, so the two counts diverge and
+                # both need reporting.
+                if self._reuse_ok(sub_q, entry):
+                    trace.memory_hits += 1
+                    # Carry the cached entry's provenance forward. Without it a
+                    # memory-served answer has no audit trail at all, which is
+                    # precisely the answer a reviewer would ask you to justify.
+                    trace.sub_steps.append({"sub_q": sub_q, "source": "memory",
+                                            "entry_id": entry.entry_id,
+                                            "stored_q": entry.sub_question,
+                                            "verified": True,
+                                            "provenance": entry.provenance})
+                    return f"Q: {sub_q} A: {entry.sub_answer}"
+                trace.reuse_rejected += 1
+                trace.sub_steps.append({"sub_q": sub_q, "source": "memory_rejected",
+                                        "entry_id": entry.entry_id,
+                                        "stored_q": entry.sub_question})
 
         # 2) retrieve + verify
         tokens_before = self.llm.ledger.total_tokens
-        hits = self.index.search(sub_q, top_k=self.top_k)
+        hits = _normalize_hits(self.index.search(sub_q, top_k=self.top_k))
         trace.retrievals += 1
 
         dropped = []
@@ -163,13 +224,12 @@ class RAGAgent:
                 evidence=passages[:2000],
                 sub_answer=sub_answer,
                 cost_tokens=cost,
-                # provenance=[(h["doc_id"], h["page"]) for h in hits],
-                provenance=[(h["metadata"]["doc_id"], h["metadata"]["page"])
-                            for h in hits],
+                provenance=[(h.get("doc_id"), h.get("page")) for h in hits],
             )
         trace.sub_steps.append({"sub_q": sub_q, "source": "retrieval",
                                 "verified": True, "cost_tokens": cost,
-                                "grounded": grounded, "dropped_chunks": dropped})
+                                "grounded": grounded, "dropped_chunks": dropped,
+                                "provenance": [(h.get("doc_id"), h.get("page")) for h in hits]})
         return f"Q: {sub_q} A: {sub_answer}"
 
     def _reuse_ok(self, sub_q: str, entry) -> bool:

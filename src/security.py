@@ -90,14 +90,26 @@ _NUM = re.compile(r"\d[\d,]*(?:\.\d+)?")
 
 
 def _normalize_number(s: str) -> str:
-    return s.replace(",", "").rstrip(".0") or "0"
+    """Canonical form of a numeric literal for grounding comparison.
+
+    Strips thousands separators, and trailing zeros ONLY after a decimal
+    point ('1.50' -> '1.5', '1.0' -> '1'). Whole numbers are left intact:
+    str.rstrip(".0") takes a CHARACTER SET, so the earlier one-liner turned
+    '100' into '1' and '3,900' into '39', collapsing distinct figures onto
+    the same key and letting ungrounded numbers pass the check.
+    """
+    s = s.replace(",", "")
+    if "." in s:
+        s = s.rstrip("0").rstrip(".")
+    return s or "0"
 
 
 def is_grounded(answer: str, evidence: str) -> bool:
     """Cheap grounding check used to gate MEMORY WRITES.
 
     Every number in the answer must literally appear in the evidence
-    (commas ignored, so '383,285' matches '383285'). Answers with no
+    (commas ignored, so '383,285' matches '383285'; trailing zeros after
+    a decimal point ignored, so '1.50' matches '1.5'). Answers with no
     numbers pass (nothing to check at this level). This blocks the classic
     poisoning move — an injected instruction making the verifier assert a
     figure that appears nowhere in the documents — from being cached and
@@ -105,8 +117,6 @@ def is_grounded(answer: str, evidence: str) -> bool:
     """
     ev_norm = {_normalize_number(m) for m in _NUM.findall(evidence)}
     for m in _NUM.findall(answer):
-        n = _normalize_number(m)
-        # accept exact match or match ignoring trailing zeros after decimal
-        if n not in ev_norm and n.rstrip("0").rstrip(".") not in {e.rstrip("0").rstrip(".") for e in ev_norm}:
+        if _normalize_number(m) not in ev_norm:
             return False
     return True

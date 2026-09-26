@@ -1,57 +1,92 @@
-# ---- LLM (the only paid component) ----
 llm:
   model: gpt-4o-mini
   temperature: 0.0
   max_output_tokens: 600
-
-# ---- Embeddings (free, local) ----
 embeddings:
-  model: BAAI/bge-small-en-v1.5   # 384-dim, fast on CPU; upgrade to bge-large if you have GPU
+  model: BAAI/bge-small-en-v1.5
   batch_size: 32
-
-# ---- Ingestion / chunking (choices justified by arXiv:2604.12047) ----
 chunking:
   max_tokens: 512
-  overlap_tokens: 128            # 25% overlap
-  tokenizer: cl100k_base #OpenAI's tokenizer (the one behind GPT-4-era models, provided by the tiktoken library)
-
-# ---- Vector store ----
+  overlap_tokens: 128
+  tokenizer: cl100k_base
 vector_store:
-  backend: pgvector            # "pgvector" (Postgres), "faiss" (in-process fallback), or "hybrid" (pgvector + BM25 via RRF)
-  dsn: postgresql:///finsession   # or set env PGVECTOR_DSN; e.g. postgresql://user:pw@localhost:5432/finsession
+  backend: pgvector
+  dsn: postgresql:///finsession
   table: chunks
-  rrf_k: 60                    # Reciprocal Rank Fusion constant (only used if backend=hybrid)
-
-# ---- Retrieval ----
+  rrf_k: 60
 retrieval:
   top_k: 4
-
-# ---- Agent ----
 agent:
-  max_steps: 6                   # max plan->retrieve->verify iterations per query
-
-# ---- Memory ----
+  max_steps: 6
 memory:
-  similarity_threshold: 0.80     # cosine sim for a memory hit (tune on dev sessions)
+  similarity_threshold: 0.8
   budgets:
-    tight: 20                    # max entries
-    moderate: 60
-  reuse_verification: true       # cheap re-check before trusting a memory hit (H4)
-
-# ---- Security (prompt-injection defenses) ----
+    # Sized against the measured working set (median 4 verified facts per
+    # session, max 7). The old 20/60 never bound, so eviction never fired
+    # and every bounded arm silently behaved as A1 unbounded.
+    tight: 3          # ~75% of median working set; binds in ~64% of sessions
+    moderate: 5       # ~125%; near-unbounded control
+  reuse_verification: true
+  cost_aware:
+    half_life: 10        # steps; decay for unused entries
 security:
-  enabled: true        # chunk scanning + spotlighting + hardened verifier + grounding gate on memory writes
-
-# ---- Experiment arms ----
+  enabled: true
 arms:
-  - {name: A0_no_memory,   memory: false}
-  - {name: A1_unbounded,   memory: true,  eviction: none}
-  - {name: A2_lru,         memory: true,  eviction: lru,        budget: tight}
-  - {name: A3_lfu,         memory: true,  eviction: lfu,        budget: tight}
-  - {name: A4_redundancy,  memory: true,  eviction: redundancy, budget: tight}
-  - {name: A5_cost_aware,  memory: true,  eviction: cost_aware, budget: tight}
-  - {name: A6_hybrid,      memory: true,  eviction: cost_aware, budget: tight, retrieval: hybrid}  # NEW: hybrid retrieval (pgvector + BM25 via RRF)
-
+- name: A0_no_memory
+  memory: false
+- name: A1_unbounded
+  memory: true
+  eviction: none
+  budget: null
+- name: A2_lru
+  memory: true
+  eviction: lru
+  budget: tight
+- name: A3_lfu
+  memory: true
+  eviction: lfu
+  budget: tight
+- name: A4_redundancy
+  memory: true
+  eviction: redundancy
+  budget: tight
+- name: A5_cost_aware
+  memory: true
+  eviction: cost_aware
+  budget: tight
+# NOTE: A6 was INTENDED as a hybrid arm, but `retrieval` was never read by the
+# runner, so the collected A6 results are an exact replication of A5 and are
+# reported as a run-to-run variance control. The dead key is removed so that
+# re-running the grid cannot silently produce a different A6 than the one on
+# record. The real hybrid arm is A10.
+- name: A6_hybrid
+  memory: true
+  eviction: cost_aware
+  budget: tight
+# --- ablation: identical to A5 but with the LLM reuse gate disabled, to
+# --- separate what the gate costs from what it prevents.
+- name: A7_no_reuse_gate
+  memory: true
+  eviction: cost_aware
+  budget: tight
+  reuse_verification: false
+# --- budget sweep: A2/A5 repeated at the looser budget, giving a memory-
+# --- pressure gradient (unbounded -> 5 -> 3) instead of a single point.
+- name: A8_lru_b5
+  memory: true
+  eviction: lru
+  budget: moderate
+- name: A9_cost_aware_b5
+  memory: true
+  eviction: cost_aware
+  budget: moderate
+# --- hybrid retrieval: dense pgvector + BM25 merged by Reciprocal Rank Fusion.
+# --- Same memory config as A5, so any difference is attributable to retrieval.
+- name: A10_hybrid
+  memory: true
+  eviction: cost_aware
+  budget: tight
+  retrieval: hybrid
 paths:
   filings_dir: data/filings
   index_dir: data/index

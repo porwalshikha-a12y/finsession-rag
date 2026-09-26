@@ -160,9 +160,15 @@ def make_agent(config: Dict, arm_config: Dict, embedder: Embedder, index: Union[
 
     memory = None
     if arm_config.get("memory", False):
-        budget = config["memory"]["budgets"][arm_config.get("budget", "tight")]
+        # Handle unbounded memory (budget=None)
+        budget_name = arm_config.get("budget", "tight")
+        budget = None if budget_name is None else config["memory"]["budgets"][budget_name]
         eviction_policy_name = arm_config.get("eviction", "none")
-        eviction_policy = make_eviction_policy(eviction_policy_name)
+        eviction_policy = make_eviction_policy(
+            eviction_policy_name,
+            embedder=embedder,                      # redundancy needs it
+            half_life=config["memory"].get("cost_aware", {}).get("half_life", 10),
+        )
 
         memory = SemanticMemory(
             embedder=embedder,

@@ -97,11 +97,11 @@ class SemanticMemory:
             self.stats.hits += 1
             self.stats.hit_entry_ids.append(entry.entry_id)
             
+            # Debug log for unbounded memory growth
             if self.budget is None and len(self.entries) > 100:
                 import sys
-                print(f"[DEBUG] Unbounded memory: {len(self.entries)} entries, "
-                      f"best similarity {sims[best]:.3f}", file=sys.stderr)
-
+                print(f"[DEBUG] Unbounded memory: {len(self.entries)} entries, lookup took {sims[best]:.3f}s", file=sys.stderr)
+            
             return entry
         return None
 

@@ -26,6 +26,13 @@
       "question": "How did Apple's operating expenses trend from 2020 to 2022?",
       "query_type": "multi_hop",
       "expected_answer_marker": "expense trend"
+    },
+    {
+      "query_id": "q_055",
+      "question": "How much operating profit did Apple earn in fiscal 2022?",
+      "query_type": "paraphrase_probe",
+      "paraphrase_of": "q_013",
+      "expected_answer_marker": "paraphrase"
     }
   ]
 }

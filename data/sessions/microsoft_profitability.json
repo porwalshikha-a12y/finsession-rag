@@ -11,7 +11,7 @@
     },
     {
       "query_id": "q_030",
-      "question": "Did Microsoft's gross margin improve from 2021 to 2022?",
+      "question": "Did Microsoft's gross margin percentage improve from 2021 to 2022?",
       "query_type": "arithmetic_probe",
       "expected_answer_marker": "margin change"
     },
@@ -26,6 +26,13 @@
       "question": "How did Microsoft's capital expenditures change from 2021 to 2022?",
       "query_type": "multi_hop",
       "expected_answer_marker": "capex trend"
+    },
+    {
+      "query_id": "q_062",
+      "question": "In fiscal 2022, how much operating income did Microsoft make?",
+      "query_type": "paraphrase_probe",
+      "paraphrase_of": "q_029",
+      "expected_answer_marker": "paraphrase"
     }
   ]
 }

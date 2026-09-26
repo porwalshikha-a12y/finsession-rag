@@ -1,2845 +1,0 @@
-Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
-  Loading .env from: /Users/shikhaporwal/PycharmProjects/finsession-rag/.env
-================================================================================
-FINSESSION-RAG: Run Experiments (DB Version)
-================================================================================
-Config: /Users/shikhaporwal/PycharmProjects/finsession-rag/config.yaml
-Output: /Users/shikhaporwal/PycharmProjects/finsession-rag/results
-
-Arms to run: 7
-  - A0_no_memory
-  - A1_unbounded
-  - A2_lru
-  - A3_lfu
-  - A4_redundancy
-  - A5_cost_aware
-  - A6_hybrid
-Sessions to run: 13
-
-Loading embeddings and index...
-Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 10184.32it/s]
-  Using pgvector backend: postgresql:///finsession
-  ✓ Index loaded: 4822 chunks
-
-
-================================================================================
-ARM: A0_no_memory
-================================================================================
-  Memory: False
-A0_no_memory         | apple_fy2022_basics           :   0%|          | 0/4 [00:00<?, ?it/s]A0_no_memory         | apple_fy2022_basics           :  25%|██▌       | 1/4 [00:04<00:14,  4.79s/it]A0_no_memory         | apple_fy2022_basics           :  50%|█████     | 2/4 [00:16<00:17,  8.68s/it]A0_no_memory         | apple_fy2022_basics           :  75%|███████▌  | 3/4 [00:27<00:09,  9.85s/it]A0_no_memory         | apple_fy2022_basics           : 100%|██████████| 4/4 [00:32<00:00,  7.91s/it]A0_no_memory         | apple_fy2022_basics           : 100%|██████████| 4/4 [00:32<00:00,  8.09s/it]
-A0_no_memory         | apple_products_2020_2022      :   0%|          | 0/4 [00:00<?, ?it/s]A0_no_memory         | apple_products_2020_2022      :  25%|██▌       | 1/4 [00:03<00:10,  3.55s/it]A0_no_memory         | apple_products_2020_2022      :  50%|█████     | 2/4 [00:07<00:07,  3.69s/it]A0_no_memory         | apple_products_2020_2022      :  75%|███████▌  | 3/4 [00:17<00:06,  6.54s/it]A0_no_memory         | apple_products_2020_2022      : 100%|██████████| 4/4 [00:22<00:00,  5.97s/it]A0_no_memory         | apple_products_2020_2022      : 100%|██████████| 4/4 [00:22<00:00,  5.59s/it]
-A0_no_memory         | apple_profitability_trend     :   0%|          | 0/4 [00:00<?, ?it/s]A0_no_memory         | apple_profitability_trend     :  25%|██▌       | 1/4 [00:10<00:31, 10.36s/it]A0_no_memory         | apple_profitability_trend     :  50%|█████     | 2/4 [00:14<00:13,  6.96s/it]A0_no_memory         | apple_profitability_trend     :  75%|███████▌  | 3/4 [00:27<00:09,  9.38s/it]A0_no_memory         | apple_profitability_trend     : 100%|██████████| 4/4 [00:31<00:00,  7.22s/it]A0_no_memory         | apple_profitability_trend     : 100%|██████████| 4/4 [00:31<00:00,  7.78s/it]
-A0_no_memory         | apple_segments_multi_year     :   0%|          | 0/4 [00:00<?, ?it/s]A0_no_memory         | apple_segments_multi_year     :  25%|██▌       | 1/4 [00:02<00:08,  2.90s/it]A0_no_memory         | apple_segments_multi_year     :  50%|█████     | 2/4 [00:06<00:06,  3.34s/it]A0_no_memory         | apple_segments_multi_year     :  75%|███████▌  | 3/4 [00:16<00:06,  6.30s/it]A0_no_memory         | apple_segments_multi_year     : 100%|██████████| 4/4 [00:20<00:00,  5.37s/it]A0_no_memory         | apple_segments_multi_year     : 100%|██████████| 4/4 [00:20<00:00,  5.08s/it]
-A0_no_memory         | jnj_fy2022_overview           :   0%|          | 0/4 [00:00<?, ?it/s]A0_no_memory         | jnj_fy2022_overview           :  25%|██▌       | 1/4 [00:03<00:09,  3.22s/it]A0_no_memory         | jnj_fy2022_overview           :  50%|█████     | 2/4 [00:06<00:06,  3.43s/it]A0_no_memory         | jnj_fy2022_overview           :  75%|███████▌  | 3/4 [00:19<00:07,  7.50s/it]A0_no_memory         | jnj_fy2022_overview           : 100%|██████████| 4/4 [00:25<00:00,  6.92s/it]A0_no_memory         | jnj_fy2022_overview           : 100%|██████████| 4/4 [00:25<00:00,  6.29s/it]
-A0_no_memory         | jnj_healthcare_focus          :   0%|          | 0/4 [00:00<?, ?it/s]A0_no_memory         | jnj_healthcare_focus          :  25%|██▌       | 1/4 [00:03<00:10,  3.35s/it]A0_no_memory         | jnj_healthcare_focus          :  50%|█████     | 2/4 [00:06<00:06,  3.40s/it]A0_no_memory         | jnj_healthcare_focus          :  75%|███████▌  | 3/4 [00:17<00:06,  6.67s/it]A0_no_memory         | jnj_healthcare_focus          : 100%|██████████| 4/4 [00:28<00:00,  8.56s/it]A0_no_memory         | jnj_healthcare_focus          : 100%|██████████| 4/4 [00:28<00:00,  7.20s/it]
-A0_no_memory         | jnj_segments_2020_2022        :   0%|          | 0/4 [00:00<?, ?it/s]A0_no_memory         | jnj_segments_2020_2022        :  25%|██▌       | 1/4 [00:03<00:10,  3.48s/it]A0_no_memory         | jnj_segments_2020_2022        :  50%|█████     | 2/4 [00:14<00:15,  7.76s/it]A0_no_memory         | jnj_segments_2020_2022        :  75%|███████▌  | 3/4 [00:24<00:09,  9.12s/it]A0_no_memory         | jnj_segments_2020_2022        : 100%|██████████| 4/4 [00:30<00:00,  7.85s/it]A0_no_memory         | jnj_segments_2020_2022        : 100%|██████████| 4/4 [00:30<00:00,  7.72s/it]
-A0_no_memory         | microsoft_cloud_revenue       :   0%|          | 0/4 [00:00<?, ?it/s]A0_no_memory         | microsoft_cloud_revenue       :  25%|██▌       | 1/4 [00:08<00:25,  8.47s/it]A0_no_memory         | microsoft_cloud_revenue       :  50%|█████     | 2/4 [00:11<00:10,  5.35s/it]A0_no_memory         | microsoft_cloud_revenue       :  75%|███████▌  | 3/4 [00:17<00:05,  5.56s/it]A0_no_memory         | microsoft_cloud_revenue       : 100%|██████████| 4/4 [00:28<00:00,  7.65s/it]A0_no_memory         | microsoft_cloud_revenue       : 100%|██████████| 4/4 [00:28<00:00,  7.08s/it]
-A0_no_memory         | microsoft_fy2022_overview     :   0%|          | 0/4 [00:00<?, ?it/s]A0_no_memory         | microsoft_fy2022_overview     :  25%|██▌       | 1/4 [00:04<00:13,  4.60s/it]A0_no_memory         | microsoft_fy2022_overview     :  50%|█████     | 2/4 [00:15<00:17,  8.58s/it]A0_no_memory         | microsoft_fy2022_overview     :  75%|███████▌  | 3/4 [00:26<00:09,  9.49s/it]A0_no_memory         | microsoft_fy2022_overview     : 100%|██████████| 4/4 [00:30<00:00,  7.45s/it]A0_no_memory         | microsoft_fy2022_overview     : 100%|██████████| 4/4 [00:30<00:00,  7.72s/it]
-A0_no_memory         | microsoft_profitability       :   0%|          | 0/4 [00:00<?, ?it/s]A0_no_memory         | microsoft_profitability       :  25%|██▌       | 1/4 [00:09<00:29,  9.89s/it]A0_no_memory         | microsoft_profitability       :  50%|█████     | 2/4 [00:13<00:12,  6.12s/it]A0_no_memory         | microsoft_profitability       :  75%|███████▌  | 3/4 [00:27<00:09,  9.55s/it]A0_no_memory         | microsoft_profitability       : 100%|██████████| 4/4 [00:38<00:00, 10.19s/it]A0_no_memory         | microsoft_profitability       : 100%|██████████| 4/4 [00:38<00:00,  9.54s/it]
-A0_no_memory         | microsoft_segments_2020_2022  :   0%|          | 0/4 [00:00<?, ?it/s]A0_no_memory         | microsoft_segments_2020_2022  :  25%|██▌       | 1/4 [00:09<00:29,  9.71s/it]A0_no_memory         | microsoft_segments_2020_2022  :  50%|█████     | 2/4 [00:12<00:11,  5.89s/it]A0_no_memory         | microsoft_segments_2020_2022  :  75%|███████▌  | 3/4 [00:24<00:08,  8.28s/it]A0_no_memory         | microsoft_segments_2020_2022  : 100%|██████████| 4/4 [00:28<00:00,  6.82s/it]A0_no_memory         | microsoft_segments_2020_2022  : 100%|██████████| 4/4 [00:28<00:00,  7.16s/it]
-A0_no_memory         | pepsico_fy2022_financials     :   0%|          | 0/4 [00:00<?, ?it/s]A0_no_memory         | pepsico_fy2022_financials     :  25%|██▌       | 1/4 [00:02<00:08,  2.90s/it]A0_no_memory         | pepsico_fy2022_financials     :  50%|█████     | 2/4 [00:12<00:13,  6.55s/it]A0_no_memory         | pepsico_fy2022_financials     :  75%|███████▌  | 3/4 [00:18<00:06,  6.36s/it]A0_no_memory         | pepsico_fy2022_financials     : 100%|██████████| 4/4 [00:21<00:00,  5.13s/it]A0_no_memory         | pepsico_fy2022_financials     : 100%|██████████| 4/4 [00:21<00:00,  5.34s/it]
-A0_no_memory         | pepsico_segments_2020_2022    :   0%|          | 0/4 [00:00<?, ?it/s]A0_no_memory         | pepsico_segments_2020_2022    :  25%|██▌       | 1/4 [00:10<00:31, 10.38s/it]A0_no_memory         | pepsico_segments_2020_2022    :  50%|█████     | 2/4 [00:23<00:23, 11.95s/it]A0_no_memory         | pepsico_segments_2020_2022    :  75%|███████▌  | 3/4 [00:33<00:11, 11.14s/it]A0_no_memory         | pepsico_segments_2020_2022    : 100%|██████████| 4/4 [00:43<00:00, 10.76s/it]A0_no_memory         | pepsico_segments_2020_2022    : 100%|██████████| 4/4 [00:43<00:00, 10.95s/it]
-
-  Summary:
-    Queries: 52
-    Supported: 43/52 (82.7%)
-    Tokens: 414,711
-    Memory hits: 0
-
-================================================================================
-ARM: A1_unbounded
-================================================================================
-  Memory: True
-  Budget: tight
-  Eviction: none
-A1_unbounded         | apple_fy2022_basics           :   0%|          | 0/4 [00:00<?, ?it/s]A1_unbounded         | apple_fy2022_basics           :  25%|██▌       | 1/4 [00:02<00:07,  2.62s/it]A1_unbounded         | apple_fy2022_basics           :  50%|█████     | 2/4 [00:11<00:13,  6.59s/it]A1_unbounded         | apple_fy2022_basics           :  75%|███████▌  | 3/4 [00:16<00:05,  5.63s/it]A1_unbounded         | apple_fy2022_basics           : 100%|██████████| 4/4 [00:23<00:00,  6.32s/it]A1_unbounded         | apple_fy2022_basics           : 100%|██████████| 4/4 [00:23<00:00,  5.96s/it]
-A1_unbounded         | apple_products_2020_2022      :   0%|          | 0/4 [00:00<?, ?it/s]A1_unbounded         | apple_products_2020_2022      :  25%|██▌       | 1/4 [00:05<00:15,  5.32s/it]A1_unbounded         | apple_products_2020_2022      :  50%|█████     | 2/4 [00:09<00:08,  4.43s/it]A1_unbounded         | apple_products_2020_2022      :  75%|███████▌  | 3/4 [00:14<00:04,  4.86s/it]A1_unbounded         | apple_products_2020_2022      : 100%|██████████| 4/4 [00:29<00:00,  9.00s/it]A1_unbounded         | apple_products_2020_2022      : 100%|██████████| 4/4 [00:29<00:00,  7.46s/it]
-A1_unbounded         | apple_profitability_trend     :   0%|          | 0/4 [00:00<?, ?it/s]A1_unbounded         | apple_profitability_trend     :  25%|██▌       | 1/4 [00:10<00:31, 10.48s/it]A1_unbounded         | apple_profitability_trend     :  50%|█████     | 2/4 [00:16<00:15,  7.82s/it]A1_unbounded         | apple_profitability_trend     :  75%|███████▌  | 3/4 [00:28<00:09,  9.95s/it]A1_unbounded         | apple_profitability_trend     : 100%|██████████| 4/4 [00:33<00:00,  7.84s/it]A1_unbounded         | apple_profitability_trend     : 100%|██████████| 4/4 [00:33<00:00,  8.38s/it]
-A1_unbounded         | apple_segments_multi_year     :   0%|          | 0/4 [00:00<?, ?it/s]A1_unbounded         | apple_segments_multi_year     :  25%|██▌       | 1/4 [00:03<00:10,  3.55s/it]A1_unbounded         | apple_segments_multi_year     :  50%|█████     | 2/4 [00:06<00:06,  3.36s/it]A1_unbounded         | apple_segments_multi_year     :  75%|███████▌  | 3/4 [00:18<00:07,  7.34s/it]A1_unbounded         | apple_segments_multi_year     : 100%|██████████| 4/4 [00:22<00:00,  5.90s/it]A1_unbounded         | apple_segments_multi_year     : 100%|██████████| 4/4 [00:22<00:00,  5.64s/it]
-A1_unbounded         | jnj_fy2022_overview           :   0%|          | 0/4 [00:00<?, ?it/s]A1_unbounded         | jnj_fy2022_overview           :  25%|██▌       | 1/4 [00:03<00:10,  3.51s/it]A1_unbounded         | jnj_fy2022_overview           :  50%|█████     | 2/4 [00:07<00:07,  3.53s/it]A1_unbounded         | jnj_fy2022_overview           :  75%|███████▌  | 3/4 [00:18<00:07,  7.06s/it]Traceback (most recent call last):
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/run_experiment.py", line 203, in evaluate_query
-    trace = agent.answer(question)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 88, in answer
-    fact = self._resolve_subquestion(sub_q, trace)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 161, in _resolve_subquestion
-    self.memory.write(
-    ~~~~~~~~~~~~~~~~~^
-        sub_question=sub_q,
-        ^^^^^^^^^^^^^^^^^^^
-    ...<5 lines>...
-                    for h in hits],
-                    ^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 115, in write
-    self._evict()
-    ~~~~~~~~~~~^^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 120, in _evict
-    victim_idx = self.policy.select_victim(self.entries, clock=self.clock)
-TypeError: NoEviction.select_victim() got an unexpected keyword argument 'clock'
-A1_unbounded         | jnj_fy2022_overview           : 100%|██████████| 4/4 [00:20<00:00,  5.12s/it]A1_unbounded         | jnj_fy2022_overview           : 100%|██████████| 4/4 [00:20<00:00,  5.12s/it]
-ERROR in evaluate_query for q_036: NoEviction.select_victim() got an unexpected keyword argument 'clock'
-A1_unbounded         | jnj_healthcare_focus          :   0%|          | 0/4 [00:00<?, ?it/s]Traceback (most recent call last):
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/run_experiment.py", line 203, in evaluate_query
-    trace = agent.answer(question)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 88, in answer
-    fact = self._resolve_subquestion(sub_q, trace)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 161, in _resolve_subquestion
-    self.memory.write(
-    ~~~~~~~~~~~~~~~~~^
-        sub_question=sub_q,
-        ^^^^^^^^^^^^^^^^^^^
-    ...<5 lines>...
-                    for h in hits],
-                    ^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 115, in write
-    self._evict()
-    ~~~~~~~~~~~^^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 120, in _evict
-    victim_idx = self.policy.select_victim(self.entries, clock=self.clock)
-TypeError: NoEviction.select_victim() got an unexpected keyword argument 'clock'
-A1_unbounded         | jnj_healthcare_focus          :  25%|██▌       | 1/4 [00:03<00:09,  3.06s/it]Traceback (most recent call last):
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/run_experiment.py", line 203, in evaluate_query
-    trace = agent.answer(question)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 88, in answer
-    fact = self._resolve_subquestion(sub_q, trace)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 161, in _resolve_subquestion
-    self.memory.write(
-    ~~~~~~~~~~~~~~~~~^
-        sub_question=sub_q,
-        ^^^^^^^^^^^^^^^^^^^
-    ...<5 lines>...
-                    for h in hits],
-                    ^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 115, in write
-    self._evict()
-    ~~~~~~~~~~~^^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 120, in _evict
-    victim_idx = self.policy.select_victim(self.entries, clock=self.clock)
-TypeError: NoEviction.select_victim() got an unexpected keyword argument 'clock'
-A1_unbounded         | jnj_healthcare_focus          :  50%|█████     | 2/4 [00:05<00:05,  2.99s/it]Traceback (most recent call last):
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/run_experiment.py", line 203, in evaluate_query
-    trace = agent.answer(question)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 88, in answer
-    fact = self._resolve_subquestion(sub_q, trace)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 161, in _resolve_subquestion
-    self.memory.write(
-    ~~~~~~~~~~~~~~~~~^
-        sub_question=sub_q,
-        ^^^^^^^^^^^^^^^^^^^
-    ...<5 lines>...
-                    for h in hits],
-                    ^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 115, in write
-    self._evict()
-    ~~~~~~~~~~~^^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 120, in _evict
-    victim_idx = self.policy.select_victim(self.entries, clock=self.clock)
-TypeError: NoEviction.select_victim() got an unexpected keyword argument 'clock'
-A1_unbounded         | jnj_healthcare_focus          :  75%|███████▌  | 3/4 [00:09<00:03,  3.16s/it]A1_unbounded         | jnj_healthcare_focus          : 100%|██████████| 4/4 [00:19<00:00,  6.02s/it]A1_unbounded         | jnj_healthcare_focus          : 100%|██████████| 4/4 [00:19<00:00,  4.94s/it]
-ERROR in evaluate_query for q_041: NoEviction.select_victim() got an unexpected keyword argument 'clock'
-ERROR in evaluate_query for q_042: NoEviction.select_victim() got an unexpected keyword argument 'clock'
-ERROR in evaluate_query for q_043: NoEviction.select_victim() got an unexpected keyword argument 'clock'
-A1_unbounded         | jnj_segments_2020_2022        :   0%|          | 0/4 [00:00<?, ?it/s]A1_unbounded         | jnj_segments_2020_2022        :  25%|██▌       | 1/4 [00:02<00:08,  2.86s/it]A1_unbounded         | jnj_segments_2020_2022        :  50%|█████     | 2/4 [00:16<00:18,  9.39s/it]A1_unbounded         | jnj_segments_2020_2022        :  75%|███████▌  | 3/4 [00:35<00:13, 13.83s/it]Traceback (most recent call last):
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/run_experiment.py", line 203, in evaluate_query
-    trace = agent.answer(question)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 88, in answer
-    fact = self._resolve_subquestion(sub_q, trace)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 161, in _resolve_subquestion
-    self.memory.write(
-    ~~~~~~~~~~~~~~~~~^
-        sub_question=sub_q,
-        ^^^^^^^^^^^^^^^^^^^
-    ...<5 lines>...
-                    for h in hits],
-                    ^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 115, in write
-    self._evict()
-    ~~~~~~~~~~~^^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 120, in _evict
-    victim_idx = self.policy.select_victim(self.entries, clock=self.clock)
-TypeError: NoEviction.select_victim() got an unexpected keyword argument 'clock'
-A1_unbounded         | jnj_segments_2020_2022        : 100%|██████████| 4/4 [00:38<00:00,  9.39s/it]A1_unbounded         | jnj_segments_2020_2022        : 100%|██████████| 4/4 [00:38<00:00,  9.63s/it]
-ERROR in evaluate_query for q_040: NoEviction.select_victim() got an unexpected keyword argument 'clock'
-A1_unbounded         | microsoft_cloud_revenue       :   0%|          | 0/4 [00:00<?, ?it/s]Traceback (most recent call last):
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/run_experiment.py", line 203, in evaluate_query
-    trace = agent.answer(question)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 88, in answer
-    fact = self._resolve_subquestion(sub_q, trace)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 161, in _resolve_subquestion
-    self.memory.write(
-    ~~~~~~~~~~~~~~~~~^
-        sub_question=sub_q,
-        ^^^^^^^^^^^^^^^^^^^
-    ...<5 lines>...
-                    for h in hits],
-                    ^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 115, in write
-    self._evict()
-    ~~~~~~~~~~~^^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 120, in _evict
-    victim_idx = self.policy.select_victim(self.entries, clock=self.clock)
-TypeError: NoEviction.select_victim() got an unexpected keyword argument 'clock'
-A1_unbounded         | microsoft_cloud_revenue       :  25%|██▌       | 1/4 [00:02<00:06,  2.23s/it]Traceback (most recent call last):
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/run_experiment.py", line 203, in evaluate_query
-    trace = agent.answer(question)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 88, in answer
-    fact = self._resolve_subquestion(sub_q, trace)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 161, in _resolve_subquestion
-    self.memory.write(
-    ~~~~~~~~~~~~~~~~~^
-        sub_question=sub_q,
-        ^^^^^^^^^^^^^^^^^^^
-    ...<5 lines>...
-                    for h in hits],
-                    ^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 115, in write
-    self._evict()
-    ~~~~~~~~~~~^^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 120, in _evict
-    victim_idx = self.policy.select_victim(self.entries, clock=self.clock)
-TypeError: NoEviction.select_victim() got an unexpected keyword argument 'clock'
-A1_unbounded         | microsoft_cloud_revenue       :  50%|█████     | 2/4 [00:04<00:04,  2.35s/it]Traceback (most recent call last):
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/run_experiment.py", line 203, in evaluate_query
-    trace = agent.answer(question)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 88, in answer
-    fact = self._resolve_subquestion(sub_q, trace)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 161, in _resolve_subquestion
-    self.memory.write(
-    ~~~~~~~~~~~~~~~~~^
-        sub_question=sub_q,
-        ^^^^^^^^^^^^^^^^^^^
-    ...<5 lines>...
-                    for h in hits],
-                    ^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 115, in write
-    self._evict()
-    ~~~~~~~~~~~^^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 120, in _evict
-    victim_idx = self.policy.select_victim(self.entries, clock=self.clock)
-TypeError: NoEviction.select_victim() got an unexpected keyword argument 'clock'
-A1_unbounded         | microsoft_cloud_revenue       :  75%|███████▌  | 3/4 [00:07<00:02,  2.42s/it]Traceback (most recent call last):
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/run_experiment.py", line 203, in evaluate_query
-    trace = agent.answer(question)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 88, in answer
-    fact = self._resolve_subquestion(sub_q, trace)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 161, in _resolve_subquestion
-    self.memory.write(
-    ~~~~~~~~~~~~~~~~~^
-        sub_question=sub_q,
-        ^^^^^^^^^^^^^^^^^^^
-    ...<5 lines>...
-                    for h in hits],
-                    ^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 115, in write
-    self._evict()
-    ~~~~~~~~~~~^^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 120, in _evict
-    victim_idx = self.policy.select_victim(self.entries, clock=self.clock)
-TypeError: NoEviction.select_victim() got an unexpected keyword argument 'clock'
-A1_unbounded         | microsoft_cloud_revenue       : 100%|██████████| 4/4 [00:11<00:00,  3.37s/it]A1_unbounded         | microsoft_cloud_revenue       : 100%|██████████| 4/4 [00:11<00:00,  3.00s/it]
-ERROR in evaluate_query for q_025: NoEviction.select_victim() got an unexpected keyword argument 'clock'
-ERROR in evaluate_query for q_026: NoEviction.select_victim() got an unexpected keyword argument 'clock'
-ERROR in evaluate_query for q_027: NoEviction.select_victim() got an unexpected keyword argument 'clock'
-ERROR in evaluate_query for q_028: NoEviction.select_victim() got an unexpected keyword argument 'clock'
-A1_unbounded         | microsoft_fy2022_overview     :   0%|          | 0/4 [00:00<?, ?it/s]Traceback (most recent call last):
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/run_experiment.py", line 203, in evaluate_query
-    trace = agent.answer(question)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 88, in answer
-    fact = self._resolve_subquestion(sub_q, trace)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 161, in _resolve_subquestion
-    self.memory.write(
-    ~~~~~~~~~~~~~~~~~^
-        sub_question=sub_q,
-        ^^^^^^^^^^^^^^^^^^^
-    ...<5 lines>...
-                    for h in hits],
-                    ^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 115, in write
-    self._evict()
-    ~~~~~~~~~~~^^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 120, in _evict
-    victim_idx = self.policy.select_victim(self.entries, clock=self.clock)
-TypeError: NoEviction.select_victim() got an unexpected keyword argument 'clock'
-A1_unbounded         | microsoft_fy2022_overview     :  25%|██▌       | 1/4 [00:01<00:04,  1.64s/it]A1_unbounded         | microsoft_fy2022_overview     :  50%|█████     | 2/4 [00:15<00:17,  8.67s/it]Traceback (most recent call last):
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/run_experiment.py", line 203, in evaluate_query
-    trace = agent.answer(question)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 88, in answer
-    fact = self._resolve_subquestion(sub_q, trace)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 161, in _resolve_subquestion
-    self.memory.write(
-    ~~~~~~~~~~~~~~~~~^
-        sub_question=sub_q,
-        ^^^^^^^^^^^^^^^^^^^
-    ...<5 lines>...
-                    for h in hits],
-                    ^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 115, in write
-    self._evict()
-    ~~~~~~~~~~~^^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 120, in _evict
-    victim_idx = self.policy.select_victim(self.entries, clock=self.clock)
-TypeError: NoEviction.select_victim() got an unexpected keyword argument 'clock'
-A1_unbounded         | microsoft_fy2022_overview     :  75%|███████▌  | 3/4 [00:17<00:05,  5.68s/it]Traceback (most recent call last):
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/run_experiment.py", line 203, in evaluate_query
-    trace = agent.answer(question)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 88, in answer
-    fact = self._resolve_subquestion(sub_q, trace)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 161, in _resolve_subquestion
-    self.memory.write(
-    ~~~~~~~~~~~~~~~~~^
-        sub_question=sub_q,
-        ^^^^^^^^^^^^^^^^^^^
-    ...<5 lines>...
-                    for h in hits],
-                    ^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 115, in write
-    self._evict()
-    ~~~~~~~~~~~^^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 120, in _evict
-    victim_idx = self.policy.select_victim(self.entries, clock=self.clock)
-TypeError: NoEviction.select_victim() got an unexpected keyword argument 'clock'
-A1_unbounded         | microsoft_fy2022_overview     : 100%|██████████| 4/4 [00:21<00:00,  5.00s/it]A1_unbounded         | microsoft_fy2022_overview     : 100%|██████████| 4/4 [00:21<00:00,  5.33s/it]
-ERROR in evaluate_query for q_017: NoEviction.select_victim() got an unexpected keyword argument 'clock'
-ERROR in evaluate_query for q_019: NoEviction.select_victim() got an unexpected keyword argument 'clock'
-ERROR in evaluate_query for q_020: NoEviction.select_victim() got an unexpected keyword argument 'clock'
-A1_unbounded         | microsoft_profitability       :   0%|          | 0/4 [00:00<?, ?it/s]A1_unbounded         | microsoft_profitability       :  25%|██▌       | 1/4 [00:15<00:47, 15.93s/it]Traceback (most recent call last):
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/run_experiment.py", line 203, in evaluate_query
-    trace = agent.answer(question)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 88, in answer
-    fact = self._resolve_subquestion(sub_q, trace)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 161, in _resolve_subquestion
-    self.memory.write(
-    ~~~~~~~~~~~~~~~~~^
-        sub_question=sub_q,
-        ^^^^^^^^^^^^^^^^^^^
-    ...<5 lines>...
-                    for h in hits],
-                    ^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 115, in write
-    self._evict()
-    ~~~~~~~~~~~^^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 120, in _evict
-    victim_idx = self.policy.select_victim(self.entries, clock=self.clock)
-TypeError: NoEviction.select_victim() got an unexpected keyword argument 'clock'
-A1_unbounded         | microsoft_profitability       :  50%|█████     | 2/4 [00:18<00:16,  8.21s/it]Traceback (most recent call last):
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/run_experiment.py", line 203, in evaluate_query
-    trace = agent.answer(question)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 88, in answer
-    fact = self._resolve_subquestion(sub_q, trace)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 161, in _resolve_subquestion
-    self.memory.write(
-    ~~~~~~~~~~~~~~~~~^
-        sub_question=sub_q,
-        ^^^^^^^^^^^^^^^^^^^
-    ...<5 lines>...
-                    for h in hits],
-                    ^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 115, in write
-    self._evict()
-    ~~~~~~~~~~~^^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 120, in _evict
-    victim_idx = self.policy.select_victim(self.entries, clock=self.clock)
-TypeError: NoEviction.select_victim() got an unexpected keyword argument 'clock'
-A1_unbounded         | microsoft_profitability       :  75%|███████▌  | 3/4 [00:20<00:05,  5.44s/it]A1_unbounded         | microsoft_profitability       : 100%|██████████| 4/4 [00:35<00:00,  8.94s/it]A1_unbounded         | microsoft_profitability       : 100%|██████████| 4/4 [00:35<00:00,  8.80s/it]
-ERROR in evaluate_query for q_030: NoEviction.select_victim() got an unexpected keyword argument 'clock'
-ERROR in evaluate_query for q_031: NoEviction.select_victim() got an unexpected keyword argument 'clock'
-A1_unbounded         | microsoft_segments_2020_2022  :   0%|          | 0/4 [00:00<?, ?it/s]A1_unbounded         | microsoft_segments_2020_2022  :  25%|██▌       | 1/4 [00:13<00:40, 13.38s/it]Traceback (most recent call last):
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/run_experiment.py", line 203, in evaluate_query
-    trace = agent.answer(question)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 88, in answer
-    fact = self._resolve_subquestion(sub_q, trace)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 161, in _resolve_subquestion
-    self.memory.write(
-    ~~~~~~~~~~~~~~~~~^
-        sub_question=sub_q,
-        ^^^^^^^^^^^^^^^^^^^
-    ...<5 lines>...
-                    for h in hits],
-                    ^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 115, in write
-    self._evict()
-    ~~~~~~~~~~~^^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 120, in _evict
-    victim_idx = self.policy.select_victim(self.entries, clock=self.clock)
-TypeError: NoEviction.select_victim() got an unexpected keyword argument 'clock'
-A1_unbounded         | microsoft_segments_2020_2022  :  50%|█████     | 2/4 [00:15<00:13,  6.82s/it]Traceback (most recent call last):
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/run_experiment.py", line 203, in evaluate_query
-    trace = agent.answer(question)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 88, in answer
-    fact = self._resolve_subquestion(sub_q, trace)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 161, in _resolve_subquestion
-    self.memory.write(
-    ~~~~~~~~~~~~~~~~~^
-        sub_question=sub_q,
-        ^^^^^^^^^^^^^^^^^^^
-    ...<5 lines>...
-                    for h in hits],
-                    ^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 115, in write
-    self._evict()
-    ~~~~~~~~~~~^^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 120, in _evict
-    victim_idx = self.policy.select_victim(self.entries, clock=self.clock)
-TypeError: NoEviction.select_victim() got an unexpected keyword argument 'clock'
-A1_unbounded         | microsoft_segments_2020_2022  :  75%|███████▌  | 3/4 [00:18<00:05,  5.23s/it]Traceback (most recent call last):
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/run_experiment.py", line 203, in evaluate_query
-    trace = agent.answer(question)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 88, in answer
-    fact = self._resolve_subquestion(sub_q, trace)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 161, in _resolve_subquestion
-    self.memory.write(
-    ~~~~~~~~~~~~~~~~~^
-        sub_question=sub_q,
-        ^^^^^^^^^^^^^^^^^^^
-    ...<5 lines>...
-                    for h in hits],
-                    ^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 115, in write
-    self._evict()
-    ~~~~~~~~~~~^^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 120, in _evict
-    victim_idx = self.policy.select_victim(self.entries, clock=self.clock)
-TypeError: NoEviction.select_victim() got an unexpected keyword argument 'clock'
-A1_unbounded         | microsoft_segments_2020_2022  : 100%|██████████| 4/4 [00:21<00:00,  4.14s/it]A1_unbounded         | microsoft_segments_2020_2022  : 100%|██████████| 4/4 [00:21<00:00,  5.35s/it]
-ERROR in evaluate_query for q_022: NoEviction.select_victim() got an unexpected keyword argument 'clock'
-ERROR in evaluate_query for q_023: NoEviction.select_victim() got an unexpected keyword argument 'clock'
-ERROR in evaluate_query for q_024: NoEviction.select_victim() got an unexpected keyword argument 'clock'
-A1_unbounded         | pepsico_fy2022_financials     :   0%|          | 0/4 [00:00<?, ?it/s]Traceback (most recent call last):
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/run_experiment.py", line 203, in evaluate_query
-    trace = agent.answer(question)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 88, in answer
-    fact = self._resolve_subquestion(sub_q, trace)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 161, in _resolve_subquestion
-    self.memory.write(
-    ~~~~~~~~~~~~~~~~~^
-        sub_question=sub_q,
-        ^^^^^^^^^^^^^^^^^^^
-    ...<5 lines>...
-                    for h in hits],
-                    ^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 115, in write
-    self._evict()
-    ~~~~~~~~~~~^^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 120, in _evict
-    victim_idx = self.policy.select_victim(self.entries, clock=self.clock)
-TypeError: NoEviction.select_victim() got an unexpected keyword argument 'clock'
-A1_unbounded         | pepsico_fy2022_financials     :  25%|██▌       | 1/4 [00:02<00:06,  2.27s/it]A1_unbounded         | pepsico_fy2022_financials     :  50%|█████     | 2/4 [00:15<00:17,  8.57s/it]A1_unbounded         | pepsico_fy2022_financials     :  75%|███████▌  | 3/4 [00:26<00:09,  9.95s/it]Traceback (most recent call last):
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/run_experiment.py", line 203, in evaluate_query
-    trace = agent.answer(question)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 88, in answer
-    fact = self._resolve_subquestion(sub_q, trace)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 161, in _resolve_subquestion
-    self.memory.write(
-    ~~~~~~~~~~~~~~~~~^
-        sub_question=sub_q,
-        ^^^^^^^^^^^^^^^^^^^
-    ...<5 lines>...
-                    for h in hits],
-                    ^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 115, in write
-    self._evict()
-    ~~~~~~~~~~~^^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 120, in _evict
-    victim_idx = self.policy.select_victim(self.entries, clock=self.clock)
-TypeError: NoEviction.select_victim() got an unexpected keyword argument 'clock'
-A1_unbounded         | pepsico_fy2022_financials     : 100%|██████████| 4/4 [00:28<00:00,  6.83s/it]A1_unbounded         | pepsico_fy2022_financials     : 100%|██████████| 4/4 [00:28<00:00,  7.23s/it]
-ERROR in evaluate_query for q_045: NoEviction.select_victim() got an unexpected keyword argument 'clock'
-ERROR in evaluate_query for q_048: NoEviction.select_victim() got an unexpected keyword argument 'clock'
-A1_unbounded         | pepsico_segments_2020_2022    :   0%|          | 0/4 [00:00<?, ?it/s]A1_unbounded         | pepsico_segments_2020_2022    :  25%|██▌       | 1/4 [00:13<00:41, 13.80s/it]A1_unbounded         | pepsico_segments_2020_2022    :  50%|█████     | 2/4 [00:29<00:29, 14.65s/it]Traceback (most recent call last):
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/run_experiment.py", line 203, in evaluate_query
-    trace = agent.answer(question)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 88, in answer
-    fact = self._resolve_subquestion(sub_q, trace)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 161, in _resolve_subquestion
-    self.memory.write(
-    ~~~~~~~~~~~~~~~~~^
-        sub_question=sub_q,
-        ^^^^^^^^^^^^^^^^^^^
-    ...<5 lines>...
-                    for h in hits],
-                    ^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 115, in write
-    self._evict()
-    ~~~~~~~~~~~^^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 120, in _evict
-    victim_idx = self.policy.select_victim(self.entries, clock=self.clock)
-TypeError: NoEviction.select_victim() got an unexpected keyword argument 'clock'
-A1_unbounded         | pepsico_segments_2020_2022    :  75%|███████▌  | 3/4 [00:34<00:10, 10.45s/it]A1_unbounded         | pepsico_segments_2020_2022    : 100%|██████████| 4/4 [00:47<00:00, 11.62s/it]A1_unbounded         | pepsico_segments_2020_2022    : 100%|██████████| 4/4 [00:47<00:00, 11.98s/it]
-ERROR in evaluate_query for q_051: NoEviction.select_victim() got an unexpected keyword argument 'clock'
-
-  Summary:
-    Queries: 52
-    Supported: 26/52 (50.0%)
-    Tokens: 257,421
-    Memory hits: 11
-
-================================================================================
-ARM: A2_lru
-================================================================================
-  Memory: True
-  Budget: tight
-  Eviction: lru
-A2_lru               | apple_fy2022_basics           :   0%|          | 0/4 [00:00<?, ?it/s]A2_lru               | apple_fy2022_basics           :  25%|██▌       | 1/4 [00:02<00:08,  2.88s/it]A2_lru               | apple_fy2022_basics           :  50%|█████     | 2/4 [00:16<00:18,  9.34s/it]A2_lru               | apple_fy2022_basics           :  75%|███████▌  | 3/4 [00:20<00:06,  6.96s/it]A2_lru               | apple_fy2022_basics           : 100%|██████████| 4/4 [00:28<00:00,  7.17s/it]A2_lru               | apple_fy2022_basics           : 100%|██████████| 4/4 [00:28<00:00,  7.09s/it]
-A2_lru               | apple_products_2020_2022      :   0%|          | 0/4 [00:00<?, ?it/s]A2_lru               | apple_products_2020_2022      :  25%|██▌       | 1/4 [00:03<00:11,  3.67s/it]A2_lru               | apple_products_2020_2022      :  50%|█████     | 2/4 [00:07<00:07,  3.64s/it]A2_lru               | apple_products_2020_2022      :  75%|███████▌  | 3/4 [00:13<00:04,  4.70s/it]A2_lru               | apple_products_2020_2022      : 100%|██████████| 4/4 [00:20<00:00,  5.65s/it]A2_lru               | apple_products_2020_2022      : 100%|██████████| 4/4 [00:20<00:00,  5.09s/it]
-A2_lru               | apple_profitability_trend     :   0%|          | 0/4 [00:00<?, ?it/s]A2_lru               | apple_profitability_trend     :  25%|██▌       | 1/4 [00:09<00:29,  9.95s/it]A2_lru               | apple_profitability_trend     :  50%|█████     | 2/4 [00:17<00:16,  8.30s/it]A2_lru               | apple_profitability_trend     :  75%|███████▌  | 3/4 [00:29<00:10, 10.13s/it]A2_lru               | apple_profitability_trend     : 100%|██████████| 4/4 [00:33<00:00,  7.90s/it]A2_lru               | apple_profitability_trend     : 100%|██████████| 4/4 [00:33<00:00,  8.47s/it]
-A2_lru               | apple_segments_multi_year     :   0%|          | 0/4 [00:00<?, ?it/s]A2_lru               | apple_segments_multi_year     :  25%|██▌       | 1/4 [00:03<00:10,  3.37s/it]A2_lru               | apple_segments_multi_year     :  50%|█████     | 2/4 [00:06<00:05,  2.96s/it]A2_lru               | apple_segments_multi_year     :  75%|███████▌  | 3/4 [00:18<00:07,  7.42s/it]A2_lru               | apple_segments_multi_year     : 100%|██████████| 4/4 [00:23<00:00,  6.23s/it]A2_lru               | apple_segments_multi_year     : 100%|██████████| 4/4 [00:23<00:00,  5.80s/it]
-A2_lru               | jnj_fy2022_overview           :   0%|          | 0/4 [00:00<?, ?it/s]A2_lru               | jnj_fy2022_overview           :  25%|██▌       | 1/4 [00:03<00:09,  3.26s/it]A2_lru               | jnj_fy2022_overview           :  50%|█████     | 2/4 [00:06<00:06,  3.15s/it]A2_lru               | jnj_fy2022_overview           :  75%|███████▌  | 3/4 [00:17<00:06,  6.91s/it]Traceback (most recent call last):
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/run_experiment.py", line 203, in evaluate_query
-    trace = agent.answer(question)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 88, in answer
-    fact = self._resolve_subquestion(sub_q, trace)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 161, in _resolve_subquestion
-    self.memory.write(
-    ~~~~~~~~~~~~~~~~~^
-        sub_question=sub_q,
-        ^^^^^^^^^^^^^^^^^^^
-    ...<5 lines>...
-                    for h in hits],
-                    ^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 115, in write
-    self._evict()
-    ~~~~~~~~~~~^^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 120, in _evict
-    victim_idx = self.policy.select_victim(self.entries, clock=self.clock)
-TypeError: LRUEviction.select_victim() got an unexpected keyword argument 'clock'
-A2_lru               | jnj_fy2022_overview           : 100%|██████████| 4/4 [00:20<00:00,  5.15s/it]A2_lru               | jnj_fy2022_overview           : 100%|██████████| 4/4 [00:20<00:00,  5.04s/it]
-ERROR in evaluate_query for q_036: LRUEviction.select_victim() got an unexpected keyword argument 'clock'
-A2_lru               | jnj_healthcare_focus          :   0%|          | 0/4 [00:00<?, ?it/s]Traceback (most recent call last):
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/run_experiment.py", line 203, in evaluate_query
-    trace = agent.answer(question)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 88, in answer
-    fact = self._resolve_subquestion(sub_q, trace)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 161, in _resolve_subquestion
-    self.memory.write(
-    ~~~~~~~~~~~~~~~~~^
-        sub_question=sub_q,
-        ^^^^^^^^^^^^^^^^^^^
-    ...<5 lines>...
-                    for h in hits],
-                    ^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 115, in write
-    self._evict()
-    ~~~~~~~~~~~^^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 120, in _evict
-    victim_idx = self.policy.select_victim(self.entries, clock=self.clock)
-TypeError: LRUEviction.select_victim() got an unexpected keyword argument 'clock'
-A2_lru               | jnj_healthcare_focus          :  25%|██▌       | 1/4 [00:01<00:04,  1.56s/it]Traceback (most recent call last):
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/run_experiment.py", line 203, in evaluate_query
-    trace = agent.answer(question)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 88, in answer
-    fact = self._resolve_subquestion(sub_q, trace)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 161, in _resolve_subquestion
-    self.memory.write(
-    ~~~~~~~~~~~~~~~~~^
-        sub_question=sub_q,
-        ^^^^^^^^^^^^^^^^^^^
-    ...<5 lines>...
-                    for h in hits],
-                    ^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 115, in write
-    self._evict()
-    ~~~~~~~~~~~^^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 120, in _evict
-    victim_idx = self.policy.select_victim(self.entries, clock=self.clock)
-TypeError: LRUEviction.select_victim() got an unexpected keyword argument 'clock'
-A2_lru               | jnj_healthcare_focus          :  50%|█████     | 2/4 [00:03<00:03,  1.94s/it]Traceback (most recent call last):
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/run_experiment.py", line 203, in evaluate_query
-    trace = agent.answer(question)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 88, in answer
-    fact = self._resolve_subquestion(sub_q, trace)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 161, in _resolve_subquestion
-    self.memory.write(
-    ~~~~~~~~~~~~~~~~~^
-        sub_question=sub_q,
-        ^^^^^^^^^^^^^^^^^^^
-    ...<5 lines>...
-                    for h in hits],
-                    ^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 115, in write
-    self._evict()
-    ~~~~~~~~~~~^^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 120, in _evict
-    victim_idx = self.policy.select_victim(self.entries, clock=self.clock)
-TypeError: LRUEviction.select_victim() got an unexpected keyword argument 'clock'
-A2_lru               | jnj_healthcare_focus          :  75%|███████▌  | 3/4 [00:07<00:02,  2.57s/it]Traceback (most recent call last):
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/run_experiment.py", line 203, in evaluate_query
-    trace = agent.answer(question)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 88, in answer
-    fact = self._resolve_subquestion(sub_q, trace)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 161, in _resolve_subquestion
-    self.memory.write(
-    ~~~~~~~~~~~~~~~~~^
-        sub_question=sub_q,
-        ^^^^^^^^^^^^^^^^^^^
-    ...<5 lines>...
-                    for h in hits],
-                    ^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 115, in write
-    self._evict()
-    ~~~~~~~~~~~^^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 120, in _evict
-    victim_idx = self.policy.select_victim(self.entries, clock=self.clock)
-TypeError: LRUEviction.select_victim() got an unexpected keyword argument 'clock'
-A2_lru               | jnj_healthcare_focus          : 100%|██████████| 4/4 [00:11<00:00,  3.36s/it]A2_lru               | jnj_healthcare_focus          : 100%|██████████| 4/4 [00:11<00:00,  2.92s/it]
-ERROR in evaluate_query for q_041: LRUEviction.select_victim() got an unexpected keyword argument 'clock'
-ERROR in evaluate_query for q_042: LRUEviction.select_victim() got an unexpected keyword argument 'clock'
-ERROR in evaluate_query for q_043: LRUEviction.select_victim() got an unexpected keyword argument 'clock'
-ERROR in evaluate_query for q_044: LRUEviction.select_victim() got an unexpected keyword argument 'clock'
-A2_lru               | jnj_segments_2020_2022        :   0%|          | 0/4 [00:00<?, ?it/s]A2_lru               | jnj_segments_2020_2022        :  25%|██▌       | 1/4 [00:02<00:08,  2.77s/it]A2_lru               | jnj_segments_2020_2022        :  50%|█████     | 2/4 [00:18<00:20, 10.48s/it]A2_lru               | jnj_segments_2020_2022        :  75%|███████▌  | 3/4 [00:31<00:11, 11.64s/it]Traceback (most recent call last):
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/run_experiment.py", line 203, in evaluate_query
-    trace = agent.answer(question)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 88, in answer
-    fact = self._resolve_subquestion(sub_q, trace)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 161, in _resolve_subquestion
-    self.memory.write(
-    ~~~~~~~~~~~~~~~~~^
-        sub_question=sub_q,
-        ^^^^^^^^^^^^^^^^^^^
-    ...<5 lines>...
-                    for h in hits],
-                    ^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 115, in write
-    self._evict()
-    ~~~~~~~~~~~^^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 120, in _evict
-    victim_idx = self.policy.select_victim(self.entries, clock=self.clock)
-TypeError: LRUEviction.select_victim() got an unexpected keyword argument 'clock'
-A2_lru               | jnj_segments_2020_2022        : 100%|██████████| 4/4 [00:33<00:00,  7.90s/it]A2_lru               | jnj_segments_2020_2022        : 100%|██████████| 4/4 [00:33<00:00,  8.46s/it]
-ERROR in evaluate_query for q_040: LRUEviction.select_victim() got an unexpected keyword argument 'clock'
-A2_lru               | microsoft_cloud_revenue       :   0%|          | 0/4 [00:00<?, ?it/s]Traceback (most recent call last):
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/run_experiment.py", line 203, in evaluate_query
-    trace = agent.answer(question)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 88, in answer
-    fact = self._resolve_subquestion(sub_q, trace)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 161, in _resolve_subquestion
-    self.memory.write(
-    ~~~~~~~~~~~~~~~~~^
-        sub_question=sub_q,
-        ^^^^^^^^^^^^^^^^^^^
-    ...<5 lines>...
-                    for h in hits],
-                    ^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 115, in write
-    self._evict()
-    ~~~~~~~~~~~^^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 120, in _evict
-    victim_idx = self.policy.select_victim(self.entries, clock=self.clock)
-TypeError: LRUEviction.select_victim() got an unexpected keyword argument 'clock'
-A2_lru               | microsoft_cloud_revenue       :  25%|██▌       | 1/4 [00:02<00:06,  2.06s/it]Traceback (most recent call last):
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/run_experiment.py", line 203, in evaluate_query
-    trace = agent.answer(question)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 88, in answer
-    fact = self._resolve_subquestion(sub_q, trace)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 161, in _resolve_subquestion
-    self.memory.write(
-    ~~~~~~~~~~~~~~~~~^
-        sub_question=sub_q,
-        ^^^^^^^^^^^^^^^^^^^
-    ...<5 lines>...
-                    for h in hits],
-                    ^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 115, in write
-    self._evict()
-    ~~~~~~~~~~~^^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 120, in _evict
-    victim_idx = self.policy.select_victim(self.entries, clock=self.clock)
-TypeError: LRUEviction.select_victim() got an unexpected keyword argument 'clock'
-A2_lru               | microsoft_cloud_revenue       :  50%|█████     | 2/4 [00:04<00:04,  2.41s/it]Traceback (most recent call last):
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/run_experiment.py", line 203, in evaluate_query
-    trace = agent.answer(question)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 88, in answer
-    fact = self._resolve_subquestion(sub_q, trace)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 161, in _resolve_subquestion
-    self.memory.write(
-    ~~~~~~~~~~~~~~~~~^
-        sub_question=sub_q,
-        ^^^^^^^^^^^^^^^^^^^
-    ...<5 lines>...
-                    for h in hits],
-                    ^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 115, in write
-    self._evict()
-    ~~~~~~~~~~~^^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 120, in _evict
-    victim_idx = self.policy.select_victim(self.entries, clock=self.clock)
-TypeError: LRUEviction.select_victim() got an unexpected keyword argument 'clock'
-A2_lru               | microsoft_cloud_revenue       :  75%|███████▌  | 3/4 [00:07<00:02,  2.54s/it]A2_lru               | microsoft_cloud_revenue       : 100%|██████████| 4/4 [00:17<00:00,  5.61s/it]A2_lru               | microsoft_cloud_revenue       : 100%|██████████| 4/4 [00:17<00:00,  4.43s/it]
-ERROR in evaluate_query for q_025: LRUEviction.select_victim() got an unexpected keyword argument 'clock'
-ERROR in evaluate_query for q_026: LRUEviction.select_victim() got an unexpected keyword argument 'clock'
-ERROR in evaluate_query for q_027: LRUEviction.select_victim() got an unexpected keyword argument 'clock'
-A2_lru               | microsoft_fy2022_overview     :   0%|          | 0/4 [00:00<?, ?it/s]Traceback (most recent call last):
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/run_experiment.py", line 203, in evaluate_query
-    trace = agent.answer(question)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 88, in answer
-    fact = self._resolve_subquestion(sub_q, trace)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 161, in _resolve_subquestion
-    self.memory.write(
-    ~~~~~~~~~~~~~~~~~^
-        sub_question=sub_q,
-        ^^^^^^^^^^^^^^^^^^^
-    ...<5 lines>...
-                    for h in hits],
-                    ^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 115, in write
-    self._evict()
-    ~~~~~~~~~~~^^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 120, in _evict
-    victim_idx = self.policy.select_victim(self.entries, clock=self.clock)
-TypeError: LRUEviction.select_victim() got an unexpected keyword argument 'clock'
-A2_lru               | microsoft_fy2022_overview     :  25%|██▌       | 1/4 [00:01<00:04,  1.53s/it]Traceback (most recent call last):
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/run_experiment.py", line 203, in evaluate_query
-    trace = agent.answer(question)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 88, in answer
-    fact = self._resolve_subquestion(sub_q, trace)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 161, in _resolve_subquestion
-    self.memory.write(
-    ~~~~~~~~~~~~~~~~~^
-        sub_question=sub_q,
-        ^^^^^^^^^^^^^^^^^^^
-    ...<5 lines>...
-                    for h in hits],
-                    ^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 115, in write
-    self._evict()
-    ~~~~~~~~~~~^^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 120, in _evict
-    victim_idx = self.policy.select_victim(self.entries, clock=self.clock)
-TypeError: LRUEviction.select_victim() got an unexpected keyword argument 'clock'
-A2_lru               | microsoft_fy2022_overview     :  50%|█████     | 2/4 [00:06<00:06,  3.39s/it]Traceback (most recent call last):
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/run_experiment.py", line 203, in evaluate_query
-    trace = agent.answer(question)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 88, in answer
-    fact = self._resolve_subquestion(sub_q, trace)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 161, in _resolve_subquestion
-    self.memory.write(
-    ~~~~~~~~~~~~~~~~~^
-        sub_question=sub_q,
-        ^^^^^^^^^^^^^^^^^^^
-    ...<5 lines>...
-                    for h in hits],
-                    ^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 115, in write
-    self._evict()
-    ~~~~~~~~~~~^^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 120, in _evict
-    victim_idx = self.policy.select_victim(self.entries, clock=self.clock)
-TypeError: LRUEviction.select_victim() got an unexpected keyword argument 'clock'
-A2_lru               | microsoft_fy2022_overview     :  75%|███████▌  | 3/4 [00:08<00:02,  2.89s/it]Traceback (most recent call last):
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/run_experiment.py", line 203, in evaluate_query
-    trace = agent.answer(question)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 88, in answer
-    fact = self._resolve_subquestion(sub_q, trace)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 161, in _resolve_subquestion
-    self.memory.write(
-    ~~~~~~~~~~~~~~~~~^
-        sub_question=sub_q,
-        ^^^^^^^^^^^^^^^^^^^
-    ...<5 lines>...
-                    for h in hits],
-                    ^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 115, in write
-    self._evict()
-    ~~~~~~~~~~~^^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 120, in _evict
-    victim_idx = self.policy.select_victim(self.entries, clock=self.clock)
-TypeError: LRUEviction.select_victim() got an unexpected keyword argument 'clock'
-A2_lru               | microsoft_fy2022_overview     : 100%|██████████| 4/4 [00:12<00:00,  3.20s/it]A2_lru               | microsoft_fy2022_overview     : 100%|██████████| 4/4 [00:12<00:00,  3.05s/it]
-ERROR in evaluate_query for q_017: LRUEviction.select_victim() got an unexpected keyword argument 'clock'
-ERROR in evaluate_query for q_018: LRUEviction.select_victim() got an unexpected keyword argument 'clock'
-ERROR in evaluate_query for q_019: LRUEviction.select_victim() got an unexpected keyword argument 'clock'
-ERROR in evaluate_query for q_020: LRUEviction.select_victim() got an unexpected keyword argument 'clock'
-A2_lru               | microsoft_profitability       :   0%|          | 0/4 [00:00<?, ?it/s]A2_lru               | microsoft_profitability       :  25%|██▌       | 1/4 [00:12<00:36, 12.25s/it]Traceback (most recent call last):
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/run_experiment.py", line 203, in evaluate_query
-    trace = agent.answer(question)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 88, in answer
-    fact = self._resolve_subquestion(sub_q, trace)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 161, in _resolve_subquestion
-    self.memory.write(
-    ~~~~~~~~~~~~~~~~~^
-        sub_question=sub_q,
-        ^^^^^^^^^^^^^^^^^^^
-    ...<5 lines>...
-                    for h in hits],
-                    ^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 115, in write
-    self._evict()
-    ~~~~~~~~~~~^^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 120, in _evict
-    victim_idx = self.policy.select_victim(self.entries, clock=self.clock)
-TypeError: LRUEviction.select_victim() got an unexpected keyword argument 'clock'
-A2_lru               | microsoft_profitability       :  50%|█████     | 2/4 [00:15<00:13,  6.75s/it]Traceback (most recent call last):
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/run_experiment.py", line 203, in evaluate_query
-    trace = agent.answer(question)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 88, in answer
-    fact = self._resolve_subquestion(sub_q, trace)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 161, in _resolve_subquestion
-    self.memory.write(
-    ~~~~~~~~~~~~~~~~~^
-        sub_question=sub_q,
-        ^^^^^^^^^^^^^^^^^^^
-    ...<5 lines>...
-                    for h in hits],
-                    ^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 115, in write
-    self._evict()
-    ~~~~~~~~~~~^^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 120, in _evict
-    victim_idx = self.policy.select_victim(self.entries, clock=self.clock)
-TypeError: LRUEviction.select_victim() got an unexpected keyword argument 'clock'
-A2_lru               | microsoft_profitability       :  75%|███████▌  | 3/4 [00:17<00:04,  4.94s/it]A2_lru               | microsoft_profitability       : 100%|██████████| 4/4 [00:33<00:00,  9.15s/it]A2_lru               | microsoft_profitability       : 100%|██████████| 4/4 [00:33<00:00,  8.39s/it]
-ERROR in evaluate_query for q_030: LRUEviction.select_victim() got an unexpected keyword argument 'clock'
-ERROR in evaluate_query for q_031: LRUEviction.select_victim() got an unexpected keyword argument 'clock'
-A2_lru               | microsoft_segments_2020_2022  :   0%|          | 0/4 [00:00<?, ?it/s]A2_lru               | microsoft_segments_2020_2022  :  25%|██▌       | 1/4 [00:14<00:42, 14.03s/it]Traceback (most recent call last):
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/run_experiment.py", line 203, in evaluate_query
-    trace = agent.answer(question)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 88, in answer
-    fact = self._resolve_subquestion(sub_q, trace)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 161, in _resolve_subquestion
-    self.memory.write(
-    ~~~~~~~~~~~~~~~~~^
-        sub_question=sub_q,
-        ^^^^^^^^^^^^^^^^^^^
-    ...<5 lines>...
-                    for h in hits],
-                    ^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 115, in write
-    self._evict()
-    ~~~~~~~~~~~^^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 120, in _evict
-    victim_idx = self.policy.select_victim(self.entries, clock=self.clock)
-TypeError: LRUEviction.select_victim() got an unexpected keyword argument 'clock'
-A2_lru               | microsoft_segments_2020_2022  :  50%|█████     | 2/4 [00:16<00:14,  7.21s/it]A2_lru               | microsoft_segments_2020_2022  :  75%|███████▌  | 3/4 [00:32<00:11, 11.31s/it]Traceback (most recent call last):
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/run_experiment.py", line 203, in evaluate_query
-    trace = agent.answer(question)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 88, in answer
-    fact = self._resolve_subquestion(sub_q, trace)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 161, in _resolve_subquestion
-    self.memory.write(
-    ~~~~~~~~~~~~~~~~~^
-        sub_question=sub_q,
-        ^^^^^^^^^^^^^^^^^^^
-    ...<5 lines>...
-                    for h in hits],
-                    ^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 115, in write
-    self._evict()
-    ~~~~~~~~~~~^^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 120, in _evict
-    victim_idx = self.policy.select_victim(self.entries, clock=self.clock)
-TypeError: LRUEviction.select_victim() got an unexpected keyword argument 'clock'
-A2_lru               | microsoft_segments_2020_2022  : 100%|██████████| 4/4 [00:35<00:00,  7.84s/it]A2_lru               | microsoft_segments_2020_2022  : 100%|██████████| 4/4 [00:35<00:00,  8.79s/it]
-ERROR in evaluate_query for q_022: LRUEviction.select_victim() got an unexpected keyword argument 'clock'
-ERROR in evaluate_query for q_024: LRUEviction.select_victim() got an unexpected keyword argument 'clock'
-A2_lru               | pepsico_fy2022_financials     :   0%|          | 0/4 [00:00<?, ?it/s]Traceback (most recent call last):
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/run_experiment.py", line 203, in evaluate_query
-    trace = agent.answer(question)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 88, in answer
-    fact = self._resolve_subquestion(sub_q, trace)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 161, in _resolve_subquestion
-    self.memory.write(
-    ~~~~~~~~~~~~~~~~~^
-        sub_question=sub_q,
-        ^^^^^^^^^^^^^^^^^^^
-    ...<5 lines>...
-                    for h in hits],
-                    ^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 115, in write
-    self._evict()
-    ~~~~~~~~~~~^^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 120, in _evict
-    victim_idx = self.policy.select_victim(self.entries, clock=self.clock)
-TypeError: LRUEviction.select_victim() got an unexpected keyword argument 'clock'
-A2_lru               | pepsico_fy2022_financials     :  25%|██▌       | 1/4 [00:04<00:13,  4.66s/it]A2_lru               | pepsico_fy2022_financials     :  50%|█████     | 2/4 [00:25<00:28, 14.25s/it]A2_lru               | pepsico_fy2022_financials     :  75%|███████▌  | 3/4 [00:43<00:15, 15.82s/it]Traceback (most recent call last):
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/run_experiment.py", line 203, in evaluate_query
-    trace = agent.answer(question)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 88, in answer
-    fact = self._resolve_subquestion(sub_q, trace)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 161, in _resolve_subquestion
-    self.memory.write(
-    ~~~~~~~~~~~~~~~~~^
-        sub_question=sub_q,
-        ^^^^^^^^^^^^^^^^^^^
-    ...<5 lines>...
-                    for h in hits],
-                    ^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 115, in write
-    self._evict()
-    ~~~~~~~~~~~^^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 120, in _evict
-    victim_idx = self.policy.select_victim(self.entries, clock=self.clock)
-TypeError: LRUEviction.select_victim() got an unexpected keyword argument 'clock'
-A2_lru               | pepsico_fy2022_financials     : 100%|██████████| 4/4 [00:47<00:00, 11.39s/it]A2_lru               | pepsico_fy2022_financials     : 100%|██████████| 4/4 [00:47<00:00, 11.98s/it]
-ERROR in evaluate_query for q_045: LRUEviction.select_victim() got an unexpected keyword argument 'clock'
-ERROR in evaluate_query for q_048: LRUEviction.select_victim() got an unexpected keyword argument 'clock'
-A2_lru               | pepsico_segments_2020_2022    :   0%|          | 0/4 [00:00<?, ?it/s]A2_lru               | pepsico_segments_2020_2022    :  25%|██▌       | 1/4 [00:28<01:25, 28.53s/it]A2_lru               | pepsico_segments_2020_2022    :  50%|█████     | 2/4 [00:44<00:42, 21.24s/it]Traceback (most recent call last):
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/run_experiment.py", line 203, in evaluate_query
-    trace = agent.answer(question)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 88, in answer
-    fact = self._resolve_subquestion(sub_q, trace)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 161, in _resolve_subquestion
-    self.memory.write(
-    ~~~~~~~~~~~~~~~~~^
-        sub_question=sub_q,
-        ^^^^^^^^^^^^^^^^^^^
-    ...<5 lines>...
-                    for h in hits],
-                    ^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 115, in write
-    self._evict()
-    ~~~~~~~~~~~^^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 120, in _evict
-    victim_idx = self.policy.select_victim(self.entries, clock=self.clock)
-TypeError: LRUEviction.select_victim() got an unexpected keyword argument 'clock'
-A2_lru               | pepsico_segments_2020_2022    :  75%|███████▌  | 3/4 [00:48<00:13, 13.48s/it]A2_lru               | pepsico_segments_2020_2022    : 100%|██████████| 4/4 [01:03<00:00, 14.06s/it]A2_lru               | pepsico_segments_2020_2022    : 100%|██████████| 4/4 [01:03<00:00, 15.97s/it]
-ERROR in evaluate_query for q_051: LRUEviction.select_victim() got an unexpected keyword argument 'clock'
-
-  Summary:
-    Queries: 52
-    Supported: 29/52 (55.8%)
-    Tokens: 252,094
-    Memory hits: 11
-
-================================================================================
-ARM: A3_lfu
-================================================================================
-  Memory: True
-  Budget: tight
-  Eviction: lfu
-A3_lfu               | apple_fy2022_basics           :   0%|          | 0/4 [00:00<?, ?it/s]A3_lfu               | apple_fy2022_basics           :  25%|██▌       | 1/4 [00:07<00:21,  7.13s/it]A3_lfu               | apple_fy2022_basics           :  50%|█████     | 2/4 [00:27<00:29, 14.93s/it]A3_lfu               | apple_fy2022_basics           :  75%|███████▌  | 3/4 [00:35<00:11, 11.66s/it]A3_lfu               | apple_fy2022_basics           : 100%|██████████| 4/4 [00:43<00:00, 10.39s/it]A3_lfu               | apple_fy2022_basics           : 100%|██████████| 4/4 [00:43<00:00, 10.93s/it]
-A3_lfu               | apple_products_2020_2022      :   0%|          | 0/4 [00:00<?, ?it/s]A3_lfu               | apple_products_2020_2022      :  25%|██▌       | 1/4 [00:05<00:17,  5.74s/it]A3_lfu               | apple_products_2020_2022      :  50%|█████     | 2/4 [00:12<00:12,  6.33s/it]A3_lfu               | apple_products_2020_2022      :  75%|███████▌  | 3/4 [00:20<00:07,  7.09s/it]A3_lfu               | apple_products_2020_2022      : 100%|██████████| 4/4 [00:34<00:00,  9.99s/it]A3_lfu               | apple_products_2020_2022      : 100%|██████████| 4/4 [00:34<00:00,  8.73s/it]
-A3_lfu               | apple_profitability_trend     :   0%|          | 0/4 [00:00<?, ?it/s]A3_lfu               | apple_profitability_trend     :  25%|██▌       | 1/4 [00:11<00:35, 11.78s/it]A3_lfu               | apple_profitability_trend     :  50%|█████     | 2/4 [00:19<00:18,  9.49s/it]A3_lfu               | apple_profitability_trend     :  75%|███████▌  | 3/4 [00:40<00:14, 14.46s/it]A3_lfu               | apple_profitability_trend     : 100%|██████████| 4/4 [00:46<00:00, 11.34s/it]A3_lfu               | apple_profitability_trend     : 100%|██████████| 4/4 [00:46<00:00, 11.65s/it]
-A3_lfu               | apple_segments_multi_year     :   0%|          | 0/4 [00:00<?, ?it/s]A3_lfu               | apple_segments_multi_year     :  25%|██▌       | 1/4 [00:08<00:24,  8.09s/it]A3_lfu               | apple_segments_multi_year     :  50%|█████     | 2/4 [00:13<00:13,  6.74s/it]A3_lfu               | apple_segments_multi_year     :  75%|███████▌  | 3/4 [00:30<00:11, 11.12s/it]A3_lfu               | apple_segments_multi_year     : 100%|██████████| 4/4 [00:36<00:00,  9.07s/it]A3_lfu               | apple_segments_multi_year     : 100%|██████████| 4/4 [00:36<00:00,  9.04s/it]
-A3_lfu               | jnj_fy2022_overview           :   0%|          | 0/4 [00:00<?, ?it/s]A3_lfu               | jnj_fy2022_overview           :  25%|██▌       | 1/4 [00:03<00:09,  3.22s/it]A3_lfu               | jnj_fy2022_overview           :  50%|█████     | 2/4 [00:06<00:07,  3.52s/it]A3_lfu               | jnj_fy2022_overview           :  75%|███████▌  | 3/4 [00:23<00:09,  9.59s/it]Traceback (most recent call last):
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/run_experiment.py", line 203, in evaluate_query
-    trace = agent.answer(question)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 88, in answer
-    fact = self._resolve_subquestion(sub_q, trace)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 161, in _resolve_subquestion
-    self.memory.write(
-    ~~~~~~~~~~~~~~~~~^
-        sub_question=sub_q,
-        ^^^^^^^^^^^^^^^^^^^
-    ...<5 lines>...
-                    for h in hits],
-                    ^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 115, in write
-    self._evict()
-    ~~~~~~~~~~~^^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 120, in _evict
-    victim_idx = self.policy.select_victim(self.entries, clock=self.clock)
-TypeError: LFUEviction.select_victim() got an unexpected keyword argument 'clock'
-A3_lfu               | jnj_fy2022_overview           : 100%|██████████| 4/4 [00:29<00:00,  8.02s/it]A3_lfu               | jnj_fy2022_overview           : 100%|██████████| 4/4 [00:29<00:00,  7.35s/it]
-ERROR in evaluate_query for q_036: LFUEviction.select_victim() got an unexpected keyword argument 'clock'
-A3_lfu               | jnj_healthcare_focus          :   0%|          | 0/4 [00:00<?, ?it/s]Traceback (most recent call last):
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/run_experiment.py", line 203, in evaluate_query
-    trace = agent.answer(question)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 88, in answer
-    fact = self._resolve_subquestion(sub_q, trace)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 161, in _resolve_subquestion
-    self.memory.write(
-    ~~~~~~~~~~~~~~~~~^
-        sub_question=sub_q,
-        ^^^^^^^^^^^^^^^^^^^
-    ...<5 lines>...
-                    for h in hits],
-                    ^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 115, in write
-    self._evict()
-    ~~~~~~~~~~~^^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 120, in _evict
-    victim_idx = self.policy.select_victim(self.entries, clock=self.clock)
-TypeError: LFUEviction.select_victim() got an unexpected keyword argument 'clock'
-A3_lfu               | jnj_healthcare_focus          :  25%|██▌       | 1/4 [00:02<00:07,  2.38s/it]Traceback (most recent call last):
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/run_experiment.py", line 203, in evaluate_query
-    trace = agent.answer(question)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 88, in answer
-    fact = self._resolve_subquestion(sub_q, trace)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 161, in _resolve_subquestion
-    self.memory.write(
-    ~~~~~~~~~~~~~~~~~^
-        sub_question=sub_q,
-        ^^^^^^^^^^^^^^^^^^^
-    ...<5 lines>...
-                    for h in hits],
-                    ^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 115, in write
-    self._evict()
-    ~~~~~~~~~~~^^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 120, in _evict
-    victim_idx = self.policy.select_victim(self.entries, clock=self.clock)
-TypeError: LFUEviction.select_victim() got an unexpected keyword argument 'clock'
-A3_lfu               | jnj_healthcare_focus          :  50%|█████     | 2/4 [00:04<00:04,  2.31s/it]Traceback (most recent call last):
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/run_experiment.py", line 203, in evaluate_query
-    trace = agent.answer(question)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 88, in answer
-    fact = self._resolve_subquestion(sub_q, trace)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 161, in _resolve_subquestion
-    self.memory.write(
-    ~~~~~~~~~~~~~~~~~^
-        sub_question=sub_q,
-        ^^^^^^^^^^^^^^^^^^^
-    ...<5 lines>...
-                    for h in hits],
-                    ^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 115, in write
-    self._evict()
-    ~~~~~~~~~~~^^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 120, in _evict
-    victim_idx = self.policy.select_victim(self.entries, clock=self.clock)
-TypeError: LFUEviction.select_victim() got an unexpected keyword argument 'clock'
-A3_lfu               | jnj_healthcare_focus          :  75%|███████▌  | 3/4 [00:07<00:02,  2.71s/it]Traceback (most recent call last):
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/run_experiment.py", line 203, in evaluate_query
-    trace = agent.answer(question)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 88, in answer
-    fact = self._resolve_subquestion(sub_q, trace)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 161, in _resolve_subquestion
-    self.memory.write(
-    ~~~~~~~~~~~~~~~~~^
-        sub_question=sub_q,
-        ^^^^^^^^^^^^^^^^^^^
-    ...<5 lines>...
-                    for h in hits],
-                    ^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 115, in write
-    self._evict()
-    ~~~~~~~~~~~^^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 120, in _evict
-    victim_idx = self.policy.select_victim(self.entries, clock=self.clock)
-TypeError: LFUEviction.select_victim() got an unexpected keyword argument 'clock'
-A3_lfu               | jnj_healthcare_focus          : 100%|██████████| 4/4 [00:12<00:00,  3.66s/it]A3_lfu               | jnj_healthcare_focus          : 100%|██████████| 4/4 [00:12<00:00,  3.23s/it]
-ERROR in evaluate_query for q_041: LFUEviction.select_victim() got an unexpected keyword argument 'clock'
-ERROR in evaluate_query for q_042: LFUEviction.select_victim() got an unexpected keyword argument 'clock'
-ERROR in evaluate_query for q_043: LFUEviction.select_victim() got an unexpected keyword argument 'clock'
-ERROR in evaluate_query for q_044: LFUEviction.select_victim() got an unexpected keyword argument 'clock'
-A3_lfu               | jnj_segments_2020_2022        :   0%|          | 0/4 [00:00<?, ?it/s]A3_lfu               | jnj_segments_2020_2022        :  25%|██▌       | 1/4 [00:02<00:08,  2.73s/it]A3_lfu               | jnj_segments_2020_2022        :  50%|█████     | 2/4 [00:16<00:18,  9.43s/it]A3_lfu               | jnj_segments_2020_2022        :  75%|███████▌  | 3/4 [00:34<00:13, 13.04s/it]Traceback (most recent call last):
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/run_experiment.py", line 203, in evaluate_query
-    trace = agent.answer(question)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 88, in answer
-    fact = self._resolve_subquestion(sub_q, trace)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 161, in _resolve_subquestion
-    self.memory.write(
-    ~~~~~~~~~~~~~~~~~^
-        sub_question=sub_q,
-        ^^^^^^^^^^^^^^^^^^^
-    ...<5 lines>...
-                    for h in hits],
-                    ^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 115, in write
-    self._evict()
-    ~~~~~~~~~~~^^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 120, in _evict
-    victim_idx = self.policy.select_victim(self.entries, clock=self.clock)
-TypeError: LFUEviction.select_victim() got an unexpected keyword argument 'clock'
-A3_lfu               | jnj_segments_2020_2022        : 100%|██████████| 4/4 [00:36<00:00,  8.77s/it]A3_lfu               | jnj_segments_2020_2022        : 100%|██████████| 4/4 [00:36<00:00,  9.10s/it]
-ERROR in evaluate_query for q_040: LFUEviction.select_victim() got an unexpected keyword argument 'clock'
-A3_lfu               | microsoft_cloud_revenue       :   0%|          | 0/4 [00:00<?, ?it/s]Traceback (most recent call last):
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/run_experiment.py", line 203, in evaluate_query
-    trace = agent.answer(question)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 88, in answer
-    fact = self._resolve_subquestion(sub_q, trace)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 161, in _resolve_subquestion
-    self.memory.write(
-    ~~~~~~~~~~~~~~~~~^
-        sub_question=sub_q,
-        ^^^^^^^^^^^^^^^^^^^
-    ...<5 lines>...
-                    for h in hits],
-                    ^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 115, in write
-    self._evict()
-    ~~~~~~~~~~~^^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 120, in _evict
-    victim_idx = self.policy.select_victim(self.entries, clock=self.clock)
-TypeError: LFUEviction.select_victim() got an unexpected keyword argument 'clock'
-A3_lfu               | microsoft_cloud_revenue       :  25%|██▌       | 1/4 [00:01<00:05,  1.98s/it]Traceback (most recent call last):
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/run_experiment.py", line 203, in evaluate_query
-    trace = agent.answer(question)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 88, in answer
-    fact = self._resolve_subquestion(sub_q, trace)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 161, in _resolve_subquestion
-    self.memory.write(
-    ~~~~~~~~~~~~~~~~~^
-        sub_question=sub_q,
-        ^^^^^^^^^^^^^^^^^^^
-    ...<5 lines>...
-                    for h in hits],
-                    ^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 115, in write
-    self._evict()
-    ~~~~~~~~~~~^^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 120, in _evict
-    victim_idx = self.policy.select_victim(self.entries, clock=self.clock)
-TypeError: LFUEviction.select_victim() got an unexpected keyword argument 'clock'
-A3_lfu               | microsoft_cloud_revenue       :  50%|█████     | 2/4 [00:04<00:05,  2.53s/it]Traceback (most recent call last):
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/run_experiment.py", line 203, in evaluate_query
-    trace = agent.answer(question)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 88, in answer
-    fact = self._resolve_subquestion(sub_q, trace)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 161, in _resolve_subquestion
-    self.memory.write(
-    ~~~~~~~~~~~~~~~~~^
-        sub_question=sub_q,
-        ^^^^^^^^^^^^^^^^^^^
-    ...<5 lines>...
-                    for h in hits],
-                    ^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 115, in write
-    self._evict()
-    ~~~~~~~~~~~^^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 120, in _evict
-    victim_idx = self.policy.select_victim(self.entries, clock=self.clock)
-TypeError: LFUEviction.select_victim() got an unexpected keyword argument 'clock'
-A3_lfu               | microsoft_cloud_revenue       :  75%|███████▌  | 3/4 [00:10<00:03,  3.94s/it]A3_lfu               | microsoft_cloud_revenue       : 100%|██████████| 4/4 [00:21<00:00,  6.61s/it]A3_lfu               | microsoft_cloud_revenue       : 100%|██████████| 4/4 [00:21<00:00,  5.30s/it]
-ERROR in evaluate_query for q_025: LFUEviction.select_victim() got an unexpected keyword argument 'clock'
-ERROR in evaluate_query for q_026: LFUEviction.select_victim() got an unexpected keyword argument 'clock'
-ERROR in evaluate_query for q_027: LFUEviction.select_victim() got an unexpected keyword argument 'clock'
-A3_lfu               | microsoft_fy2022_overview     :   0%|          | 0/4 [00:00<?, ?it/s]Traceback (most recent call last):
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/run_experiment.py", line 203, in evaluate_query
-    trace = agent.answer(question)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 88, in answer
-    fact = self._resolve_subquestion(sub_q, trace)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 161, in _resolve_subquestion
-    self.memory.write(
-    ~~~~~~~~~~~~~~~~~^
-        sub_question=sub_q,
-        ^^^^^^^^^^^^^^^^^^^
-    ...<5 lines>...
-                    for h in hits],
-                    ^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 115, in write
-    self._evict()
-    ~~~~~~~~~~~^^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 120, in _evict
-    victim_idx = self.policy.select_victim(self.entries, clock=self.clock)
-TypeError: LFUEviction.select_victim() got an unexpected keyword argument 'clock'
-A3_lfu               | microsoft_fy2022_overview     :  25%|██▌       | 1/4 [00:01<00:04,  1.61s/it]Traceback (most recent call last):
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/run_experiment.py", line 203, in evaluate_query
-    trace = agent.answer(question)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 88, in answer
-    fact = self._resolve_subquestion(sub_q, trace)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 161, in _resolve_subquestion
-    self.memory.write(
-    ~~~~~~~~~~~~~~~~~^
-        sub_question=sub_q,
-        ^^^^^^^^^^^^^^^^^^^
-    ...<5 lines>...
-                    for h in hits],
-                    ^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 115, in write
-    self._evict()
-    ~~~~~~~~~~~^^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 120, in _evict
-    victim_idx = self.policy.select_victim(self.entries, clock=self.clock)
-TypeError: LFUEviction.select_victim() got an unexpected keyword argument 'clock'
-A3_lfu               | microsoft_fy2022_overview     :  50%|█████     | 2/4 [00:06<00:06,  3.34s/it]Traceback (most recent call last):
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/run_experiment.py", line 203, in evaluate_query
-    trace = agent.answer(question)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 88, in answer
-    fact = self._resolve_subquestion(sub_q, trace)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 161, in _resolve_subquestion
-    self.memory.write(
-    ~~~~~~~~~~~~~~~~~^
-        sub_question=sub_q,
-        ^^^^^^^^^^^^^^^^^^^
-    ...<5 lines>...
-                    for h in hits],
-                    ^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 115, in write
-    self._evict()
-    ~~~~~~~~~~~^^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 120, in _evict
-    victim_idx = self.policy.select_victim(self.entries, clock=self.clock)
-TypeError: LFUEviction.select_victim() got an unexpected keyword argument 'clock'
-A3_lfu               | microsoft_fy2022_overview     :  75%|███████▌  | 3/4 [00:09<00:03,  3.33s/it]Traceback (most recent call last):
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/run_experiment.py", line 203, in evaluate_query
-    trace = agent.answer(question)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 88, in answer
-    fact = self._resolve_subquestion(sub_q, trace)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 161, in _resolve_subquestion
-    self.memory.write(
-    ~~~~~~~~~~~~~~~~~^
-        sub_question=sub_q,
-        ^^^^^^^^^^^^^^^^^^^
-    ...<5 lines>...
-                    for h in hits],
-                    ^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 115, in write
-    self._evict()
-    ~~~~~~~~~~~^^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 120, in _evict
-    victim_idx = self.policy.select_victim(self.entries, clock=self.clock)
-TypeError: LFUEviction.select_victim() got an unexpected keyword argument 'clock'
-A3_lfu               | microsoft_fy2022_overview     : 100%|██████████| 4/4 [00:12<00:00,  3.21s/it]A3_lfu               | microsoft_fy2022_overview     : 100%|██████████| 4/4 [00:12<00:00,  3.12s/it]
-ERROR in evaluate_query for q_017: LFUEviction.select_victim() got an unexpected keyword argument 'clock'
-ERROR in evaluate_query for q_018: LFUEviction.select_victim() got an unexpected keyword argument 'clock'
-ERROR in evaluate_query for q_019: LFUEviction.select_victim() got an unexpected keyword argument 'clock'
-ERROR in evaluate_query for q_020: LFUEviction.select_victim() got an unexpected keyword argument 'clock'
-A3_lfu               | microsoft_profitability       :   0%|          | 0/4 [00:00<?, ?it/s]A3_lfu               | microsoft_profitability       :  25%|██▌       | 1/4 [00:14<00:42, 14.03s/it]Traceback (most recent call last):
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/run_experiment.py", line 203, in evaluate_query
-    trace = agent.answer(question)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 88, in answer
-    fact = self._resolve_subquestion(sub_q, trace)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 161, in _resolve_subquestion
-    self.memory.write(
-    ~~~~~~~~~~~~~~~~~^
-        sub_question=sub_q,
-        ^^^^^^^^^^^^^^^^^^^
-    ...<5 lines>...
-                    for h in hits],
-                    ^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 115, in write
-    self._evict()
-    ~~~~~~~~~~~^^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 120, in _evict
-    victim_idx = self.policy.select_victim(self.entries, clock=self.clock)
-TypeError: LFUEviction.select_victim() got an unexpected keyword argument 'clock'
-A3_lfu               | microsoft_profitability       :  50%|█████     | 2/4 [00:16<00:14,  7.19s/it]Traceback (most recent call last):
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/run_experiment.py", line 203, in evaluate_query
-    trace = agent.answer(question)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 88, in answer
-    fact = self._resolve_subquestion(sub_q, trace)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 161, in _resolve_subquestion
-    self.memory.write(
-    ~~~~~~~~~~~~~~~~~^
-        sub_question=sub_q,
-        ^^^^^^^^^^^^^^^^^^^
-    ...<5 lines>...
-                    for h in hits],
-                    ^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 115, in write
-    self._evict()
-    ~~~~~~~~~~~^^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 120, in _evict
-    victim_idx = self.policy.select_victim(self.entries, clock=self.clock)
-TypeError: LFUEviction.select_victim() got an unexpected keyword argument 'clock'
-A3_lfu               | microsoft_profitability       :  75%|███████▌  | 3/4 [00:19<00:05,  5.27s/it]A3_lfu               | microsoft_profitability       : 100%|██████████| 4/4 [00:33<00:00,  8.91s/it]A3_lfu               | microsoft_profitability       : 100%|██████████| 4/4 [00:33<00:00,  8.48s/it]
-ERROR in evaluate_query for q_030: LFUEviction.select_victim() got an unexpected keyword argument 'clock'
-ERROR in evaluate_query for q_031: LFUEviction.select_victim() got an unexpected keyword argument 'clock'
-A3_lfu               | microsoft_segments_2020_2022  :   0%|          | 0/4 [00:00<?, ?it/s]A3_lfu               | microsoft_segments_2020_2022  :  25%|██▌       | 1/4 [00:13<00:41, 13.90s/it]Traceback (most recent call last):
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/run_experiment.py", line 203, in evaluate_query
-    trace = agent.answer(question)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 88, in answer
-    fact = self._resolve_subquestion(sub_q, trace)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 161, in _resolve_subquestion
-    self.memory.write(
-    ~~~~~~~~~~~~~~~~~^
-        sub_question=sub_q,
-        ^^^^^^^^^^^^^^^^^^^
-    ...<5 lines>...
-                    for h in hits],
-                    ^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 115, in write
-    self._evict()
-    ~~~~~~~~~~~^^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 120, in _evict
-    victim_idx = self.policy.select_victim(self.entries, clock=self.clock)
-TypeError: LFUEviction.select_victim() got an unexpected keyword argument 'clock'
-A3_lfu               | microsoft_segments_2020_2022  :  50%|█████     | 2/4 [00:16<00:14,  7.00s/it]Traceback (most recent call last):
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/run_experiment.py", line 203, in evaluate_query
-    trace = agent.answer(question)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 88, in answer
-    fact = self._resolve_subquestion(sub_q, trace)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 161, in _resolve_subquestion
-    self.memory.write(
-    ~~~~~~~~~~~~~~~~~^
-        sub_question=sub_q,
-        ^^^^^^^^^^^^^^^^^^^
-    ...<5 lines>...
-                    for h in hits],
-                    ^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 115, in write
-    self._evict()
-    ~~~~~~~~~~~^^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 120, in _evict
-    victim_idx = self.policy.select_victim(self.entries, clock=self.clock)
-TypeError: LFUEviction.select_victim() got an unexpected keyword argument 'clock'
-A3_lfu               | microsoft_segments_2020_2022  :  75%|███████▌  | 3/4 [00:19<00:05,  5.37s/it]Traceback (most recent call last):
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/run_experiment.py", line 203, in evaluate_query
-    trace = agent.answer(question)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 88, in answer
-    fact = self._resolve_subquestion(sub_q, trace)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 161, in _resolve_subquestion
-    self.memory.write(
-    ~~~~~~~~~~~~~~~~~^
-        sub_question=sub_q,
-        ^^^^^^^^^^^^^^^^^^^
-    ...<5 lines>...
-                    for h in hits],
-                    ^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 115, in write
-    self._evict()
-    ~~~~~~~~~~~^^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 120, in _evict
-    victim_idx = self.policy.select_victim(self.entries, clock=self.clock)
-TypeError: LFUEviction.select_victim() got an unexpected keyword argument 'clock'
-A3_lfu               | microsoft_segments_2020_2022  : 100%|██████████| 4/4 [00:22<00:00,  4.31s/it]A3_lfu               | microsoft_segments_2020_2022  : 100%|██████████| 4/4 [00:22<00:00,  5.55s/it]
-ERROR in evaluate_query for q_022: LFUEviction.select_victim() got an unexpected keyword argument 'clock'
-ERROR in evaluate_query for q_023: LFUEviction.select_victim() got an unexpected keyword argument 'clock'
-ERROR in evaluate_query for q_024: LFUEviction.select_victim() got an unexpected keyword argument 'clock'
-A3_lfu               | pepsico_fy2022_financials     :   0%|          | 0/4 [00:00<?, ?it/s]Traceback (most recent call last):
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/run_experiment.py", line 203, in evaluate_query
-    trace = agent.answer(question)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 88, in answer
-    fact = self._resolve_subquestion(sub_q, trace)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 161, in _resolve_subquestion
-    self.memory.write(
-    ~~~~~~~~~~~~~~~~~^
-        sub_question=sub_q,
-        ^^^^^^^^^^^^^^^^^^^
-    ...<5 lines>...
-                    for h in hits],
-                    ^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 115, in write
-    self._evict()
-    ~~~~~~~~~~~^^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 120, in _evict
-    victim_idx = self.policy.select_victim(self.entries, clock=self.clock)
-TypeError: LFUEviction.select_victim() got an unexpected keyword argument 'clock'
-A3_lfu               | pepsico_fy2022_financials     :  25%|██▌       | 1/4 [00:03<00:11,  3.73s/it]A3_lfu               | pepsico_fy2022_financials     :  50%|█████     | 2/4 [00:17<00:19,  9.52s/it]A3_lfu               | pepsico_fy2022_financials     :  75%|███████▌  | 3/4 [00:28<00:10, 10.13s/it]Traceback (most recent call last):
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/run_experiment.py", line 203, in evaluate_query
-    trace = agent.answer(question)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 88, in answer
-    fact = self._resolve_subquestion(sub_q, trace)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 161, in _resolve_subquestion
-    self.memory.write(
-    ~~~~~~~~~~~~~~~~~^
-        sub_question=sub_q,
-        ^^^^^^^^^^^^^^^^^^^
-    ...<5 lines>...
-                    for h in hits],
-                    ^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 115, in write
-    self._evict()
-    ~~~~~~~~~~~^^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 120, in _evict
-    victim_idx = self.policy.select_victim(self.entries, clock=self.clock)
-TypeError: LFUEviction.select_victim() got an unexpected keyword argument 'clock'
-A3_lfu               | pepsico_fy2022_financials     : 100%|██████████| 4/4 [00:31<00:00,  7.42s/it]A3_lfu               | pepsico_fy2022_financials     : 100%|██████████| 4/4 [00:31<00:00,  7.86s/it]
-ERROR in evaluate_query for q_045: LFUEviction.select_victim() got an unexpected keyword argument 'clock'
-ERROR in evaluate_query for q_048: LFUEviction.select_victim() got an unexpected keyword argument 'clock'
-A3_lfu               | pepsico_segments_2020_2022    :   0%|          | 0/4 [00:00<?, ?it/s]A3_lfu               | pepsico_segments_2020_2022    :  25%|██▌       | 1/4 [00:14<00:43, 14.56s/it]A3_lfu               | pepsico_segments_2020_2022    :  50%|█████     | 2/4 [00:30<00:31, 15.51s/it]Traceback (most recent call last):
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/run_experiment.py", line 203, in evaluate_query
-    trace = agent.answer(question)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 88, in answer
-    fact = self._resolve_subquestion(sub_q, trace)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 161, in _resolve_subquestion
-    self.memory.write(
-    ~~~~~~~~~~~~~~~~~^
-        sub_question=sub_q,
-        ^^^^^^^^^^^^^^^^^^^
-    ...<5 lines>...
-                    for h in hits],
-                    ^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 115, in write
-    self._evict()
-    ~~~~~~~~~~~^^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 120, in _evict
-    victim_idx = self.policy.select_victim(self.entries, clock=self.clock)
-TypeError: LFUEviction.select_victim() got an unexpected keyword argument 'clock'
-A3_lfu               | pepsico_segments_2020_2022    :  75%|███████▌  | 3/4 [00:34<00:10, 10.06s/it]A3_lfu               | pepsico_segments_2020_2022    : 100%|██████████| 4/4 [00:47<00:00, 11.43s/it]A3_lfu               | pepsico_segments_2020_2022    : 100%|██████████| 4/4 [00:47<00:00, 11.96s/it]
-ERROR in evaluate_query for q_051: LFUEviction.select_victim() got an unexpected keyword argument 'clock'
-
-  Summary:
-    Queries: 52
-    Supported: 26/52 (50.0%)
-    Tokens: 255,736
-    Memory hits: 10
-
-================================================================================
-ARM: A4_redundancy
-================================================================================
-  Memory: True
-  Budget: tight
-  Eviction: redundancy
-A4_redundancy        | apple_fy2022_basics           :   0%|          | 0/4 [00:00<?, ?it/s]A4_redundancy        | apple_fy2022_basics           :  25%|██▌       | 1/4 [00:07<00:21,  7.06s/it]A4_redundancy        | apple_fy2022_basics           :  50%|█████     | 2/4 [00:23<00:25, 12.77s/it]A4_redundancy        | apple_fy2022_basics           :  75%|███████▌  | 3/4 [00:29<00:09,  9.43s/it]A4_redundancy        | apple_fy2022_basics           : 100%|██████████| 4/4 [00:37<00:00,  9.02s/it]A4_redundancy        | apple_fy2022_basics           : 100%|██████████| 4/4 [00:37<00:00,  9.42s/it]
-A4_redundancy        | apple_products_2020_2022      :   0%|          | 0/4 [00:00<?, ?it/s]A4_redundancy        | apple_products_2020_2022      :  25%|██▌       | 1/4 [00:04<00:14,  4.92s/it]A4_redundancy        | apple_products_2020_2022      :  50%|█████     | 2/4 [00:10<00:11,  5.56s/it]A4_redundancy        | apple_products_2020_2022      :  75%|███████▌  | 3/4 [00:29<00:11, 11.39s/it]A4_redundancy        | apple_products_2020_2022      : 100%|██████████| 4/4 [00:36<00:00,  9.94s/it]A4_redundancy        | apple_products_2020_2022      : 100%|██████████| 4/4 [00:36<00:00,  9.24s/it]
-A4_redundancy        | apple_profitability_trend     :   0%|          | 0/4 [00:00<?, ?it/s]A4_redundancy        | apple_profitability_trend     :  25%|██▌       | 1/4 [00:12<00:36, 12.29s/it]A4_redundancy        | apple_profitability_trend     :  50%|█████     | 2/4 [00:19<00:18,  9.23s/it]A4_redundancy        | apple_profitability_trend     :  75%|███████▌  | 3/4 [00:32<00:11, 11.13s/it]A4_redundancy        | apple_profitability_trend     : 100%|██████████| 4/4 [00:38<00:00,  8.92s/it]A4_redundancy        | apple_profitability_trend     : 100%|██████████| 4/4 [00:38<00:00,  9.57s/it]
-A4_redundancy        | apple_segments_multi_year     :   0%|          | 0/4 [00:00<?, ?it/s]A4_redundancy        | apple_segments_multi_year     :  25%|██▌       | 1/4 [00:04<00:13,  4.40s/it]A4_redundancy        | apple_segments_multi_year     :  50%|█████     | 2/4 [00:08<00:08,  4.29s/it]A4_redundancy        | apple_segments_multi_year     :  75%|███████▌  | 3/4 [00:24<00:09,  9.81s/it]A4_redundancy        | apple_segments_multi_year     : 100%|██████████| 4/4 [00:34<00:00,  9.61s/it]A4_redundancy        | apple_segments_multi_year     : 100%|██████████| 4/4 [00:34<00:00,  8.58s/it]
-A4_redundancy        | jnj_fy2022_overview           :   0%|          | 0/4 [00:00<?, ?it/s]A4_redundancy        | jnj_fy2022_overview           :  25%|██▌       | 1/4 [00:05<00:17,  5.80s/it]A4_redundancy        | jnj_fy2022_overview           :  50%|█████     | 2/4 [00:11<00:11,  5.56s/it]A4_redundancy        | jnj_fy2022_overview           :  75%|███████▌  | 3/4 [00:24<00:09,  9.32s/it]Traceback (most recent call last):
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/run_experiment.py", line 203, in evaluate_query
-    trace = agent.answer(question)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 88, in answer
-    fact = self._resolve_subquestion(sub_q, trace)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 161, in _resolve_subquestion
-    self.memory.write(
-    ~~~~~~~~~~~~~~~~~^
-        sub_question=sub_q,
-        ^^^^^^^^^^^^^^^^^^^
-    ...<5 lines>...
-                    for h in hits],
-                    ^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 115, in write
-    self._evict()
-    ~~~~~~~~~~~^^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 120, in _evict
-    victim_idx = self.policy.select_victim(self.entries, clock=self.clock)
-TypeError: RedundancyEviction.select_victim() got an unexpected keyword argument 'clock'
-A4_redundancy        | jnj_fy2022_overview           : 100%|██████████| 4/4 [00:27<00:00,  6.80s/it]A4_redundancy        | jnj_fy2022_overview           : 100%|██████████| 4/4 [00:27<00:00,  6.98s/it]
-ERROR in evaluate_query for q_036: RedundancyEviction.select_victim() got an unexpected keyword argument 'clock'
-A4_redundancy        | jnj_healthcare_focus          :   0%|          | 0/4 [00:00<?, ?it/s]Traceback (most recent call last):
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/run_experiment.py", line 203, in evaluate_query
-    trace = agent.answer(question)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 88, in answer
-    fact = self._resolve_subquestion(sub_q, trace)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 161, in _resolve_subquestion
-    self.memory.write(
-    ~~~~~~~~~~~~~~~~~^
-        sub_question=sub_q,
-        ^^^^^^^^^^^^^^^^^^^
-    ...<5 lines>...
-                    for h in hits],
-                    ^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 115, in write
-    self._evict()
-    ~~~~~~~~~~~^^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 120, in _evict
-    victim_idx = self.policy.select_victim(self.entries, clock=self.clock)
-TypeError: RedundancyEviction.select_victim() got an unexpected keyword argument 'clock'
-A4_redundancy        | jnj_healthcare_focus          :  25%|██▌       | 1/4 [00:02<00:08,  2.98s/it]Traceback (most recent call last):
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/run_experiment.py", line 203, in evaluate_query
-    trace = agent.answer(question)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 88, in answer
-    fact = self._resolve_subquestion(sub_q, trace)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 161, in _resolve_subquestion
-    self.memory.write(
-    ~~~~~~~~~~~~~~~~~^
-        sub_question=sub_q,
-        ^^^^^^^^^^^^^^^^^^^
-    ...<5 lines>...
-                    for h in hits],
-                    ^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 115, in write
-    self._evict()
-    ~~~~~~~~~~~^^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 120, in _evict
-    victim_idx = self.policy.select_victim(self.entries, clock=self.clock)
-TypeError: RedundancyEviction.select_victim() got an unexpected keyword argument 'clock'
-A4_redundancy        | jnj_healthcare_focus          :  50%|█████     | 2/4 [00:06<00:07,  3.56s/it]Traceback (most recent call last):
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/run_experiment.py", line 203, in evaluate_query
-    trace = agent.answer(question)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 88, in answer
-    fact = self._resolve_subquestion(sub_q, trace)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 161, in _resolve_subquestion
-    self.memory.write(
-    ~~~~~~~~~~~~~~~~~^
-        sub_question=sub_q,
-        ^^^^^^^^^^^^^^^^^^^
-    ...<5 lines>...
-                    for h in hits],
-                    ^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 115, in write
-    self._evict()
-    ~~~~~~~~~~~^^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 120, in _evict
-    victim_idx = self.policy.select_victim(self.entries, clock=self.clock)
-TypeError: RedundancyEviction.select_victim() got an unexpected keyword argument 'clock'
-A4_redundancy        | jnj_healthcare_focus          :  75%|███████▌  | 3/4 [00:11<00:03,  3.98s/it]Traceback (most recent call last):
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/run_experiment.py", line 203, in evaluate_query
-    trace = agent.answer(question)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 88, in answer
-    fact = self._resolve_subquestion(sub_q, trace)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 161, in _resolve_subquestion
-    self.memory.write(
-    ~~~~~~~~~~~~~~~~~^
-        sub_question=sub_q,
-        ^^^^^^^^^^^^^^^^^^^
-    ...<5 lines>...
-                    for h in hits],
-                    ^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 115, in write
-    self._evict()
-    ~~~~~~~~~~~^^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 120, in _evict
-    victim_idx = self.policy.select_victim(self.entries, clock=self.clock)
-TypeError: RedundancyEviction.select_victim() got an unexpected keyword argument 'clock'
-A4_redundancy        | jnj_healthcare_focus          : 100%|██████████| 4/4 [00:16<00:00,  4.59s/it]A4_redundancy        | jnj_healthcare_focus          : 100%|██████████| 4/4 [00:16<00:00,  4.24s/it]
-ERROR in evaluate_query for q_041: RedundancyEviction.select_victim() got an unexpected keyword argument 'clock'
-ERROR in evaluate_query for q_042: RedundancyEviction.select_victim() got an unexpected keyword argument 'clock'
-ERROR in evaluate_query for q_043: RedundancyEviction.select_victim() got an unexpected keyword argument 'clock'
-ERROR in evaluate_query for q_044: RedundancyEviction.select_victim() got an unexpected keyword argument 'clock'
-A4_redundancy        | jnj_segments_2020_2022        :   0%|          | 0/4 [00:00<?, ?it/s]A4_redundancy        | jnj_segments_2020_2022        :  25%|██▌       | 1/4 [00:03<00:11,  3.90s/it]A4_redundancy        | jnj_segments_2020_2022        :  50%|█████     | 2/4 [00:31<00:36, 18.01s/it]A4_redundancy        | jnj_segments_2020_2022        :  75%|███████▌  | 3/4 [00:48<00:17, 17.52s/it]Traceback (most recent call last):
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/run_experiment.py", line 203, in evaluate_query
-    trace = agent.answer(question)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 88, in answer
-    fact = self._resolve_subquestion(sub_q, trace)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 161, in _resolve_subquestion
-    self.memory.write(
-    ~~~~~~~~~~~~~~~~~^
-        sub_question=sub_q,
-        ^^^^^^^^^^^^^^^^^^^
-    ...<5 lines>...
-                    for h in hits],
-                    ^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 115, in write
-    self._evict()
-    ~~~~~~~~~~~^^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 120, in _evict
-    victim_idx = self.policy.select_victim(self.entries, clock=self.clock)
-TypeError: RedundancyEviction.select_victim() got an unexpected keyword argument 'clock'
-A4_redundancy        | jnj_segments_2020_2022        : 100%|██████████| 4/4 [00:51<00:00, 11.51s/it]A4_redundancy        | jnj_segments_2020_2022        : 100%|██████████| 4/4 [00:51<00:00, 12.75s/it]
-ERROR in evaluate_query for q_040: RedundancyEviction.select_victim() got an unexpected keyword argument 'clock'
-A4_redundancy        | microsoft_cloud_revenue       :   0%|          | 0/4 [00:00<?, ?it/s]Traceback (most recent call last):
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/run_experiment.py", line 203, in evaluate_query
-    trace = agent.answer(question)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 88, in answer
-    fact = self._resolve_subquestion(sub_q, trace)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 161, in _resolve_subquestion
-    self.memory.write(
-    ~~~~~~~~~~~~~~~~~^
-        sub_question=sub_q,
-        ^^^^^^^^^^^^^^^^^^^
-    ...<5 lines>...
-                    for h in hits],
-                    ^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 115, in write
-    self._evict()
-    ~~~~~~~~~~~^^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 120, in _evict
-    victim_idx = self.policy.select_victim(self.entries, clock=self.clock)
-TypeError: RedundancyEviction.select_victim() got an unexpected keyword argument 'clock'
-A4_redundancy        | microsoft_cloud_revenue       :  25%|██▌       | 1/4 [00:02<00:08,  2.84s/it]Traceback (most recent call last):
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/run_experiment.py", line 203, in evaluate_query
-    trace = agent.answer(question)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 88, in answer
-    fact = self._resolve_subquestion(sub_q, trace)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 161, in _resolve_subquestion
-    self.memory.write(
-    ~~~~~~~~~~~~~~~~~^
-        sub_question=sub_q,
-        ^^^^^^^^^^^^^^^^^^^
-    ...<5 lines>...
-                    for h in hits],
-                    ^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 115, in write
-    self._evict()
-    ~~~~~~~~~~~^^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 120, in _evict
-    victim_idx = self.policy.select_victim(self.entries, clock=self.clock)
-TypeError: RedundancyEviction.select_victim() got an unexpected keyword argument 'clock'
-A4_redundancy        | microsoft_cloud_revenue       :  50%|█████     | 2/4 [00:04<00:04,  2.34s/it]Traceback (most recent call last):
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/run_experiment.py", line 203, in evaluate_query
-    trace = agent.answer(question)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 88, in answer
-    fact = self._resolve_subquestion(sub_q, trace)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 161, in _resolve_subquestion
-    self.memory.write(
-    ~~~~~~~~~~~~~~~~~^
-        sub_question=sub_q,
-        ^^^^^^^^^^^^^^^^^^^
-    ...<5 lines>...
-                    for h in hits],
-                    ^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 115, in write
-    self._evict()
-    ~~~~~~~~~~~^^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 120, in _evict
-    victim_idx = self.policy.select_victim(self.entries, clock=self.clock)
-TypeError: RedundancyEviction.select_victim() got an unexpected keyword argument 'clock'
-A4_redundancy        | microsoft_cloud_revenue       :  75%|███████▌  | 3/4 [00:06<00:02,  2.24s/it]Traceback (most recent call last):
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/run_experiment.py", line 203, in evaluate_query
-    trace = agent.answer(question)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 88, in answer
-    fact = self._resolve_subquestion(sub_q, trace)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 161, in _resolve_subquestion
-    self.memory.write(
-    ~~~~~~~~~~~~~~~~~^
-        sub_question=sub_q,
-        ^^^^^^^^^^^^^^^^^^^
-    ...<5 lines>...
-                    for h in hits],
-                    ^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 115, in write
-    self._evict()
-    ~~~~~~~~~~~^^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 120, in _evict
-    victim_idx = self.policy.select_victim(self.entries, clock=self.clock)
-TypeError: RedundancyEviction.select_victim() got an unexpected keyword argument 'clock'
-A4_redundancy        | microsoft_cloud_revenue       : 100%|██████████| 4/4 [00:19<00:00,  6.29s/it]A4_redundancy        | microsoft_cloud_revenue       : 100%|██████████| 4/4 [00:19<00:00,  4.86s/it]
-ERROR in evaluate_query for q_025: RedundancyEviction.select_victim() got an unexpected keyword argument 'clock'
-ERROR in evaluate_query for q_026: RedundancyEviction.select_victim() got an unexpected keyword argument 'clock'
-ERROR in evaluate_query for q_027: RedundancyEviction.select_victim() got an unexpected keyword argument 'clock'
-ERROR in evaluate_query for q_028: RedundancyEviction.select_victim() got an unexpected keyword argument 'clock'
-A4_redundancy        | microsoft_fy2022_overview     :   0%|          | 0/4 [00:00<?, ?it/s]Traceback (most recent call last):
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/run_experiment.py", line 203, in evaluate_query
-    trace = agent.answer(question)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 88, in answer
-    fact = self._resolve_subquestion(sub_q, trace)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 161, in _resolve_subquestion
-    self.memory.write(
-    ~~~~~~~~~~~~~~~~~^
-        sub_question=sub_q,
-        ^^^^^^^^^^^^^^^^^^^
-    ...<5 lines>...
-                    for h in hits],
-                    ^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 115, in write
-    self._evict()
-    ~~~~~~~~~~~^^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 120, in _evict
-    victim_idx = self.policy.select_victim(self.entries, clock=self.clock)
-TypeError: RedundancyEviction.select_victim() got an unexpected keyword argument 'clock'
-A4_redundancy        | microsoft_fy2022_overview     :  25%|██▌       | 1/4 [00:02<00:07,  2.56s/it]Traceback (most recent call last):
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/run_experiment.py", line 203, in evaluate_query
-    trace = agent.answer(question)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 88, in answer
-    fact = self._resolve_subquestion(sub_q, trace)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 161, in _resolve_subquestion
-    self.memory.write(
-    ~~~~~~~~~~~~~~~~~^
-        sub_question=sub_q,
-        ^^^^^^^^^^^^^^^^^^^
-    ...<5 lines>...
-                    for h in hits],
-                    ^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 115, in write
-    self._evict()
-    ~~~~~~~~~~~^^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 120, in _evict
-    victim_idx = self.policy.select_victim(self.entries, clock=self.clock)
-TypeError: RedundancyEviction.select_victim() got an unexpected keyword argument 'clock'
-A4_redundancy        | microsoft_fy2022_overview     :  50%|█████     | 2/4 [00:08<00:09,  4.55s/it]Traceback (most recent call last):
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/run_experiment.py", line 203, in evaluate_query
-    trace = agent.answer(question)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 88, in answer
-    fact = self._resolve_subquestion(sub_q, trace)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 161, in _resolve_subquestion
-    self.memory.write(
-    ~~~~~~~~~~~~~~~~~^
-        sub_question=sub_q,
-        ^^^^^^^^^^^^^^^^^^^
-    ...<5 lines>...
-                    for h in hits],
-                    ^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 115, in write
-    self._evict()
-    ~~~~~~~~~~~^^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 120, in _evict
-    victim_idx = self.policy.select_victim(self.entries, clock=self.clock)
-TypeError: RedundancyEviction.select_victim() got an unexpected keyword argument 'clock'
-A4_redundancy        | microsoft_fy2022_overview     :  75%|███████▌  | 3/4 [00:10<00:03,  3.59s/it]Traceback (most recent call last):
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/run_experiment.py", line 203, in evaluate_query
-    trace = agent.answer(question)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 88, in answer
-    fact = self._resolve_subquestion(sub_q, trace)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 161, in _resolve_subquestion
-    self.memory.write(
-    ~~~~~~~~~~~~~~~~~^
-        sub_question=sub_q,
-        ^^^^^^^^^^^^^^^^^^^
-    ...<5 lines>...
-                    for h in hits],
-                    ^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 115, in write
-    self._evict()
-    ~~~~~~~~~~~^^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 120, in _evict
-    victim_idx = self.policy.select_victim(self.entries, clock=self.clock)
-TypeError: RedundancyEviction.select_victim() got an unexpected keyword argument 'clock'
-A4_redundancy        | microsoft_fy2022_overview     : 100%|██████████| 4/4 [00:15<00:00,  3.88s/it]A4_redundancy        | microsoft_fy2022_overview     : 100%|██████████| 4/4 [00:15<00:00,  3.82s/it]
-ERROR in evaluate_query for q_017: RedundancyEviction.select_victim() got an unexpected keyword argument 'clock'
-ERROR in evaluate_query for q_018: RedundancyEviction.select_victim() got an unexpected keyword argument 'clock'
-ERROR in evaluate_query for q_019: RedundancyEviction.select_victim() got an unexpected keyword argument 'clock'
-ERROR in evaluate_query for q_020: RedundancyEviction.select_victim() got an unexpected keyword argument 'clock'
-A4_redundancy        | microsoft_profitability       :   0%|          | 0/4 [00:00<?, ?it/s]A4_redundancy        | microsoft_profitability       :  25%|██▌       | 1/4 [00:17<00:51, 17.25s/it]Traceback (most recent call last):
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/run_experiment.py", line 203, in evaluate_query
-    trace = agent.answer(question)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 88, in answer
-    fact = self._resolve_subquestion(sub_q, trace)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 161, in _resolve_subquestion
-    self.memory.write(
-    ~~~~~~~~~~~~~~~~~^
-        sub_question=sub_q,
-        ^^^^^^^^^^^^^^^^^^^
-    ...<5 lines>...
-                    for h in hits],
-                    ^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 115, in write
-    self._evict()
-    ~~~~~~~~~~~^^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 120, in _evict
-    victim_idx = self.policy.select_victim(self.entries, clock=self.clock)
-TypeError: RedundancyEviction.select_victim() got an unexpected keyword argument 'clock'
-A4_redundancy        | microsoft_profitability       :  50%|█████     | 2/4 [00:20<00:17,  8.86s/it]Traceback (most recent call last):
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/run_experiment.py", line 203, in evaluate_query
-    trace = agent.answer(question)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 88, in answer
-    fact = self._resolve_subquestion(sub_q, trace)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 161, in _resolve_subquestion
-    self.memory.write(
-    ~~~~~~~~~~~~~~~~~^
-        sub_question=sub_q,
-        ^^^^^^^^^^^^^^^^^^^
-    ...<5 lines>...
-                    for h in hits],
-                    ^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 115, in write
-    self._evict()
-    ~~~~~~~~~~~^^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 120, in _evict
-    victim_idx = self.policy.select_victim(self.entries, clock=self.clock)
-TypeError: RedundancyEviction.select_victim() got an unexpected keyword argument 'clock'
-A4_redundancy        | microsoft_profitability       :  75%|███████▌  | 3/4 [00:23<00:06,  6.21s/it]A4_redundancy        | microsoft_profitability       : 100%|██████████| 4/4 [00:44<00:00, 11.97s/it]A4_redundancy        | microsoft_profitability       : 100%|██████████| 4/4 [00:44<00:00, 11.03s/it]
-ERROR in evaluate_query for q_030: RedundancyEviction.select_victim() got an unexpected keyword argument 'clock'
-ERROR in evaluate_query for q_031: RedundancyEviction.select_victim() got an unexpected keyword argument 'clock'
-A4_redundancy        | microsoft_segments_2020_2022  :   0%|          | 0/4 [00:00<?, ?it/s]A4_redundancy        | microsoft_segments_2020_2022  :  25%|██▌       | 1/4 [00:18<00:56, 18.72s/it]Traceback (most recent call last):
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/run_experiment.py", line 203, in evaluate_query
-    trace = agent.answer(question)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 88, in answer
-    fact = self._resolve_subquestion(sub_q, trace)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 161, in _resolve_subquestion
-    self.memory.write(
-    ~~~~~~~~~~~~~~~~~^
-        sub_question=sub_q,
-        ^^^^^^^^^^^^^^^^^^^
-    ...<5 lines>...
-                    for h in hits],
-                    ^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 115, in write
-    self._evict()
-    ~~~~~~~~~~~^^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 120, in _evict
-    victim_idx = self.policy.select_victim(self.entries, clock=self.clock)
-TypeError: RedundancyEviction.select_victim() got an unexpected keyword argument 'clock'
-A4_redundancy        | microsoft_segments_2020_2022  :  50%|█████     | 2/4 [00:23<00:21, 10.81s/it]A4_redundancy        | microsoft_segments_2020_2022  :  75%|███████▌  | 3/4 [00:36<00:11, 11.61s/it]Traceback (most recent call last):
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/run_experiment.py", line 203, in evaluate_query
-    trace = agent.answer(question)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 88, in answer
-    fact = self._resolve_subquestion(sub_q, trace)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 161, in _resolve_subquestion
-    self.memory.write(
-    ~~~~~~~~~~~~~~~~~^
-        sub_question=sub_q,
-        ^^^^^^^^^^^^^^^^^^^
-    ...<5 lines>...
-                    for h in hits],
-                    ^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 115, in write
-    self._evict()
-    ~~~~~~~~~~~^^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 120, in _evict
-    victim_idx = self.policy.select_victim(self.entries, clock=self.clock)
-TypeError: RedundancyEviction.select_victim() got an unexpected keyword argument 'clock'
-A4_redundancy        | microsoft_segments_2020_2022  : 100%|██████████| 4/4 [00:40<00:00,  8.49s/it]A4_redundancy        | microsoft_segments_2020_2022  : 100%|██████████| 4/4 [00:40<00:00, 10.06s/it]
-ERROR in evaluate_query for q_022: RedundancyEviction.select_victim() got an unexpected keyword argument 'clock'
-ERROR in evaluate_query for q_024: RedundancyEviction.select_victim() got an unexpected keyword argument 'clock'
-A4_redundancy        | pepsico_fy2022_financials     :   0%|          | 0/4 [00:00<?, ?it/s]Traceback (most recent call last):
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/run_experiment.py", line 203, in evaluate_query
-    trace = agent.answer(question)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 88, in answer
-    fact = self._resolve_subquestion(sub_q, trace)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 161, in _resolve_subquestion
-    self.memory.write(
-    ~~~~~~~~~~~~~~~~~^
-        sub_question=sub_q,
-        ^^^^^^^^^^^^^^^^^^^
-    ...<5 lines>...
-                    for h in hits],
-                    ^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 115, in write
-    self._evict()
-    ~~~~~~~~~~~^^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 120, in _evict
-    victim_idx = self.policy.select_victim(self.entries, clock=self.clock)
-TypeError: RedundancyEviction.select_victim() got an unexpected keyword argument 'clock'
-A4_redundancy        | pepsico_fy2022_financials     :  25%|██▌       | 1/4 [00:03<00:11,  3.91s/it]A4_redundancy        | pepsico_fy2022_financials     :  50%|█████     | 2/4 [00:20<00:22, 11.18s/it]Traceback (most recent call last):
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/run_experiment.py", line 203, in evaluate_query
-    trace = agent.answer(question)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 88, in answer
-    fact = self._resolve_subquestion(sub_q, trace)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 161, in _resolve_subquestion
-    self.memory.write(
-    ~~~~~~~~~~~~~~~~~^
-        sub_question=sub_q,
-        ^^^^^^^^^^^^^^^^^^^
-    ...<5 lines>...
-                    for h in hits],
-                    ^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 115, in write
-    self._evict()
-    ~~~~~~~~~~~^^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 120, in _evict
-    victim_idx = self.policy.select_victim(self.entries, clock=self.clock)
-TypeError: RedundancyEviction.select_victim() got an unexpected keyword argument 'clock'
-A4_redundancy        | pepsico_fy2022_financials     :  75%|███████▌  | 3/4 [00:23<00:07,  7.66s/it]Traceback (most recent call last):
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/run_experiment.py", line 203, in evaluate_query
-    trace = agent.answer(question)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 88, in answer
-    fact = self._resolve_subquestion(sub_q, trace)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 161, in _resolve_subquestion
-    self.memory.write(
-    ~~~~~~~~~~~~~~~~~^
-        sub_question=sub_q,
-        ^^^^^^^^^^^^^^^^^^^
-    ...<5 lines>...
-                    for h in hits],
-                    ^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 115, in write
-    self._evict()
-    ~~~~~~~~~~~^^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 120, in _evict
-    victim_idx = self.policy.select_victim(self.entries, clock=self.clock)
-TypeError: RedundancyEviction.select_victim() got an unexpected keyword argument 'clock'
-A4_redundancy        | pepsico_fy2022_financials     : 100%|██████████| 4/4 [00:26<00:00,  5.71s/it]A4_redundancy        | pepsico_fy2022_financials     : 100%|██████████| 4/4 [00:26<00:00,  6.59s/it]
-ERROR in evaluate_query for q_045: RedundancyEviction.select_victim() got an unexpected keyword argument 'clock'
-ERROR in evaluate_query for q_047: RedundancyEviction.select_victim() got an unexpected keyword argument 'clock'
-ERROR in evaluate_query for q_048: RedundancyEviction.select_victim() got an unexpected keyword argument 'clock'
-A4_redundancy        | pepsico_segments_2020_2022    :   0%|          | 0/4 [00:00<?, ?it/s]A4_redundancy        | pepsico_segments_2020_2022    :  25%|██▌       | 1/4 [00:15<00:45, 15.21s/it]A4_redundancy        | pepsico_segments_2020_2022    :  50%|█████     | 2/4 [00:29<00:29, 14.91s/it]A4_redundancy        | pepsico_segments_2020_2022    :  75%|███████▌  | 3/4 [00:42<00:13, 13.85s/it]A4_redundancy        | pepsico_segments_2020_2022    : 100%|██████████| 4/4 [01:02<00:00, 16.35s/it]A4_redundancy        | pepsico_segments_2020_2022    : 100%|██████████| 4/4 [01:02<00:00, 15.67s/it]
-
-  Summary:
-    Queries: 52
-    Supported: 26/52 (50.0%)
-    Tokens: 256,974
-    Memory hits: 10
-
-================================================================================
-ARM: A5_cost_aware
-================================================================================
-  Memory: True
-  Budget: tight
-  Eviction: cost_aware
-A5_cost_aware        | apple_fy2022_basics           :   0%|          | 0/4 [00:00<?, ?it/s]A5_cost_aware        | apple_fy2022_basics           :  25%|██▌       | 1/4 [00:02<00:08,  2.95s/it]A5_cost_aware        | apple_fy2022_basics           :  50%|█████     | 2/4 [00:15<00:17,  8.87s/it]A5_cost_aware        | apple_fy2022_basics           :  75%|███████▌  | 3/4 [00:28<00:10, 10.42s/it]A5_cost_aware        | apple_fy2022_basics           : 100%|██████████| 4/4 [00:35<00:00,  9.10s/it]A5_cost_aware        | apple_fy2022_basics           : 100%|██████████| 4/4 [00:35<00:00,  8.83s/it]
-A5_cost_aware        | apple_products_2020_2022      :   0%|          | 0/4 [00:00<?, ?it/s]A5_cost_aware        | apple_products_2020_2022      :  25%|██▌       | 1/4 [00:03<00:10,  3.47s/it]A5_cost_aware        | apple_products_2020_2022      :  50%|█████     | 2/4 [00:07<00:07,  3.94s/it]A5_cost_aware        | apple_products_2020_2022      :  75%|███████▌  | 3/4 [00:21<00:08,  8.57s/it]A5_cost_aware        | apple_products_2020_2022      : 100%|██████████| 4/4 [00:28<00:00,  7.85s/it]A5_cost_aware        | apple_products_2020_2022      : 100%|██████████| 4/4 [00:28<00:00,  7.14s/it]
-A5_cost_aware        | apple_profitability_trend     :   0%|          | 0/4 [00:00<?, ?it/s]A5_cost_aware        | apple_profitability_trend     :  25%|██▌       | 1/4 [00:11<00:33, 11.26s/it]A5_cost_aware        | apple_profitability_trend     :  50%|█████     | 2/4 [00:17<00:16,  8.31s/it]A5_cost_aware        | apple_profitability_trend     :  75%|███████▌  | 3/4 [00:30<00:10, 10.23s/it]A5_cost_aware        | apple_profitability_trend     : 100%|██████████| 4/4 [00:35<00:00,  8.32s/it]A5_cost_aware        | apple_profitability_trend     : 100%|██████████| 4/4 [00:35<00:00,  8.85s/it]
-A5_cost_aware        | apple_segments_multi_year     :   0%|          | 0/4 [00:00<?, ?it/s]A5_cost_aware        | apple_segments_multi_year     :  25%|██▌       | 1/4 [00:03<00:11,  3.84s/it]A5_cost_aware        | apple_segments_multi_year     :  50%|█████     | 2/4 [00:07<00:07,  3.78s/it]A5_cost_aware        | apple_segments_multi_year     :  75%|███████▌  | 3/4 [00:20<00:08,  8.18s/it]A5_cost_aware        | apple_segments_multi_year     : 100%|██████████| 4/4 [00:24<00:00,  6.45s/it]A5_cost_aware        | apple_segments_multi_year     : 100%|██████████| 4/4 [00:24<00:00,  6.19s/it]
-A5_cost_aware        | jnj_fy2022_overview           :   0%|          | 0/4 [00:00<?, ?it/s]A5_cost_aware        | jnj_fy2022_overview           :  25%|██▌       | 1/4 [00:03<00:10,  3.65s/it]A5_cost_aware        | jnj_fy2022_overview           :  50%|█████     | 2/4 [00:07<00:07,  3.57s/it]A5_cost_aware        | jnj_fy2022_overview           :  75%|███████▌  | 3/4 [00:18<00:06,  6.90s/it]A5_cost_aware        | jnj_fy2022_overview           : 100%|██████████| 4/4 [00:23<00:00,  6.33s/it]A5_cost_aware        | jnj_fy2022_overview           : 100%|██████████| 4/4 [00:23<00:00,  5.87s/it]
-A5_cost_aware        | jnj_healthcare_focus          :   0%|          | 0/4 [00:00<?, ?it/s]Traceback (most recent call last):
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/run_experiment.py", line 203, in evaluate_query
-    trace = agent.answer(question)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 88, in answer
-    fact = self._resolve_subquestion(sub_q, trace)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 161, in _resolve_subquestion
-    self.memory.write(
-    ~~~~~~~~~~~~~~~~~^
-        sub_question=sub_q,
-        ^^^^^^^^^^^^^^^^^^^
-    ...<5 lines>...
-                    for h in hits],
-                    ^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 115, in write
-    self._evict()
-    ~~~~~~~~~~~^^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 120, in _evict
-    victim_idx = self.policy.select_victim(self.entries, clock=self.clock)
-TypeError: CostAwareEviction.select_victim() got an unexpected keyword argument 'clock'
-A5_cost_aware        | jnj_healthcare_focus          :  25%|██▌       | 1/4 [00:02<00:06,  2.32s/it]Traceback (most recent call last):
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/run_experiment.py", line 203, in evaluate_query
-    trace = agent.answer(question)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 88, in answer
-    fact = self._resolve_subquestion(sub_q, trace)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 161, in _resolve_subquestion
-    self.memory.write(
-    ~~~~~~~~~~~~~~~~~^
-        sub_question=sub_q,
-        ^^^^^^^^^^^^^^^^^^^
-    ...<5 lines>...
-                    for h in hits],
-                    ^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 115, in write
-    self._evict()
-    ~~~~~~~~~~~^^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 120, in _evict
-    victim_idx = self.policy.select_victim(self.entries, clock=self.clock)
-TypeError: CostAwareEviction.select_victim() got an unexpected keyword argument 'clock'
-A5_cost_aware        | jnj_healthcare_focus          :  50%|█████     | 2/4 [00:04<00:04,  2.23s/it]Traceback (most recent call last):
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/run_experiment.py", line 203, in evaluate_query
-    trace = agent.answer(question)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 88, in answer
-    fact = self._resolve_subquestion(sub_q, trace)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 161, in _resolve_subquestion
-    self.memory.write(
-    ~~~~~~~~~~~~~~~~~^
-        sub_question=sub_q,
-        ^^^^^^^^^^^^^^^^^^^
-    ...<5 lines>...
-                    for h in hits],
-                    ^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 115, in write
-    self._evict()
-    ~~~~~~~~~~~^^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 120, in _evict
-    victim_idx = self.policy.select_victim(self.entries, clock=self.clock)
-TypeError: CostAwareEviction.select_victim() got an unexpected keyword argument 'clock'
-A5_cost_aware        | jnj_healthcare_focus          :  75%|███████▌  | 3/4 [00:07<00:02,  2.55s/it]A5_cost_aware        | jnj_healthcare_focus          : 100%|██████████| 4/4 [00:23<00:00,  8.02s/it]A5_cost_aware        | jnj_healthcare_focus          : 100%|██████████| 4/4 [00:23<00:00,  5.95s/it]
-ERROR in evaluate_query for q_041: CostAwareEviction.select_victim() got an unexpected keyword argument 'clock'
-ERROR in evaluate_query for q_042: CostAwareEviction.select_victim() got an unexpected keyword argument 'clock'
-ERROR in evaluate_query for q_043: CostAwareEviction.select_victim() got an unexpected keyword argument 'clock'
-A5_cost_aware        | jnj_segments_2020_2022        :   0%|          | 0/4 [00:00<?, ?it/s]A5_cost_aware        | jnj_segments_2020_2022        :  25%|██▌       | 1/4 [00:02<00:08,  2.87s/it]A5_cost_aware        | jnj_segments_2020_2022        :  50%|█████     | 2/4 [00:20<00:22, 11.42s/it]A5_cost_aware        | jnj_segments_2020_2022        :  75%|███████▌  | 3/4 [00:33<00:12, 12.42s/it]Traceback (most recent call last):
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/run_experiment.py", line 203, in evaluate_query
-    trace = agent.answer(question)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 88, in answer
-    fact = self._resolve_subquestion(sub_q, trace)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 161, in _resolve_subquestion
-    self.memory.write(
-    ~~~~~~~~~~~~~~~~~^
-        sub_question=sub_q,
-        ^^^^^^^^^^^^^^^^^^^
-    ...<5 lines>...
-                    for h in hits],
-                    ^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 115, in write
-    self._evict()
-    ~~~~~~~~~~~^^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 120, in _evict
-    victim_idx = self.policy.select_victim(self.entries, clock=self.clock)
-TypeError: CostAwareEviction.select_victim() got an unexpected keyword argument 'clock'
-A5_cost_aware        | jnj_segments_2020_2022        : 100%|██████████| 4/4 [00:36<00:00,  8.49s/it]A5_cost_aware        | jnj_segments_2020_2022        : 100%|██████████| 4/4 [00:36<00:00,  9.09s/it]
-ERROR in evaluate_query for q_040: CostAwareEviction.select_victim() got an unexpected keyword argument 'clock'
-A5_cost_aware        | microsoft_cloud_revenue       :   0%|          | 0/4 [00:00<?, ?it/s]Traceback (most recent call last):
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/run_experiment.py", line 203, in evaluate_query
-    trace = agent.answer(question)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 88, in answer
-    fact = self._resolve_subquestion(sub_q, trace)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 161, in _resolve_subquestion
-    self.memory.write(
-    ~~~~~~~~~~~~~~~~~^
-        sub_question=sub_q,
-        ^^^^^^^^^^^^^^^^^^^
-    ...<5 lines>...
-                    for h in hits],
-                    ^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 115, in write
-    self._evict()
-    ~~~~~~~~~~~^^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 120, in _evict
-    victim_idx = self.policy.select_victim(self.entries, clock=self.clock)
-TypeError: CostAwareEviction.select_victim() got an unexpected keyword argument 'clock'
-A5_cost_aware        | microsoft_cloud_revenue       :  25%|██▌       | 1/4 [00:03<00:09,  3.10s/it]Traceback (most recent call last):
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/run_experiment.py", line 203, in evaluate_query
-    trace = agent.answer(question)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 88, in answer
-    fact = self._resolve_subquestion(sub_q, trace)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 161, in _resolve_subquestion
-    self.memory.write(
-    ~~~~~~~~~~~~~~~~~^
-        sub_question=sub_q,
-        ^^^^^^^^^^^^^^^^^^^
-    ...<5 lines>...
-                    for h in hits],
-                    ^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 115, in write
-    self._evict()
-    ~~~~~~~~~~~^^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 120, in _evict
-    victim_idx = self.policy.select_victim(self.entries, clock=self.clock)
-TypeError: CostAwareEviction.select_victim() got an unexpected keyword argument 'clock'
-A5_cost_aware        | microsoft_cloud_revenue       :  50%|█████     | 2/4 [00:04<00:04,  2.35s/it]Traceback (most recent call last):
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/run_experiment.py", line 203, in evaluate_query
-    trace = agent.answer(question)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 88, in answer
-    fact = self._resolve_subquestion(sub_q, trace)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 161, in _resolve_subquestion
-    self.memory.write(
-    ~~~~~~~~~~~~~~~~~^
-        sub_question=sub_q,
-        ^^^^^^^^^^^^^^^^^^^
-    ...<5 lines>...
-                    for h in hits],
-                    ^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 115, in write
-    self._evict()
-    ~~~~~~~~~~~^^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 120, in _evict
-    victim_idx = self.policy.select_victim(self.entries, clock=self.clock)
-TypeError: CostAwareEviction.select_victim() got an unexpected keyword argument 'clock'
-A5_cost_aware        | microsoft_cloud_revenue       :  75%|███████▌  | 3/4 [00:07<00:02,  2.37s/it]A5_cost_aware        | microsoft_cloud_revenue       : 100%|██████████| 4/4 [00:17<00:00,  5.56s/it]A5_cost_aware        | microsoft_cloud_revenue       : 100%|██████████| 4/4 [00:17<00:00,  4.44s/it]
-ERROR in evaluate_query for q_025: CostAwareEviction.select_victim() got an unexpected keyword argument 'clock'
-ERROR in evaluate_query for q_026: CostAwareEviction.select_victim() got an unexpected keyword argument 'clock'
-ERROR in evaluate_query for q_027: CostAwareEviction.select_victim() got an unexpected keyword argument 'clock'
-A5_cost_aware        | microsoft_fy2022_overview     :   0%|          | 0/4 [00:00<?, ?it/s]Traceback (most recent call last):
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/run_experiment.py", line 203, in evaluate_query
-    trace = agent.answer(question)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 88, in answer
-    fact = self._resolve_subquestion(sub_q, trace)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 161, in _resolve_subquestion
-    self.memory.write(
-    ~~~~~~~~~~~~~~~~~^
-        sub_question=sub_q,
-        ^^^^^^^^^^^^^^^^^^^
-    ...<5 lines>...
-                    for h in hits],
-                    ^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 115, in write
-    self._evict()
-    ~~~~~~~~~~~^^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 120, in _evict
-    victim_idx = self.policy.select_victim(self.entries, clock=self.clock)
-TypeError: CostAwareEviction.select_victim() got an unexpected keyword argument 'clock'
-A5_cost_aware        | microsoft_fy2022_overview     :  25%|██▌       | 1/4 [00:02<00:07,  2.62s/it]Traceback (most recent call last):
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/run_experiment.py", line 203, in evaluate_query
-    trace = agent.answer(question)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 88, in answer
-    fact = self._resolve_subquestion(sub_q, trace)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 161, in _resolve_subquestion
-    self.memory.write(
-    ~~~~~~~~~~~~~~~~~^
-        sub_question=sub_q,
-        ^^^^^^^^^^^^^^^^^^^
-    ...<5 lines>...
-                    for h in hits],
-                    ^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 115, in write
-    self._evict()
-    ~~~~~~~~~~~^^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 120, in _evict
-    victim_idx = self.policy.select_victim(self.entries, clock=self.clock)
-TypeError: CostAwareEviction.select_victim() got an unexpected keyword argument 'clock'
-A5_cost_aware        | microsoft_fy2022_overview     :  50%|█████     | 2/4 [00:07<00:07,  3.97s/it]A5_cost_aware        | microsoft_fy2022_overview     :  75%|███████▌  | 3/4 [00:21<00:08,  8.32s/it]Traceback (most recent call last):
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/run_experiment.py", line 203, in evaluate_query
-    trace = agent.answer(question)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 88, in answer
-    fact = self._resolve_subquestion(sub_q, trace)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 161, in _resolve_subquestion
-    self.memory.write(
-    ~~~~~~~~~~~~~~~~~^
-        sub_question=sub_q,
-        ^^^^^^^^^^^^^^^^^^^
-    ...<5 lines>...
-                    for h in hits],
-                    ^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 115, in write
-    self._evict()
-    ~~~~~~~~~~~^^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 120, in _evict
-    victim_idx = self.policy.select_victim(self.entries, clock=self.clock)
-TypeError: CostAwareEviction.select_victim() got an unexpected keyword argument 'clock'
-A5_cost_aware        | microsoft_fy2022_overview     : 100%|██████████| 4/4 [00:24<00:00,  6.46s/it]A5_cost_aware        | microsoft_fy2022_overview     : 100%|██████████| 4/4 [00:24<00:00,  6.16s/it]
-ERROR in evaluate_query for q_017: CostAwareEviction.select_victim() got an unexpected keyword argument 'clock'
-ERROR in evaluate_query for q_018: CostAwareEviction.select_victim() got an unexpected keyword argument 'clock'
-ERROR in evaluate_query for q_020: CostAwareEviction.select_victim() got an unexpected keyword argument 'clock'
-A5_cost_aware        | microsoft_profitability       :   0%|          | 0/4 [00:00<?, ?it/s]A5_cost_aware        | microsoft_profitability       :  25%|██▌       | 1/4 [00:16<00:50, 16.76s/it]Traceback (most recent call last):
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/run_experiment.py", line 203, in evaluate_query
-    trace = agent.answer(question)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 88, in answer
-    fact = self._resolve_subquestion(sub_q, trace)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 161, in _resolve_subquestion
-    self.memory.write(
-    ~~~~~~~~~~~~~~~~~^
-        sub_question=sub_q,
-        ^^^^^^^^^^^^^^^^^^^
-    ...<5 lines>...
-                    for h in hits],
-                    ^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 115, in write
-    self._evict()
-    ~~~~~~~~~~~^^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 120, in _evict
-    victim_idx = self.policy.select_victim(self.entries, clock=self.clock)
-TypeError: CostAwareEviction.select_victim() got an unexpected keyword argument 'clock'
-A5_cost_aware        | microsoft_profitability       :  50%|█████     | 2/4 [00:19<00:17,  8.73s/it]Traceback (most recent call last):
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/run_experiment.py", line 203, in evaluate_query
-    trace = agent.answer(question)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 88, in answer
-    fact = self._resolve_subquestion(sub_q, trace)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 161, in _resolve_subquestion
-    self.memory.write(
-    ~~~~~~~~~~~~~~~~~^
-        sub_question=sub_q,
-        ^^^^^^^^^^^^^^^^^^^
-    ...<5 lines>...
-                    for h in hits],
-                    ^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 115, in write
-    self._evict()
-    ~~~~~~~~~~~^^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 120, in _evict
-    victim_idx = self.policy.select_victim(self.entries, clock=self.clock)
-TypeError: CostAwareEviction.select_victim() got an unexpected keyword argument 'clock'
-A5_cost_aware        | microsoft_profitability       :  75%|███████▌  | 3/4 [00:22<00:05,  5.82s/it]A5_cost_aware        | microsoft_profitability       : 100%|██████████| 4/4 [00:38<00:00, 10.05s/it]A5_cost_aware        | microsoft_profitability       : 100%|██████████| 4/4 [00:38<00:00,  9.69s/it]
-ERROR in evaluate_query for q_030: CostAwareEviction.select_victim() got an unexpected keyword argument 'clock'
-ERROR in evaluate_query for q_031: CostAwareEviction.select_victim() got an unexpected keyword argument 'clock'
-A5_cost_aware        | microsoft_segments_2020_2022  :   0%|          | 0/4 [00:00<?, ?it/s]A5_cost_aware        | microsoft_segments_2020_2022  :  25%|██▌       | 1/4 [00:16<00:49, 16.59s/it]Traceback (most recent call last):
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/run_experiment.py", line 203, in evaluate_query
-    trace = agent.answer(question)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 88, in answer
-    fact = self._resolve_subquestion(sub_q, trace)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 161, in _resolve_subquestion
-    self.memory.write(
-    ~~~~~~~~~~~~~~~~~^
-        sub_question=sub_q,
-        ^^^^^^^^^^^^^^^^^^^
-    ...<5 lines>...
-                    for h in hits],
-                    ^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 115, in write
-    self._evict()
-    ~~~~~~~~~~~^^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 120, in _evict
-    victim_idx = self.policy.select_victim(self.entries, clock=self.clock)
-TypeError: CostAwareEviction.select_victim() got an unexpected keyword argument 'clock'
-A5_cost_aware        | microsoft_segments_2020_2022  :  50%|█████     | 2/4 [00:20<00:18,  9.02s/it]Traceback (most recent call last):
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/run_experiment.py", line 203, in evaluate_query
-    trace = agent.answer(question)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 88, in answer
-    fact = self._resolve_subquestion(sub_q, trace)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 161, in _resolve_subquestion
-    self.memory.write(
-    ~~~~~~~~~~~~~~~~~^
-        sub_question=sub_q,
-        ^^^^^^^^^^^^^^^^^^^
-    ...<5 lines>...
-                    for h in hits],
-                    ^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 115, in write
-    self._evict()
-    ~~~~~~~~~~~^^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 120, in _evict
-    victim_idx = self.policy.select_victim(self.entries, clock=self.clock)
-TypeError: CostAwareEviction.select_victim() got an unexpected keyword argument 'clock'
-A5_cost_aware        | microsoft_segments_2020_2022  :  75%|███████▌  | 3/4 [00:24<00:06,  6.71s/it]Traceback (most recent call last):
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/run_experiment.py", line 203, in evaluate_query
-    trace = agent.answer(question)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 88, in answer
-    fact = self._resolve_subquestion(sub_q, trace)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 161, in _resolve_subquestion
-    self.memory.write(
-    ~~~~~~~~~~~~~~~~~^
-        sub_question=sub_q,
-        ^^^^^^^^^^^^^^^^^^^
-    ...<5 lines>...
-                    for h in hits],
-                    ^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 115, in write
-    self._evict()
-    ~~~~~~~~~~~^^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 120, in _evict
-    victim_idx = self.policy.select_victim(self.entries, clock=self.clock)
-TypeError: CostAwareEviction.select_victim() got an unexpected keyword argument 'clock'
-A5_cost_aware        | microsoft_segments_2020_2022  : 100%|██████████| 4/4 [00:26<00:00,  4.92s/it]A5_cost_aware        | microsoft_segments_2020_2022  : 100%|██████████| 4/4 [00:26<00:00,  6.61s/it]
-ERROR in evaluate_query for q_022: CostAwareEviction.select_victim() got an unexpected keyword argument 'clock'
-ERROR in evaluate_query for q_023: CostAwareEviction.select_victim() got an unexpected keyword argument 'clock'
-ERROR in evaluate_query for q_024: CostAwareEviction.select_victim() got an unexpected keyword argument 'clock'
-A5_cost_aware        | pepsico_fy2022_financials     :   0%|          | 0/4 [00:00<?, ?it/s]Traceback (most recent call last):
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/run_experiment.py", line 203, in evaluate_query
-    trace = agent.answer(question)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 88, in answer
-    fact = self._resolve_subquestion(sub_q, trace)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 161, in _resolve_subquestion
-    self.memory.write(
-    ~~~~~~~~~~~~~~~~~^
-        sub_question=sub_q,
-        ^^^^^^^^^^^^^^^^^^^
-    ...<5 lines>...
-                    for h in hits],
-                    ^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 115, in write
-    self._evict()
-    ~~~~~~~~~~~^^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 120, in _evict
-    victim_idx = self.policy.select_victim(self.entries, clock=self.clock)
-TypeError: CostAwareEviction.select_victim() got an unexpected keyword argument 'clock'
-A5_cost_aware        | pepsico_fy2022_financials     :  25%|██▌       | 1/4 [00:05<00:17,  5.72s/it]A5_cost_aware        | pepsico_fy2022_financials     :  50%|█████     | 2/4 [00:20<00:21, 10.97s/it]Traceback (most recent call last):
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/run_experiment.py", line 203, in evaluate_query
-    trace = agent.answer(question)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 88, in answer
-    fact = self._resolve_subquestion(sub_q, trace)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 161, in _resolve_subquestion
-    self.memory.write(
-    ~~~~~~~~~~~~~~~~~^
-        sub_question=sub_q,
-        ^^^^^^^^^^^^^^^^^^^
-    ...<5 lines>...
-                    for h in hits],
-                    ^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 115, in write
-    self._evict()
-    ~~~~~~~~~~~^^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 120, in _evict
-    victim_idx = self.policy.select_victim(self.entries, clock=self.clock)
-TypeError: CostAwareEviction.select_victim() got an unexpected keyword argument 'clock'
-A5_cost_aware        | pepsico_fy2022_financials     :  75%|███████▌  | 3/4 [00:22<00:06,  6.97s/it]Traceback (most recent call last):
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/run_experiment.py", line 203, in evaluate_query
-    trace = agent.answer(question)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 88, in answer
-    fact = self._resolve_subquestion(sub_q, trace)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 161, in _resolve_subquestion
-    self.memory.write(
-    ~~~~~~~~~~~~~~~~~^
-        sub_question=sub_q,
-        ^^^^^^^^^^^^^^^^^^^
-    ...<5 lines>...
-                    for h in hits],
-                    ^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 115, in write
-    self._evict()
-    ~~~~~~~~~~~^^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 120, in _evict
-    victim_idx = self.policy.select_victim(self.entries, clock=self.clock)
-TypeError: CostAwareEviction.select_victim() got an unexpected keyword argument 'clock'
-A5_cost_aware        | pepsico_fy2022_financials     : 100%|██████████| 4/4 [00:25<00:00,  5.28s/it]A5_cost_aware        | pepsico_fy2022_financials     : 100%|██████████| 4/4 [00:25<00:00,  6.32s/it]
-ERROR in evaluate_query for q_045: CostAwareEviction.select_victim() got an unexpected keyword argument 'clock'
-ERROR in evaluate_query for q_047: CostAwareEviction.select_victim() got an unexpected keyword argument 'clock'
-ERROR in evaluate_query for q_048: CostAwareEviction.select_victim() got an unexpected keyword argument 'clock'
-A5_cost_aware        | pepsico_segments_2020_2022    :   0%|          | 0/4 [00:00<?, ?it/s]A5_cost_aware        | pepsico_segments_2020_2022    :  25%|██▌       | 1/4 [00:13<00:39, 13.23s/it]A5_cost_aware        | pepsico_segments_2020_2022    :  50%|█████     | 2/4 [00:26<00:26, 13.42s/it]A5_cost_aware        | pepsico_segments_2020_2022    :  75%|███████▌  | 3/4 [00:36<00:11, 11.52s/it]A5_cost_aware        | pepsico_segments_2020_2022    : 100%|██████████| 4/4 [00:52<00:00, 13.32s/it]A5_cost_aware        | pepsico_segments_2020_2022    : 100%|██████████| 4/4 [00:52<00:00, 13.03s/it]
-
-  Summary:
-    Queries: 52
-    Supported: 28/52 (53.8%)
-    Tokens: 290,979
-    Memory hits: 13
-
-================================================================================
-ARM: A6_hybrid
-================================================================================
-  Memory: True
-  Budget: tight
-  Eviction: cost_aware
-A6_hybrid            | apple_fy2022_basics           :   0%|          | 0/4 [00:00<?, ?it/s]A6_hybrid            | apple_fy2022_basics           :  25%|██▌       | 1/4 [00:02<00:08,  2.82s/it]A6_hybrid            | apple_fy2022_basics           :  50%|█████     | 2/4 [00:15<00:17,  8.65s/it]A6_hybrid            | apple_fy2022_basics           :  75%|███████▌  | 3/4 [00:24<00:08,  8.84s/it]A6_hybrid            | apple_fy2022_basics           : 100%|██████████| 4/4 [00:30<00:00,  7.83s/it]A6_hybrid            | apple_fy2022_basics           : 100%|██████████| 4/4 [00:30<00:00,  7.73s/it]
-A6_hybrid            | apple_products_2020_2022      :   0%|          | 0/4 [00:00<?, ?it/s]A6_hybrid            | apple_products_2020_2022      :  25%|██▌       | 1/4 [00:04<00:13,  4.45s/it]A6_hybrid            | apple_products_2020_2022      :  50%|█████     | 2/4 [00:08<00:07,  3.98s/it]A6_hybrid            | apple_products_2020_2022      :  75%|███████▌  | 3/4 [00:13<00:04,  4.77s/it]A6_hybrid            | apple_products_2020_2022      : 100%|██████████| 4/4 [00:22<00:00,  6.28s/it]A6_hybrid            | apple_products_2020_2022      : 100%|██████████| 4/4 [00:22<00:00,  5.61s/it]
-A6_hybrid            | apple_profitability_trend     :   0%|          | 0/4 [00:00<?, ?it/s]A6_hybrid            | apple_profitability_trend     :  25%|██▌       | 1/4 [00:12<00:37, 12.59s/it]A6_hybrid            | apple_profitability_trend     :  50%|█████     | 2/4 [00:18<00:17,  8.83s/it]A6_hybrid            | apple_profitability_trend     :  75%|███████▌  | 3/4 [00:30<00:10, 10.21s/it]A6_hybrid            | apple_profitability_trend     : 100%|██████████| 4/4 [00:35<00:00,  8.10s/it]A6_hybrid            | apple_profitability_trend     : 100%|██████████| 4/4 [00:35<00:00,  8.88s/it]
-A6_hybrid            | apple_segments_multi_year     :   0%|          | 0/4 [00:00<?, ?it/s]A6_hybrid            | apple_segments_multi_year     :  25%|██▌       | 1/4 [00:03<00:10,  3.59s/it]A6_hybrid            | apple_segments_multi_year     :  50%|█████     | 2/4 [00:09<00:09,  4.71s/it]A6_hybrid            | apple_segments_multi_year     :  75%|███████▌  | 3/4 [00:24<00:09,  9.79s/it]A6_hybrid            | apple_segments_multi_year     : 100%|██████████| 4/4 [00:28<00:00,  7.22s/it]A6_hybrid            | apple_segments_multi_year     : 100%|██████████| 4/4 [00:28<00:00,  7.05s/it]
-A6_hybrid            | jnj_fy2022_overview           :   0%|          | 0/4 [00:00<?, ?it/s]A6_hybrid            | jnj_fy2022_overview           :  25%|██▌       | 1/4 [00:03<00:10,  3.47s/it]A6_hybrid            | jnj_fy2022_overview           :  50%|█████     | 2/4 [00:07<00:07,  3.81s/it]A6_hybrid            | jnj_fy2022_overview           :  75%|███████▌  | 3/4 [00:19<00:07,  7.65s/it]A6_hybrid            | jnj_fy2022_overview           : 100%|██████████| 4/4 [00:25<00:00,  7.08s/it]A6_hybrid            | jnj_fy2022_overview           : 100%|██████████| 4/4 [00:25<00:00,  6.49s/it]
-A6_hybrid            | jnj_healthcare_focus          :   0%|          | 0/4 [00:00<?, ?it/s]Traceback (most recent call last):
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/run_experiment.py", line 203, in evaluate_query
-    trace = agent.answer(question)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 88, in answer
-    fact = self._resolve_subquestion(sub_q, trace)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 161, in _resolve_subquestion
-    self.memory.write(
-    ~~~~~~~~~~~~~~~~~^
-        sub_question=sub_q,
-        ^^^^^^^^^^^^^^^^^^^
-    ...<5 lines>...
-                    for h in hits],
-                    ^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 115, in write
-    self._evict()
-    ~~~~~~~~~~~^^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 120, in _evict
-    victim_idx = self.policy.select_victim(self.entries, clock=self.clock)
-TypeError: CostAwareEviction.select_victim() got an unexpected keyword argument 'clock'
-A6_hybrid            | jnj_healthcare_focus          :  25%|██▌       | 1/4 [00:02<00:07,  2.54s/it]Traceback (most recent call last):
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/run_experiment.py", line 203, in evaluate_query
-    trace = agent.answer(question)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 88, in answer
-    fact = self._resolve_subquestion(sub_q, trace)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 161, in _resolve_subquestion
-    self.memory.write(
-    ~~~~~~~~~~~~~~~~~^
-        sub_question=sub_q,
-        ^^^^^^^^^^^^^^^^^^^
-    ...<5 lines>...
-                    for h in hits],
-                    ^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 115, in write
-    self._evict()
-    ~~~~~~~~~~~^^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 120, in _evict
-    victim_idx = self.policy.select_victim(self.entries, clock=self.clock)
-TypeError: CostAwareEviction.select_victim() got an unexpected keyword argument 'clock'
-A6_hybrid            | jnj_healthcare_focus          :  50%|█████     | 2/4 [00:04<00:04,  2.31s/it]Traceback (most recent call last):
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/run_experiment.py", line 203, in evaluate_query
-    trace = agent.answer(question)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 88, in answer
-    fact = self._resolve_subquestion(sub_q, trace)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 161, in _resolve_subquestion
-    self.memory.write(
-    ~~~~~~~~~~~~~~~~~^
-        sub_question=sub_q,
-        ^^^^^^^^^^^^^^^^^^^
-    ...<5 lines>...
-                    for h in hits],
-                    ^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 115, in write
-    self._evict()
-    ~~~~~~~~~~~^^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 120, in _evict
-    victim_idx = self.policy.select_victim(self.entries, clock=self.clock)
-TypeError: CostAwareEviction.select_victim() got an unexpected keyword argument 'clock'
-A6_hybrid            | jnj_healthcare_focus          :  75%|███████▌  | 3/4 [00:07<00:02,  2.71s/it]A6_hybrid            | jnj_healthcare_focus          : 100%|██████████| 4/4 [00:21<00:00,  7.05s/it]A6_hybrid            | jnj_healthcare_focus          : 100%|██████████| 4/4 [00:21<00:00,  5.39s/it]
-ERROR in evaluate_query for q_041: CostAwareEviction.select_victim() got an unexpected keyword argument 'clock'
-ERROR in evaluate_query for q_042: CostAwareEviction.select_victim() got an unexpected keyword argument 'clock'
-ERROR in evaluate_query for q_043: CostAwareEviction.select_victim() got an unexpected keyword argument 'clock'
-A6_hybrid            | jnj_segments_2020_2022        :   0%|          | 0/4 [00:00<?, ?it/s]A6_hybrid            | jnj_segments_2020_2022        :  25%|██▌       | 1/4 [00:02<00:07,  2.66s/it]A6_hybrid            | jnj_segments_2020_2022        :  50%|█████     | 2/4 [00:18<00:21, 10.58s/it]A6_hybrid            | jnj_segments_2020_2022        :  75%|███████▌  | 3/4 [00:34<00:12, 12.74s/it]Traceback (most recent call last):
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/run_experiment.py", line 203, in evaluate_query
-    trace = agent.answer(question)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 88, in answer
-    fact = self._resolve_subquestion(sub_q, trace)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 161, in _resolve_subquestion
-    self.memory.write(
-    ~~~~~~~~~~~~~~~~~^
-        sub_question=sub_q,
-        ^^^^^^^^^^^^^^^^^^^
-    ...<5 lines>...
-                    for h in hits],
-                    ^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 115, in write
-    self._evict()
-    ~~~~~~~~~~~^^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 120, in _evict
-    victim_idx = self.policy.select_victim(self.entries, clock=self.clock)
-TypeError: CostAwareEviction.select_victim() got an unexpected keyword argument 'clock'
-A6_hybrid            | jnj_segments_2020_2022        : 100%|██████████| 4/4 [00:37<00:00,  8.93s/it]A6_hybrid            | jnj_segments_2020_2022        : 100%|██████████| 4/4 [00:37<00:00,  9.30s/it]
-ERROR in evaluate_query for q_040: CostAwareEviction.select_victim() got an unexpected keyword argument 'clock'
-A6_hybrid            | microsoft_cloud_revenue       :   0%|          | 0/4 [00:00<?, ?it/s]Traceback (most recent call last):
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/run_experiment.py", line 203, in evaluate_query
-    trace = agent.answer(question)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 88, in answer
-    fact = self._resolve_subquestion(sub_q, trace)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 161, in _resolve_subquestion
-    self.memory.write(
-    ~~~~~~~~~~~~~~~~~^
-        sub_question=sub_q,
-        ^^^^^^^^^^^^^^^^^^^
-    ...<5 lines>...
-                    for h in hits],
-                    ^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 115, in write
-    self._evict()
-    ~~~~~~~~~~~^^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 120, in _evict
-    victim_idx = self.policy.select_victim(self.entries, clock=self.clock)
-TypeError: CostAwareEviction.select_victim() got an unexpected keyword argument 'clock'
-A6_hybrid            | microsoft_cloud_revenue       :  25%|██▌       | 1/4 [00:02<00:06,  2.24s/it]Traceback (most recent call last):
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/run_experiment.py", line 203, in evaluate_query
-    trace = agent.answer(question)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 88, in answer
-    fact = self._resolve_subquestion(sub_q, trace)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 161, in _resolve_subquestion
-    self.memory.write(
-    ~~~~~~~~~~~~~~~~~^
-        sub_question=sub_q,
-        ^^^^^^^^^^^^^^^^^^^
-    ...<5 lines>...
-                    for h in hits],
-                    ^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 115, in write
-    self._evict()
-    ~~~~~~~~~~~^^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 120, in _evict
-    victim_idx = self.policy.select_victim(self.entries, clock=self.clock)
-TypeError: CostAwareEviction.select_victim() got an unexpected keyword argument 'clock'
-A6_hybrid            | microsoft_cloud_revenue       :  50%|█████     | 2/4 [00:05<00:05,  2.77s/it]Traceback (most recent call last):
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/run_experiment.py", line 203, in evaluate_query
-    trace = agent.answer(question)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 88, in answer
-    fact = self._resolve_subquestion(sub_q, trace)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 161, in _resolve_subquestion
-    self.memory.write(
-    ~~~~~~~~~~~~~~~~~^
-        sub_question=sub_q,
-        ^^^^^^^^^^^^^^^^^^^
-    ...<5 lines>...
-                    for h in hits],
-                    ^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 115, in write
-    self._evict()
-    ~~~~~~~~~~~^^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 120, in _evict
-    victim_idx = self.policy.select_victim(self.entries, clock=self.clock)
-TypeError: CostAwareEviction.select_victim() got an unexpected keyword argument 'clock'
-A6_hybrid            | microsoft_cloud_revenue       :  75%|███████▌  | 3/4 [00:07<00:02,  2.58s/it]A6_hybrid            | microsoft_cloud_revenue       : 100%|██████████| 4/4 [00:19<00:00,  6.18s/it]A6_hybrid            | microsoft_cloud_revenue       : 100%|██████████| 4/4 [00:19<00:00,  4.86s/it]
-ERROR in evaluate_query for q_025: CostAwareEviction.select_victim() got an unexpected keyword argument 'clock'
-ERROR in evaluate_query for q_026: CostAwareEviction.select_victim() got an unexpected keyword argument 'clock'
-ERROR in evaluate_query for q_027: CostAwareEviction.select_victim() got an unexpected keyword argument 'clock'
-A6_hybrid            | microsoft_fy2022_overview     :   0%|          | 0/4 [00:00<?, ?it/s]Traceback (most recent call last):
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/run_experiment.py", line 203, in evaluate_query
-    trace = agent.answer(question)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 88, in answer
-    fact = self._resolve_subquestion(sub_q, trace)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 161, in _resolve_subquestion
-    self.memory.write(
-    ~~~~~~~~~~~~~~~~~^
-        sub_question=sub_q,
-        ^^^^^^^^^^^^^^^^^^^
-    ...<5 lines>...
-                    for h in hits],
-                    ^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 115, in write
-    self._evict()
-    ~~~~~~~~~~~^^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 120, in _evict
-    victim_idx = self.policy.select_victim(self.entries, clock=self.clock)
-TypeError: CostAwareEviction.select_victim() got an unexpected keyword argument 'clock'
-A6_hybrid            | microsoft_fy2022_overview     :  25%|██▌       | 1/4 [00:01<00:05,  1.69s/it]Traceback (most recent call last):
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/run_experiment.py", line 203, in evaluate_query
-    trace = agent.answer(question)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 88, in answer
-    fact = self._resolve_subquestion(sub_q, trace)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 161, in _resolve_subquestion
-    self.memory.write(
-    ~~~~~~~~~~~~~~~~~^
-        sub_question=sub_q,
-        ^^^^^^^^^^^^^^^^^^^
-    ...<5 lines>...
-                    for h in hits],
-                    ^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 115, in write
-    self._evict()
-    ~~~~~~~~~~~^^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 120, in _evict
-    victim_idx = self.policy.select_victim(self.entries, clock=self.clock)
-TypeError: CostAwareEviction.select_victim() got an unexpected keyword argument 'clock'
-A6_hybrid            | microsoft_fy2022_overview     :  50%|█████     | 2/4 [00:06<00:06,  3.48s/it]Traceback (most recent call last):
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/run_experiment.py", line 203, in evaluate_query
-    trace = agent.answer(question)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 88, in answer
-    fact = self._resolve_subquestion(sub_q, trace)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 161, in _resolve_subquestion
-    self.memory.write(
-    ~~~~~~~~~~~~~~~~~^
-        sub_question=sub_q,
-        ^^^^^^^^^^^^^^^^^^^
-    ...<5 lines>...
-                    for h in hits],
-                    ^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 115, in write
-    self._evict()
-    ~~~~~~~~~~~^^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 120, in _evict
-    victim_idx = self.policy.select_victim(self.entries, clock=self.clock)
-TypeError: CostAwareEviction.select_victim() got an unexpected keyword argument 'clock'
-A6_hybrid            | microsoft_fy2022_overview     :  75%|███████▌  | 3/4 [00:09<00:03,  3.07s/it]Traceback (most recent call last):
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/run_experiment.py", line 203, in evaluate_query
-    trace = agent.answer(question)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 88, in answer
-    fact = self._resolve_subquestion(sub_q, trace)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 161, in _resolve_subquestion
-    self.memory.write(
-    ~~~~~~~~~~~~~~~~~^
-        sub_question=sub_q,
-        ^^^^^^^^^^^^^^^^^^^
-    ...<5 lines>...
-                    for h in hits],
-                    ^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 115, in write
-    self._evict()
-    ~~~~~~~~~~~^^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 120, in _evict
-    victim_idx = self.policy.select_victim(self.entries, clock=self.clock)
-TypeError: CostAwareEviction.select_victim() got an unexpected keyword argument 'clock'
-A6_hybrid            | microsoft_fy2022_overview     : 100%|██████████| 4/4 [00:12<00:00,  3.21s/it]A6_hybrid            | microsoft_fy2022_overview     : 100%|██████████| 4/4 [00:12<00:00,  3.11s/it]
-ERROR in evaluate_query for q_017: CostAwareEviction.select_victim() got an unexpected keyword argument 'clock'
-ERROR in evaluate_query for q_018: CostAwareEviction.select_victim() got an unexpected keyword argument 'clock'
-ERROR in evaluate_query for q_019: CostAwareEviction.select_victim() got an unexpected keyword argument 'clock'
-ERROR in evaluate_query for q_020: CostAwareEviction.select_victim() got an unexpected keyword argument 'clock'
-A6_hybrid            | microsoft_profitability       :   0%|          | 0/4 [00:00<?, ?it/s]A6_hybrid            | microsoft_profitability       :  25%|██▌       | 1/4 [00:15<00:45, 15.01s/it]Traceback (most recent call last):
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/run_experiment.py", line 203, in evaluate_query
-    trace = agent.answer(question)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 88, in answer
-    fact = self._resolve_subquestion(sub_q, trace)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 161, in _resolve_subquestion
-    self.memory.write(
-    ~~~~~~~~~~~~~~~~~^
-        sub_question=sub_q,
-        ^^^^^^^^^^^^^^^^^^^
-    ...<5 lines>...
-                    for h in hits],
-                    ^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 115, in write
-    self._evict()
-    ~~~~~~~~~~~^^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 120, in _evict
-    victim_idx = self.policy.select_victim(self.entries, clock=self.clock)
-TypeError: CostAwareEviction.select_victim() got an unexpected keyword argument 'clock'
-A6_hybrid            | microsoft_profitability       :  50%|█████     | 2/4 [00:17<00:15,  7.83s/it]Traceback (most recent call last):
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/run_experiment.py", line 203, in evaluate_query
-    trace = agent.answer(question)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 88, in answer
-    fact = self._resolve_subquestion(sub_q, trace)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 161, in _resolve_subquestion
-    self.memory.write(
-    ~~~~~~~~~~~~~~~~~^
-        sub_question=sub_q,
-        ^^^^^^^^^^^^^^^^^^^
-    ...<5 lines>...
-                    for h in hits],
-                    ^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 115, in write
-    self._evict()
-    ~~~~~~~~~~~^^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 120, in _evict
-    victim_idx = self.policy.select_victim(self.entries, clock=self.clock)
-TypeError: CostAwareEviction.select_victim() got an unexpected keyword argument 'clock'
-A6_hybrid            | microsoft_profitability       :  75%|███████▌  | 3/4 [00:21<00:05,  5.76s/it]A6_hybrid            | microsoft_profitability       : 100%|██████████| 4/4 [00:35<00:00,  9.34s/it]A6_hybrid            | microsoft_profitability       : 100%|██████████| 4/4 [00:35<00:00,  8.99s/it]
-ERROR in evaluate_query for q_030: CostAwareEviction.select_victim() got an unexpected keyword argument 'clock'
-ERROR in evaluate_query for q_031: CostAwareEviction.select_victim() got an unexpected keyword argument 'clock'
-A6_hybrid            | microsoft_segments_2020_2022  :   0%|          | 0/4 [00:00<?, ?it/s]A6_hybrid            | microsoft_segments_2020_2022  :  25%|██▌       | 1/4 [00:16<00:50, 16.78s/it]Traceback (most recent call last):
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/run_experiment.py", line 203, in evaluate_query
-    trace = agent.answer(question)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 88, in answer
-    fact = self._resolve_subquestion(sub_q, trace)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 161, in _resolve_subquestion
-    self.memory.write(
-    ~~~~~~~~~~~~~~~~~^
-        sub_question=sub_q,
-        ^^^^^^^^^^^^^^^^^^^
-    ...<5 lines>...
-                    for h in hits],
-                    ^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 115, in write
-    self._evict()
-    ~~~~~~~~~~~^^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 120, in _evict
-    victim_idx = self.policy.select_victim(self.entries, clock=self.clock)
-TypeError: CostAwareEviction.select_victim() got an unexpected keyword argument 'clock'
-A6_hybrid            | microsoft_segments_2020_2022  :  50%|█████     | 2/4 [00:19<00:16,  8.32s/it]Traceback (most recent call last):
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/run_experiment.py", line 203, in evaluate_query
-    trace = agent.answer(question)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 88, in answer
-    fact = self._resolve_subquestion(sub_q, trace)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 161, in _resolve_subquestion
-    self.memory.write(
-    ~~~~~~~~~~~~~~~~~^
-        sub_question=sub_q,
-        ^^^^^^^^^^^^^^^^^^^
-    ...<5 lines>...
-                    for h in hits],
-                    ^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 115, in write
-    self._evict()
-    ~~~~~~~~~~~^^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 120, in _evict
-    victim_idx = self.policy.select_victim(self.entries, clock=self.clock)
-TypeError: CostAwareEviction.select_victim() got an unexpected keyword argument 'clock'
-A6_hybrid            | microsoft_segments_2020_2022  :  75%|███████▌  | 3/4 [00:23<00:06,  6.47s/it]Traceback (most recent call last):
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/run_experiment.py", line 203, in evaluate_query
-    trace = agent.answer(question)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 88, in answer
-    fact = self._resolve_subquestion(sub_q, trace)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 161, in _resolve_subquestion
-    self.memory.write(
-    ~~~~~~~~~~~~~~~~~^
-        sub_question=sub_q,
-        ^^^^^^^^^^^^^^^^^^^
-    ...<5 lines>...
-                    for h in hits],
-                    ^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 115, in write
-    self._evict()
-    ~~~~~~~~~~~^^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 120, in _evict
-    victim_idx = self.policy.select_victim(self.entries, clock=self.clock)
-TypeError: CostAwareEviction.select_victim() got an unexpected keyword argument 'clock'
-A6_hybrid            | microsoft_segments_2020_2022  : 100%|██████████| 4/4 [00:27<00:00,  5.37s/it]A6_hybrid            | microsoft_segments_2020_2022  : 100%|██████████| 4/4 [00:27<00:00,  6.78s/it]
-ERROR in evaluate_query for q_022: CostAwareEviction.select_victim() got an unexpected keyword argument 'clock'
-ERROR in evaluate_query for q_023: CostAwareEviction.select_victim() got an unexpected keyword argument 'clock'
-ERROR in evaluate_query for q_024: CostAwareEviction.select_victim() got an unexpected keyword argument 'clock'
-A6_hybrid            | pepsico_fy2022_financials     :   0%|          | 0/4 [00:00<?, ?it/s]Traceback (most recent call last):
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/run_experiment.py", line 203, in evaluate_query
-    trace = agent.answer(question)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 88, in answer
-    fact = self._resolve_subquestion(sub_q, trace)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 161, in _resolve_subquestion
-    self.memory.write(
-    ~~~~~~~~~~~~~~~~~^
-        sub_question=sub_q,
-        ^^^^^^^^^^^^^^^^^^^
-    ...<5 lines>...
-                    for h in hits],
-                    ^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 115, in write
-    self._evict()
-    ~~~~~~~~~~~^^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 120, in _evict
-    victim_idx = self.policy.select_victim(self.entries, clock=self.clock)
-TypeError: CostAwareEviction.select_victim() got an unexpected keyword argument 'clock'
-A6_hybrid            | pepsico_fy2022_financials     :  25%|██▌       | 1/4 [00:02<00:07,  2.49s/it]A6_hybrid            | pepsico_fy2022_financials     :  50%|█████     | 2/4 [00:16<00:18,  9.48s/it]Traceback (most recent call last):
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/run_experiment.py", line 203, in evaluate_query
-    trace = agent.answer(question)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 88, in answer
-    fact = self._resolve_subquestion(sub_q, trace)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 161, in _resolve_subquestion
-    self.memory.write(
-    ~~~~~~~~~~~~~~~~~^
-        sub_question=sub_q,
-        ^^^^^^^^^^^^^^^^^^^
-    ...<5 lines>...
-                    for h in hits],
-                    ^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 115, in write
-    self._evict()
-    ~~~~~~~~~~~^^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 120, in _evict
-    victim_idx = self.policy.select_victim(self.entries, clock=self.clock)
-TypeError: CostAwareEviction.select_victim() got an unexpected keyword argument 'clock'
-A6_hybrid            | pepsico_fy2022_financials     :  75%|███████▌  | 3/4 [00:19<00:06,  6.22s/it]Traceback (most recent call last):
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/run_experiment.py", line 203, in evaluate_query
-    trace = agent.answer(question)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 88, in answer
-    fact = self._resolve_subquestion(sub_q, trace)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 161, in _resolve_subquestion
-    self.memory.write(
-    ~~~~~~~~~~~~~~~~~^
-        sub_question=sub_q,
-        ^^^^^^^^^^^^^^^^^^^
-    ...<5 lines>...
-                    for h in hits],
-                    ^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 115, in write
-    self._evict()
-    ~~~~~~~~~~~^^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 120, in _evict
-    victim_idx = self.policy.select_victim(self.entries, clock=self.clock)
-TypeError: CostAwareEviction.select_victim() got an unexpected keyword argument 'clock'
-A6_hybrid            | pepsico_fy2022_financials     : 100%|██████████| 4/4 [00:21<00:00,  4.58s/it]A6_hybrid            | pepsico_fy2022_financials     : 100%|██████████| 4/4 [00:21<00:00,  5.32s/it]
-ERROR in evaluate_query for q_045: CostAwareEviction.select_victim() got an unexpected keyword argument 'clock'
-ERROR in evaluate_query for q_047: CostAwareEviction.select_victim() got an unexpected keyword argument 'clock'
-ERROR in evaluate_query for q_048: CostAwareEviction.select_victim() got an unexpected keyword argument 'clock'
-A6_hybrid            | pepsico_segments_2020_2022    :   0%|          | 0/4 [00:00<?, ?it/s]A6_hybrid            | pepsico_segments_2020_2022    :  25%|██▌       | 1/4 [00:14<00:42, 14.33s/it]A6_hybrid            | pepsico_segments_2020_2022    :  50%|█████     | 2/4 [00:28<00:28, 14.49s/it]Traceback (most recent call last):
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/run_experiment.py", line 203, in evaluate_query
-    trace = agent.answer(question)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 88, in answer
-    fact = self._resolve_subquestion(sub_q, trace)
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/agent.py", line 161, in _resolve_subquestion
-    self.memory.write(
-    ~~~~~~~~~~~~~~~~~^
-        sub_question=sub_q,
-        ^^^^^^^^^^^^^^^^^^^
-    ...<5 lines>...
-                    for h in hits],
-                    ^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 115, in write
-    self._evict()
-    ~~~~~~~~~~~^^
-  File "/Users/shikhaporwal/PycharmProjects/finsession-rag/src/memory.py", line 120, in _evict
-    victim_idx = self.policy.select_victim(self.entries, clock=self.clock)
-TypeError: CostAwareEviction.select_victim() got an unexpected keyword argument 'clock'
-A6_hybrid            | pepsico_segments_2020_2022    :  75%|███████▌  | 3/4 [00:32<00:09,  9.57s/it]A6_hybrid            | pepsico_segments_2020_2022    : 100%|██████████| 4/4 [00:47<00:00, 11.85s/it]A6_hybrid            | pepsico_segments_2020_2022    : 100%|██████████| 4/4 [00:47<00:00, 12.00s/it]
-ERROR in evaluate_query for q_051: CostAwareEviction.select_victim() got an unexpected keyword argument 'clock'
-
-  Summary:
-    Queries: 52
-    Supported: 29/52 (55.8%)
-    Tokens: 255,299
-    Memory hits: 11
-
-✅ Results saved to PostgreSQL and /Users/shikhaporwal/PycharmProjects/finsession-rag/results/results_all.json

@@ -24,3 +24,14 @@ results/
 
 # macOS
 .DS_Store
+
+# backups, logs, scratch
+*.bak*
+*.backup
+*.log
+*=*
+debug_output.txt
+.Rapp.history
+results_prefix_*/
+results_summary.json
+data/sessions_backup/

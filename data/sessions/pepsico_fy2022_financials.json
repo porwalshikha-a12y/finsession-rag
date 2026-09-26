@@ -26,6 +26,13 @@
       "question": "Compare PepsiCo's revenue in 2022 vs 2021.",
       "query_type": "multi_hop",
       "expected_answer_marker": "comparison"
+    },
+    {
+      "query_id": "q_064",
+      "question": "How much net revenue did PepsiCo report for 2022?",
+      "query_type": "paraphrase_probe",
+      "paraphrase_of": "q_045",
+      "expected_answer_marker": "paraphrase"
     }
   ]
 }

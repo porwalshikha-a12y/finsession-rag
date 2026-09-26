@@ -26,6 +26,13 @@
       "question": "Compare Johnson & Johnson's revenue in 2022 vs 2021.",
       "query_type": "multi_hop",
       "expected_answer_marker": "comparison"
+    },
+    {
+      "query_id": "q_057",
+      "question": "How much did Johnson & Johnson sell to customers during 2022?",
+      "query_type": "paraphrase_probe",
+      "paraphrase_of": "q_033",
+      "expected_answer_marker": "paraphrase"
     }
   ]
 }

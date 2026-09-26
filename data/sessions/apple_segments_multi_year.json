@@ -26,6 +26,13 @@
       "question": "How did Apple's China segment revenue change from 2021 to 2022?",
       "query_type": "multi_hop",
       "expected_answer_marker": "china growth"
+    },
+    {
+      "query_id": "q_056",
+      "question": "Among Apple's reportable segments, which was largest by sales in 2022?",
+      "query_type": "paraphrase_probe",
+      "paraphrase_of": "q_006",
+      "expected_answer_marker": "paraphrase"
     }
   ]
 }

@@ -26,6 +26,13 @@
       "question": "How did the Intelligent Cloud segment revenue grow from 2021 to 2022?",
       "query_type": "multi_hop",
       "expected_answer_marker": "cloud growth"
+    },
+    {
+      "query_id": "q_063",
+      "question": "Of Microsoft's three segments, which was largest by FY2022 revenue?",
+      "query_type": "paraphrase_probe",
+      "paraphrase_of": "q_022",
+      "expected_answer_marker": "paraphrase"
     }
   ]
 }
